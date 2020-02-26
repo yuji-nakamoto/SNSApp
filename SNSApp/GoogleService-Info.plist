@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>814196677440-a3qgo08nl9fesqoui2j6h2u5iqnp96ar.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.814196677440-a3qgo08nl9fesqoui2j6h2u5iqnp96ar</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC4ZthKI9_OAvmTl3k3Vvowg3dpqtcn0qI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>814196677440</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ynCompany.SNSApp</string>
+	<key>PROJECT_ID</key>
+	<string>snsapp-bc1d9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>snsapp-bc1d9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:814196677440:ios:c620687df40712fb10b8a5</string>
+	<key>DATABASE_URL</key>
+	<string>https://snsapp-bc1d9.firebaseio.com</string>
+</dict>
+</plist>
