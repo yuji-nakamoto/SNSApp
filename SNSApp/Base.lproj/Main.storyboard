@@ -358,6 +358,9 @@
                                 <state key="normal" title="パスワードをリセット">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetAction:" destination="JKI-8z-BaO" eventType="touchUpInside" id="nFW-ot-4Jx"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="説明" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPz-Ub-Rvp">
                                 <rect key="frame" x="40" y="108" width="295" height="18"/>
@@ -426,6 +429,7 @@
                     <navigationItem key="navigationItem" id="iwN-lr-Gzz"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="GPz-Ub-Rvp" id="XhZ-ZH-ahl"/>
+                        <outlet property="emailTextField" destination="jTb-Zu-EXk" id="2gY-IM-G5P"/>
                         <outlet property="resetButton" destination="wM6-V5-Paw" id="ryY-x8-cjE"/>
                     </connections>
                 </viewController>

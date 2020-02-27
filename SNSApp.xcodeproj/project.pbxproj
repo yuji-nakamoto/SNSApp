@@ -69,18 +69,42 @@
 		83508B2124070744000DFD8C /* SNSApp */ = {
 			isa = PBXGroup;
 			children = (
+				83508B4224073D8E000DFD8C /* Model */,
+				83508B4124073D82000DFD8C /* View */,
+				83508B4024073D6E000DFD8C /* Controller */,
+				83508B2824070744000DFD8C /* Main.storyboard */,
 				83508B2224070744000DFD8C /* AppDelegate.swift */,
 				83508B2424070744000DFD8C /* SceneDelegate.swift */,
-				83508B3A2407125C000DFD8C /* SignInViewController.swift */,
-				83508B2824070744000DFD8C /* Main.storyboard */,
 				83508B2B24070747000DFD8C /* Assets.xcassets */,
 				83508B2D24070747000DFD8C /* LaunchScreen.storyboard */,
 				83508B3024070747000DFD8C /* Info.plist */,
 				83508B382407105D000DFD8C /* GoogleService-Info.plist */,
+			);
+			path = SNSApp;
+			sourceTree = "<group>";
+		};
+		83508B4024073D6E000DFD8C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				83508B3A2407125C000DFD8C /* SignInViewController.swift */,
 				83508B3C24072AEF000DFD8C /* SignUpViewController.swift */,
 				83508B3E240734A7000DFD8C /* ForgotViewController.swift */,
 			);
-			path = SNSApp;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		83508B4124073D82000DFD8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		83508B4224073D8E000DFD8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A84B2825C0B4B66C1E9AB7EA /* Frameworks */ = {

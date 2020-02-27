@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import ProgressHUD
 
 class SignInViewController: UIViewController {
 
@@ -40,7 +42,15 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func loginBtnDidTapped(_ sender: Any) {
-        
+        ProgressHUD.show()
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+            ProgressHUD.showSuccess()
+            print(result?.user.uid)
+        }
     }
     
     @IBAction func fbBtnDidTapped(_ sender: Any) {
