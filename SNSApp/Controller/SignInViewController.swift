@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var faceBookButton: UIButton!
@@ -24,6 +24,9 @@ class SignInViewController: UIViewController {
     }
     
     func setupUI() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         loginButton.layer.cornerRadius = 5
         loginButton.clipsToBounds = true
         
@@ -35,6 +38,13 @@ class SignInViewController: UIViewController {
         googleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
     
     
     @IBAction func forgotPassword(_ sender: Any) {
