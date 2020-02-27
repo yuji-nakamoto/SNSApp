@@ -18,6 +18,7 @@
 		83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B3E240734A7000DFD8C /* ForgotViewController.swift */; };
 		83508B44240751DA000DFD8C /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B43240751DA000DFD8C /* StartViewController.swift */; };
 		83508B4624075591000DFD8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4524075591000DFD8C /* HomeViewController.swift */; };
+		83508B4824078A93000DFD8C /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4724078A93000DFD8C /* PostViewController.swift */; };
 		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		83508B3E240734A7000DFD8C /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		83508B43240751DA000DFD8C /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		83508B4524075591000DFD8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		83508B4724078A93000DFD8C /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				83508B3E240734A7000DFD8C /* ForgotViewController.swift */,
 				83508B43240751DA000DFD8C /* StartViewController.swift */,
 				83508B4524075591000DFD8C /* HomeViewController.swift */,
+				83508B4724078A93000DFD8C /* PostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83508B4824078A93000DFD8C /* PostViewController.swift in Sources */,
 				83508B2324070744000DFD8C /* AppDelegate.swift in Sources */,
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,

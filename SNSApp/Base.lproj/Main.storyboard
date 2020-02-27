@@ -410,7 +410,26 @@
                     <view key="view" contentMode="scaleToFill" id="oj3-yP-6mh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zF3-bF-8jc">
+                                <rect key="frame" x="295" y="538" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="d6M-9h-ZyJ"/>
+                                    <constraint firstAttribute="height" constant="70" id="lOW-fL-PJz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                                <state key="normal" image="plus.circle.fill" catalog="system"/>
+                                <connections>
+                                    <segue destination="CsX-PS-yi9" kind="show" id="P2q-YO-3UG"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="juL-nF-bod" firstAttribute="trailing" secondItem="zF3-bF-8jc" secondAttribute="trailing" constant="10" id="1EJ-HS-aNe"/>
+                            <constraint firstItem="juL-nF-bod" firstAttribute="bottom" secondItem="zF3-bF-8jc" secondAttribute="bottom" constant="10" id="jfR-Ts-Htc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="juL-nF-bod"/>
                     </view>
                     <navigationItem key="navigationItem" id="uAJ-yD-G8a">
@@ -428,7 +447,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2mY-04-lTN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1959" y="1004"/>
+            <point key="canvasLocation" x="1957.5999999999999" y="1003.4482758620691"/>
+        </scene>
+        <!--Post View Controller-->
+        <scene sceneID="fCM-w0-Wp3">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="CsX-PS-yi9" customClass="PostViewController" customModule="SNSApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c23-vJ-Fu8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QEi-xY-q3h"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hfb-4a-Mvf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCf-Yw-GuY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="1003"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4hy-dV-O4b">
@@ -438,6 +473,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="F7H-aD-Xdk" kind="relationship" relationship="viewControllers" id="TvU-95-5Pg"/>
@@ -558,7 +594,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfl-jp-fUM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2780" y="-585.1574212893554"/>
+            <point key="canvasLocation" x="2817" y="-585"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="31M-fp-J1X">
@@ -587,6 +623,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ael-Ro-cO4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -604,5 +641,6 @@
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="paperplane" catalog="system" width="64" height="60"/>
         <image name="placeholderImg" width="225" height="225"/>
+        <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
