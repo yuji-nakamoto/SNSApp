@@ -108,7 +108,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                             Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict) { (error, ref) in
                                 if error == nil {
                                     ProgressHUD.showSuccess()
-                                    print("done")
+                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+                                    self.present(tabBarVC, animated: true, completion: nil)
+
                                 }
                             }
                         }
@@ -119,7 +122,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func dismissAction(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
 }

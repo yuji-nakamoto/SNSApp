@@ -49,7 +49,10 @@ class SignInViewController: UIViewController {
                 return
             }
             ProgressHUD.showSuccess()
-            print(result?.user.uid)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+            self.present(tabBarVC, animated: true, completion: nil)
+
         }
     }
     

@@ -34,7 +34,7 @@ class ForgotViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func dismissAction(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
