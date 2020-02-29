@@ -11,11 +11,26 @@ import Firebase
 import ProgressHUD
 
 class HomeViewController: UIViewController {
+    
+    var avatarImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
 
+        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.layer.cornerRadius = 18
+        avatarImageView.clipsToBounds = true
+        containView.addSubview(avatarImageView)
         
+        let leftBarButton = UIBarButtonItem(customView: containView)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        
+        if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
+            avatarImageView.loadImage(photoUrl.absoluteString)
+        }
     }
     
     @IBAction func logoutAction(_ sender: Any) {

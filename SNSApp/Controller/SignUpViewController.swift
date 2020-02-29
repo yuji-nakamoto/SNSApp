@@ -103,6 +103,17 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                     }
                     storageProfileRef.downloadURL { (url, error) in
                         if let imageUrl = url?.absoluteString {
+                            
+                            if let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() {
+                                changeRequest.photoURL = url
+                                changeRequest.displayName = username
+                                changeRequest.commitChanges { (error) in
+                                    if let error = error {
+                                        ProgressHUD.showError(error.localizedDescription)
+                                    }
+                                }
+                            }
+                            
                             dict["profileImageUrl"] = imageUrl
                             
                             Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict) { (error, ref) in
