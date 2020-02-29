@@ -15,7 +15,7 @@ class PostViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var photoImage: UIImageView!
+    @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var textView: UITextView!
     
     var image: UIImage?
@@ -53,9 +53,8 @@ class PostViewController: UIViewController {
             profileImage.loadImage(photoUrl.absoluteString)
         }
         profileImage.layer.cornerRadius = 20
-        profileImage.clipsToBounds = true
-        photoImage.layer.cornerRadius = 20
-        photoImage.contentMode = .scaleAspectFill
+        contentImage.layer.cornerRadius = 20
+        contentImage.contentMode = .scaleAspectFill
         
         sendButton.layer.cornerRadius = 14
         sendButton.isEnabled = false
@@ -149,7 +148,11 @@ class PostViewController: UIViewController {
         let ref = Database.database().reference().child("posts")
         let postId = ref.childByAutoId().key
         let postRef = ref.child(postId!)
-        postRef.setValue(["photoImageUrl": imageUrl, "caption": textView.text!]) { (error, ref) in
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        let currentUserId = currentUser.uid
+        postRef.setValue(["uid": currentUserId, "contentImageUrl": imageUrl, "caption": textView.text!]) { (error, ref) in
             if error != nil {
                 ProgressHUD.showError(error?.localizedDescription)
                 return
@@ -166,7 +169,7 @@ extension PostViewController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imageSelected = info[.originalImage] as? UIImage {
             image = imageSelected
-            photoImage.image = imageSelected
+            contentImage.image = imageSelected
             sendButton.isEnabled = true
             sendButton.backgroundColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1)
             
