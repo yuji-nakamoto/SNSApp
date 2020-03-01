@@ -10,9 +10,12 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        profileImage.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

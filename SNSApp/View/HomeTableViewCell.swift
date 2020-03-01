@@ -8,6 +8,11 @@
 
 import UIKit
 import Firebase
+protocol HomeTableViewCellDelegate {
+    func goToCommentVC(postId: String)
+//    func goToProfileUserVC(userId: String)
+//    func goToHashTag(tag: String)
+}
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -16,10 +21,18 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var contentImage: UIImageView!
+    @IBOutlet weak var commentButton: UIButton!
     
+    var delegate: HomeTableViewCellDelegate?
     var post: Post? {
         didSet {
             updateView()
+        }
+    }
+    
+    var user: User? {
+        didSet {
+            setupUserInfo()
         }
     }
     
@@ -33,25 +46,27 @@ class HomeTableViewCell: UITableViewCell {
     }
 
     func setupUserInfo() {
-        if let uid = post?.uid {
-            Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-                if let dict = snapshot.value as? [String: Any] {
-                    let user = User.transformUser(dict: dict)
-                    self.usernameLabel.text = user.username
-                    if let photoUrlString = user.profileImageUrl {
-                        let photoUrl = URL(string: photoUrlString)
-                        self.profileImage.sd_setImage(with: photoUrl, completed: nil)
-                    }
-                }
-            }
+        usernameLabel.text = user?.username
+        if let photoUrlString = user?.profileImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            profileImage.sd_setImage(with: photoUrl, completed: nil)
         }
+     
     }
             
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.commentBtnTap))
+               commentButton.addGestureRecognizer(tapGesture)
         
+    }
+    
+    @objc func commentBtnTap() {
+        if let id = post?.id {
+            delegate?.goToCommentVC(postId: id)
+        }
     }
     
     override func prepareForReuse() {
@@ -66,8 +81,6 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func commentBtnDidTapped(_ sender: Any) {
-    }
     @IBAction func likeBtnDidTapped(_ sender: Any) {
     }
     @IBAction func shereBtnDidTapped(_ sender: Any) {
