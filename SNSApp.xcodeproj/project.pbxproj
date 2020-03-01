@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A3B240A722B00EE05E9 /* HomeTableViewCell.swift */; };
+		834F5A3E240A740400EE05E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A3D240A740400EE05E9 /* Post.swift */; };
+		834F5A40240AB41C00EE05E9 /* ContributorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A3F240AB41C00EE05E9 /* ContributorTableViewCell.swift */; };
+		834F5A42240AB43200EE05E9 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */; };
+		834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A43240AB47700EE05E9 /* CommentViewController.swift */; };
+		834F5A46240AC7DD00EE05E9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A45240AC7DD00EE05E9 /* Comment.swift */; };
 		83508B2324070744000DFD8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2224070744000DFD8C /* AppDelegate.swift */; };
 		83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2424070744000DFD8C /* SceneDelegate.swift */; };
 		83508B2A24070744000DFD8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2824070744000DFD8C /* Main.storyboard */; };
@@ -19,6 +25,8 @@
 		83508B44240751DA000DFD8C /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B43240751DA000DFD8C /* StartViewController.swift */; };
 		83508B4624075591000DFD8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4524075591000DFD8C /* HomeViewController.swift */; };
 		83508B4824078A93000DFD8C /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4724078A93000DFD8C /* PostViewController.swift */; };
+		83508B4C2407F0BD000DFD8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4B2407F0BD000DFD8C /* User.swift */; };
+		83508B4E240803C3000DFD8C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4D240803C3000DFD8C /* Extension.swift */; };
 		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +34,12 @@
 		064109958F6BE778EB232065 /* Pods-SNSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SNSApp.release.xcconfig"; path = "Target Support Files/Pods-SNSApp/Pods-SNSApp.release.xcconfig"; sourceTree = "<group>"; };
 		1BCD19D70B32A1C242046791 /* Pods-SNSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SNSApp.debug.xcconfig"; path = "Target Support Files/Pods-SNSApp/Pods-SNSApp.debug.xcconfig"; sourceTree = "<group>"; };
 		32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SNSApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		834F5A3B240A722B00EE05E9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		834F5A3D240A740400EE05E9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		834F5A3F240AB41C00EE05E9 /* ContributorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorTableViewCell.swift; sourceTree = "<group>"; };
+		834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		834F5A43240AB47700EE05E9 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		834F5A45240AC7DD00EE05E9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		83508B1F24070744000DFD8C /* SNSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83508B2224070744000DFD8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83508B2424070744000DFD8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +54,8 @@
 		83508B43240751DA000DFD8C /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		83508B4524075591000DFD8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		83508B4724078A93000DFD8C /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		83508B4B2407F0BD000DFD8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		83508B4D240803C3000DFD8C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +114,7 @@
 				83508B43240751DA000DFD8C /* StartViewController.swift */,
 				83508B4524075591000DFD8C /* HomeViewController.swift */,
 				83508B4724078A93000DFD8C /* PostViewController.swift */,
+				834F5A43240AB47700EE05E9 /* CommentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -105,6 +122,9 @@
 		83508B4124073D82000DFD8C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				834F5A3B240A722B00EE05E9 /* HomeTableViewCell.swift */,
+				834F5A3F240AB41C00EE05E9 /* ContributorTableViewCell.swift */,
+				834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +132,10 @@
 		83508B4224073D8E000DFD8C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				83508B4B2407F0BD000DFD8C /* User.swift */,
+				83508B4D240803C3000DFD8C /* Extension.swift */,
+				834F5A3D240A740400EE05E9 /* Post.swift */,
+				834F5A45240AC7DD00EE05E9 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,11 +276,19 @@
 				83508B4824078A93000DFD8C /* PostViewController.swift in Sources */,
 				83508B2324070744000DFD8C /* AppDelegate.swift in Sources */,
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
+				834F5A3E240A740400EE05E9 /* Post.swift in Sources */,
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,
+				834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */,
 				83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */,
+				834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */,
+				83508B4E240803C3000DFD8C /* Extension.swift in Sources */,
+				83508B4C2407F0BD000DFD8C /* User.swift in Sources */,
 				83508B3B2407125C000DFD8C /* SignInViewController.swift in Sources */,
+				834F5A46240AC7DD00EE05E9 /* Comment.swift in Sources */,
 				83508B4624075591000DFD8C /* HomeViewController.swift in Sources */,
+				834F5A42240AB43200EE05E9 /* CommentTableViewCell.swift in Sources */,
 				83508B44240751DA000DFD8C /* StartViewController.swift in Sources */,
+				834F5A40240AB41C00EE05E9 /* ContributorTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

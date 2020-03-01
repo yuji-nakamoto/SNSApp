@@ -11,11 +11,73 @@ import Firebase
 import ProgressHUD
 
 class HomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    var posts = [Post]()
+    var users = [User]()
+    var username = ""
+    var profileImageUrl = ""
+    var caption = ""
+    var contentImageUrl = ""
+    var avatarImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
+        setupAvatar()
+        loadPosts()
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 426
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+    }
+    
+    func loadPosts() {
+        activityIndicatorView.startAnimating()
+        Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let newPost = Post.transformPost(dict: dict, key: snapshot.key)
+                self.fetchUser(uid: newPost.uid!) {
+                    self.posts.insert(newPost, at: 0)
+                    self.activityIndicatorView.stopAnimating()
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func fetchUser(uid: String, completed: @escaping () -> Void) {
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(dict: dict)
+                self.users.insert(user, at: 0)
+                completed()
+            }
+        }
+    }
+    
+    func setupAvatar() {
+        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.layer.cornerRadius = 18
+        avatarImageView.clipsToBounds = true
+        containView.addSubview(avatarImageView)
+        
+        let leftBarButton = UIBarButtonItem(customView: containView)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        
+        if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
+            avatarImageView.loadImage(photoUrl.absoluteString)
+        }
     }
     
     @IBAction func logoutAction(_ sender: Any) {
@@ -30,6 +92,54 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentVC"{
+            let commentVC = segue.destination as! CommentViewController
+            let postId = sender as? String
+            commentVC.postId = postId
+            commentVC.profileImageUrl = profileImageUrl
+            commentVC.username = username
+            commentVC.contentImageUrl = contentImageUrl
+            commentVC.caption = caption
+            
+        }
+    }
     
+}
 
+extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeTableViewCell
+        let post = posts[indexPath.row]
+        let user = users[indexPath.row]
+        cell.user = user
+        cell.post = post
+        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        username = users[indexPath.row].username!
+        profileImageUrl = users[indexPath.row].profileImageUrl!
+        caption = posts[indexPath.row].caption!
+        contentImageUrl = posts[indexPath.row].contentImageUrl!
+        
+        performSegue(withIdentifier: "CommentVC", sender: nil)
+    }
+}
+
+extension HomeViewController: HomeTableViewCellDelegate {
+//    func goToHashTag(tag: String) {
+//        performSegue(withIdentifier: "Home_HashTagSegue", sender: tag)
+//    }
+    func goToCommentVC(postId: String) {
+        performSegue(withIdentifier: "CommentVC", sender: postId)
+    }
+//    func goToProfileUserVC(userId: String) {
+//        performSegue(withIdentifier: "Home_ProfileSegue", sender: userId)
+//    }
 }
