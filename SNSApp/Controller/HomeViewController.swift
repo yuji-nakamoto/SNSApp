@@ -43,25 +43,19 @@ class HomeViewController: UIViewController {
     
     func loadPosts() {
         activityIndicatorView.startAnimating()
-        Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let newPost = Post.transformPost(dict: dict, key: snapshot.key)
-                self.fetchUser(uid: newPost.uid!) {
-                    self.posts.insert(newPost, at: 0)
-                    self.activityIndicatorView.stopAnimating()
-                    self.tableView.reloadData()
-                }
+        PostApi().observePosts { (post) in
+            self.fetchUser(uid: post.uid!) {
+                self.posts.insert(post, at: 0)
+                self.activityIndicatorView.stopAnimating()
+                self.tableView.reloadData()
             }
         }
     }
     
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict, key: snapshot.key)
-                self.users.insert(user, at: 0)
-                completed()
-            }
+        UserApi().observeUser(withId: uid) { (user) in
+            self.users.insert(user, at: 0)
+            completed()
         }
     }
     

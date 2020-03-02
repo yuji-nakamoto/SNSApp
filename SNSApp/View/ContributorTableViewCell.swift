@@ -47,7 +47,6 @@ class ContributorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
-        print("caption: \(contentImage.image)")
     }
     
     override func prepareForReuse() {

@@ -51,44 +51,37 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
     }
     
     func loadComments() {
-        let postCommentRef = Database.database().reference().child("post-comments").child(self.postId)
-        postCommentRef.observe(.childAdded) { (snapshot) in
-            Database.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value) { (snapshotComment) in
-                if let dict = snapshotComment.value as? [String: Any] {
-                    let newComment = Comment.transformComment(dict: dict)
-                    self.fetchUsers(uid: newComment.uid!) {
-                        self.comments.append(newComment)
-                        self.tableView.reloadData()
-                    }
+        Post_CommentApi().REF_POST_COMMENTS.child(self.postId).observe(.childAdded) { (snapshot) in
+            CommentApi().observeComments(withPostId: snapshot.key) { (comment) in
+                self.fetchUsers(uid: comment.uid!) {
+                    self.comments.append(comment)
+                    self.tableView.reloadData()
                 }
             }
         }
     }
     
     func fetchUsers(uid: String, completed: @escaping () -> Void) {
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict, key: snapshot.key)
-                self.users.append(user)
-                completed()
-            }
+        UserApi().observeUser(withId: uid) { (user) in
+            self.users.append(user)
+            completed()
         }
     }
     
     func loadPost() {
-        Api.Post.observePost(withId: postId) { (post) in
+        PostApi().observePost(withId: postId) { (post) in
             guard let postUid = post.uid else {
                 return
             }
-            self.fetchUser(uid: postUid, completed: {
+            self.fetchPostUser(uid: postUid, completed: {
                 self.post = post
                 self.tableView.reloadData()
             })
         }
     }
     
-    func fetchUser(uid:String, completed: @escaping () -> Void) {
-        Api.User.observeUser(withId: uid, comletion: {
+    func fetchPostUser(uid:String, completed: @escaping () -> Void) {
+        UserApi().observeUser(withId: uid, comletion: {
             user in
             self.user = user
             completed()
