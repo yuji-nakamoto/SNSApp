@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict)
+                let user = User.transformUser(dict: dict, key: snapshot.key)
                 self.users.insert(user, at: 0)
                 completed()
             }
@@ -96,12 +96,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == "CommentVC"{
             let commentVC = segue.destination as! CommentViewController
             let postId = sender as? String
-            commentVC.postId = postId
-            commentVC.profileImageUrl = profileImageUrl
-            commentVC.username = username
-            commentVC.contentImageUrl = contentImageUrl
-            commentVC.caption = caption
-            
+            commentVC.postId = postId!
         }
     }
     
@@ -118,28 +113,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         let user = users[indexPath.row]
         cell.user = user
         cell.post = post
-        cell.delegate = self
+        cell.homeVC = self
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        username = users[indexPath.row].username!
-        profileImageUrl = users[indexPath.row].profileImageUrl!
-        caption = posts[indexPath.row].caption!
-        contentImageUrl = posts[indexPath.row].contentImageUrl!
-        
-        performSegue(withIdentifier: "CommentVC", sender: nil)
-    }
-}
-
-extension HomeViewController: HomeTableViewCellDelegate {
-//    func goToHashTag(tag: String) {
-//        performSegue(withIdentifier: "Home_HashTagSegue", sender: tag)
-//    }
-    func goToCommentVC(postId: String) {
-        performSegue(withIdentifier: "CommentVC", sender: postId)
-    }
-//    func goToProfileUserVC(userId: String) {
-//        performSegue(withIdentifier: "Home_ProfileSegue", sender: userId)
-//    }
 }
