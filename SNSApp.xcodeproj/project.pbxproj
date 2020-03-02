@@ -17,6 +17,7 @@
 		834F5A4F240BBB7700EE05E9 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A4E240BBB7700EE05E9 /* UserApi.swift */; };
 		834F5A53240CD28600EE05E9 /* CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A52240CD28600EE05E9 /* CommentApi.swift */; };
 		834F5A55240CD83B00EE05E9 /* Post_CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A54240CD83B00EE05E9 /* Post_CommentApi.swift */; };
+		834F5A57240CFD3900EE05E9 /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 834F5A56240CFD3900EE05E9 /* heart.json */; };
 		83508B2324070744000DFD8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2224070744000DFD8C /* AppDelegate.swift */; };
 		83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2424070744000DFD8C /* SceneDelegate.swift */; };
 		83508B2A24070744000DFD8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2824070744000DFD8C /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		834F5A4E240BBB7700EE05E9 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		834F5A52240CD28600EE05E9 /* CommentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentApi.swift; sourceTree = "<group>"; };
 		834F5A54240CD83B00EE05E9 /* Post_CommentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_CommentApi.swift; sourceTree = "<group>"; };
+		834F5A56240CFD3900EE05E9 /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
 		83508B1F24070744000DFD8C /* SNSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83508B2224070744000DFD8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83508B2424070744000DFD8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,8 +119,9 @@
 				83508B2824070744000DFD8C /* Main.storyboard */,
 				83508B2224070744000DFD8C /* AppDelegate.swift */,
 				83508B2424070744000DFD8C /* SceneDelegate.swift */,
-				83508B2B24070747000DFD8C /* Assets.xcassets */,
 				83508B2D24070747000DFD8C /* LaunchScreen.storyboard */,
+				83508B2B24070747000DFD8C /* Assets.xcassets */,
+				834F5A56240CFD3900EE05E9 /* heart.json */,
 				83508B3024070747000DFD8C /* Info.plist */,
 				83508B382407105D000DFD8C /* GoogleService-Info.plist */,
 			);
@@ -188,7 +191,7 @@
 				83508B1B24070744000DFD8C /* Sources */,
 				83508B1C24070744000DFD8C /* Frameworks */,
 				83508B1D24070744000DFD8C /* Resources */,
-				5CB24D224AC922E925FE981F /* [CP] Copy Pods Resources */,
+				946BFBC27EBB850A238CBD7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,6 +243,7 @@
 				83508B2F24070747000DFD8C /* LaunchScreen.storyboard in Resources */,
 				83508B2C24070747000DFD8C /* Assets.xcassets in Resources */,
 				83508B2A24070744000DFD8C /* Main.storyboard in Resources */,
+				834F5A57240CFD3900EE05E9 /* heart.json in Resources */,
 				83508B392407105D000DFD8C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,23 +251,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5CB24D224AC922E925FE981F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		750D2314C23A5F872655D7D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,6 +271,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		946BFBC27EBB850A238CBD7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
