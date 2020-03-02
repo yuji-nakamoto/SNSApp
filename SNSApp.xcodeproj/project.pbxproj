@@ -13,6 +13,9 @@
 		834F5A42240AB43200EE05E9 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */; };
 		834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A43240AB47700EE05E9 /* CommentViewController.swift */; };
 		834F5A46240AC7DD00EE05E9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A45240AC7DD00EE05E9 /* Comment.swift */; };
+		834F5A4B240BBA0D00EE05E9 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A4A240BBA0D00EE05E9 /* Api.swift */; };
+		834F5A4D240BBA3000EE05E9 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A4C240BBA3000EE05E9 /* PostApi.swift */; };
+		834F5A4F240BBB7700EE05E9 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A4E240BBB7700EE05E9 /* UserApi.swift */; };
 		83508B2324070744000DFD8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2224070744000DFD8C /* AppDelegate.swift */; };
 		83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2424070744000DFD8C /* SceneDelegate.swift */; };
 		83508B2A24070744000DFD8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2824070744000DFD8C /* Main.storyboard */; };
@@ -40,6 +43,9 @@
 		834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		834F5A43240AB47700EE05E9 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		834F5A45240AC7DD00EE05E9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		834F5A4A240BBA0D00EE05E9 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		834F5A4C240BBA3000EE05E9 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
+		834F5A4E240BBB7700EE05E9 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		83508B1F24070744000DFD8C /* SNSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83508B2224070744000DFD8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83508B2424070744000DFD8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +76,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		834F5A49240BB9F900EE05E9 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				834F5A4A240BBA0D00EE05E9 /* Api.swift */,
+				834F5A4C240BBA3000EE05E9 /* PostApi.swift */,
+				834F5A4E240BBB7700EE05E9 /* UserApi.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		83508B1624070744000DFD8C = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +107,7 @@
 		83508B2124070744000DFD8C /* SNSApp */ = {
 			isa = PBXGroup;
 			children = (
+				834F5A49240BB9F900EE05E9 /* Api */,
 				83508B4224073D8E000DFD8C /* Model */,
 				83508B4124073D82000DFD8C /* View */,
 				83508B4024073D6E000DFD8C /* Controller */,
@@ -278,6 +295,7 @@
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
 				834F5A3E240A740400EE05E9 /* Post.swift in Sources */,
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,
+				834F5A4B240BBA0D00EE05E9 /* Api.swift in Sources */,
 				834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */,
 				83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */,
 				834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */,
@@ -288,7 +306,9 @@
 				83508B4624075591000DFD8C /* HomeViewController.swift in Sources */,
 				834F5A42240AB43200EE05E9 /* CommentTableViewCell.swift in Sources */,
 				83508B44240751DA000DFD8C /* StartViewController.swift in Sources */,
+				834F5A4D240BBA3000EE05E9 /* PostApi.swift in Sources */,
 				834F5A40240AB41C00EE05E9 /* ContributorTableViewCell.swift in Sources */,
+				834F5A4F240BBB7700EE05E9 /* UserApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

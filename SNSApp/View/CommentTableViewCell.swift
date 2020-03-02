@@ -13,6 +13,31 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    
+    var comment: Comment? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    var user: User? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
+    func updateView() {
+        captionLabel?.text = comment?.commentText
+    }
+    
+    func setupUserInfo() {
+        usernameLabel.text = user?.username
+        if let photoUrlString = user?.profileImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            profileImage.sd_setImage(with: photoUrl, completed: nil)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20

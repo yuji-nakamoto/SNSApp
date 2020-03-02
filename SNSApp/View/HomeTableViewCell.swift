@@ -8,11 +8,6 @@
 
 import UIKit
 import Firebase
-protocol HomeTableViewCellDelegate {
-    func goToCommentVC(postId: String)
-//    func goToProfileUserVC(userId: String)
-//    func goToHashTag(tag: String)
-}
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -23,7 +18,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var contentImage: UIImageView!
     @IBOutlet weak var commentButton: UIButton!
     
-    var delegate: HomeTableViewCellDelegate?
+    var homeVC: HomeViewController?
     var post: Post? {
         didSet {
             updateView()
@@ -42,7 +37,6 @@ class HomeTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             contentImage.sd_setImage(with: photoUrl, completed: nil)
         }
-        setupUserInfo()
     }
 
     func setupUserInfo() {
@@ -51,21 +45,28 @@ class HomeTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, completed: nil)
         }
-     
     }
             
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.commentBtnTap))
-               commentButton.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.contentImageTap))
+               contentImage.addGestureRecognizer(tapGesture)
+        let tapGestureForBtn = UITapGestureRecognizer(target: self, action: #selector(self.commentBtnTap))
+        commentButton.addGestureRecognizer(tapGestureForBtn)
         
+    }
+    
+    @objc func contentImageTap() {
+        if let id = post?.id {
+           homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+        }
     }
     
     @objc func commentBtnTap() {
         if let id = post?.id {
-            delegate?.goToCommentVC(postId: id)
+            homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
         }
     }
     

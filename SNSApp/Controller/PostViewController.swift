@@ -34,7 +34,6 @@ class PostViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
