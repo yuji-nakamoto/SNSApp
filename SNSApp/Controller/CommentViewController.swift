@@ -26,7 +26,6 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("postId: \(postId)")
         tableView.delegate = self
         tableView.dataSource = self
         textField.delegate = self
@@ -36,7 +35,6 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
         setupSendBtn()
         loadComments()
         loadPost()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,6 +188,4 @@ extension CommentViewController: UITableViewDelegate,UITableViewDataSource {
         
         return cell_2
     }
-    
-    
 }

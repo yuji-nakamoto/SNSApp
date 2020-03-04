@@ -12,6 +12,8 @@ class User {
     var profileImageUrl: String?
     var username: String?
     var id: String?
+    var birthday: String?
+    var selfIntro: String?
 //    var isFollowing: Bool?
 }
 
@@ -22,6 +24,8 @@ extension User {
         user.email = dict["email"] as? String
         user.profileImageUrl = dict["profileImageUrl"] as? String
         user.username = dict["username"] as? String
+        user.birthday = dict["birthday"] as? String
+        user.selfIntro = dict["selfIntro"] as? String
         return user
     }
 }

@@ -20,7 +20,6 @@
 		834F5A57240CFD3900EE05E9 /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 834F5A56240CFD3900EE05E9 /* heart.json */; };
 		834F5A59240D0D2900EE05E9 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A58240D0D2900EE05E9 /* SideMenuViewController.swift */; };
 		834F5A65240E7D1300EE05E9 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A64240E7D1300EE05E9 /* SideMenuTableViewCell.swift */; };
-		834F5A6B240EAB7900EE05E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A6A240EAB7900EE05E9 /* ViewController.swift */; };
 		83508B2324070744000DFD8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2224070744000DFD8C /* AppDelegate.swift */; };
 		83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B2424070744000DFD8C /* SceneDelegate.swift */; };
 		83508B2A24070744000DFD8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2824070744000DFD8C /* Main.storyboard */; };
@@ -34,6 +33,8 @@
 		83508B4624075591000DFD8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4524075591000DFD8C /* HomeViewController.swift */; };
 		83508B4824078A93000DFD8C /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4724078A93000DFD8C /* PostViewController.swift */; };
 		83508B4C2407F0BD000DFD8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4B2407F0BD000DFD8C /* User.swift */; };
+		8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657969240FC629009BE554 /* ProfileViewController.swift */; };
+		8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */; };
 		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +55,6 @@
 		834F5A56240CFD3900EE05E9 /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
 		834F5A58240D0D2900EE05E9 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		834F5A64240E7D1300EE05E9 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
-		834F5A6A240EAB7900EE05E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		83508B1F24070744000DFD8C /* SNSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83508B2224070744000DFD8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83508B2424070744000DFD8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		83508B4524075591000DFD8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		83508B4724078A93000DFD8C /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		83508B4B2407F0BD000DFD8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		83657969240FC629009BE554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +145,7 @@
 				83508B4724078A93000DFD8C /* PostViewController.swift */,
 				834F5A43240AB47700EE05E9 /* CommentViewController.swift */,
 				834F5A58240D0D2900EE05E9 /* SideMenuViewController.swift */,
-				834F5A6A240EAB7900EE05E9 /* ViewController.swift */,
+				83657969240FC629009BE554 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -155,6 +157,7 @@
 				834F5A3F240AB41C00EE05E9 /* ContributorTableViewCell.swift */,
 				834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */,
 				834F5A64240E7D1300EE05E9 /* SideMenuTableViewCell.swift */,
+				8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,12 +308,13 @@
 			files = (
 				83508B4824078A93000DFD8C /* PostViewController.swift in Sources */,
 				83508B2324070744000DFD8C /* AppDelegate.swift in Sources */,
+				8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */,
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
 				834F5A3E240A740400EE05E9 /* Post.swift in Sources */,
 				834F5A59240D0D2900EE05E9 /* SideMenuViewController.swift in Sources */,
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,
+				8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */,
 				834F5A65240E7D1300EE05E9 /* SideMenuTableViewCell.swift in Sources */,
-				834F5A6B240EAB7900EE05E9 /* ViewController.swift in Sources */,
 				834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */,
 				834F5A55240CD83B00EE05E9 /* Post_CommentApi.swift in Sources */,
 				83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */,

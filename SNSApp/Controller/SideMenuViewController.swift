@@ -47,6 +47,11 @@ class SideMenuViewController: UIViewController {
         })
     }
     
+    @IBAction func toProfileVC(_ sender: Any) {
+        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    }
+    
+    
     @objc func logoutLabelTap() {
         let alert: UIAlertController = UIAlertController(title: "Log Out", message: "本当にログアウトしますか？", preferredStyle: .actionSheet)
         let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
@@ -66,6 +71,8 @@ class SideMenuViewController: UIViewController {
         alert.addAction(cancel)
         self.present(alert,animated: true,completion: nil)
     }
+    
+    
     
 
 }

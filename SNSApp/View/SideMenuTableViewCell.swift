@@ -16,12 +16,11 @@ class SideMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var toSettingLabel: UILabel!
     @IBOutlet weak var toProfileLabel: UILabel!
     
-    var sideMenuVC: SideMenuViewController!
+    var sideMenuVC: SideMenuViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
+  
     }
     
     
