@@ -9,12 +9,13 @@
 import UIKit
 import Firebase
 import ProgressHUD
+import SDWebImage
+import SideMenu
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    
     var posts = [Post]()
     var users = [User]()
     var username = ""
@@ -36,8 +37,6 @@ class HomeViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 426
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
     }
     
@@ -70,19 +69,7 @@ class HomeViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButton
         
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
-            avatarImageView.loadImage(photoUrl.absoluteString)
-        }
-    }
-    
-    @IBAction func logoutAction(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC")
-            self.present(signInVC, animated: true, completion: nil)
-        } catch  {
-            ProgressHUD.showError(error.localizedDescription)
-            return
+            avatarImageView.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
     }
     
@@ -93,6 +80,16 @@ class HomeViewController: UIViewController {
             commentVC.postId = postId!
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+
     
 }
 
