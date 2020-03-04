@@ -49,7 +49,7 @@ class PostViewController: UIViewController {
     
     func setupView() {
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
-            profileImage.loadImage(photoUrl.absoluteString)
+            profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
