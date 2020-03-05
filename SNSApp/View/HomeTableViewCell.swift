@@ -24,6 +24,7 @@ class HomeTableViewCell: UITableViewCell {
     var animationView: AnimationView! = AnimationView()
     var postRef: DatabaseReference!
     var homeVC: HomeViewController?
+    var profileVC: ProfileViewController?
     var post: Post? {
         didSet {
             updateView()
@@ -153,12 +154,14 @@ class HomeTableViewCell: UITableViewCell {
     @objc func contentImageTap() {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+            profileVC?.performSegue(withIdentifier: "CommentVC", sender: id)
         }
     }
     
     @objc func commentBtnTap() {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+            profileVC?.performSegue(withIdentifier: "CommentVC", sender: id)
         }
     }
     
@@ -168,7 +171,5 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func shereBtnDidTapped(_ sender: Any) {
-    }
-    
+ 
 }

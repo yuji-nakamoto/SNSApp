@@ -21,6 +21,18 @@ class UserApi {
         }
     }
     
+    func observeCurrentUser(comletion: @escaping (User) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(dict: dict, key: snapshot.key)
+                comletion(user)
+            }
+        }
+    }
+    
     var REF_CURRENT_USER: DatabaseReference? {
         guard let currentUser = Auth.auth().currentUser else {
             return nil

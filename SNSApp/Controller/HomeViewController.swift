@@ -34,10 +34,16 @@ class HomeViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.reloadData()
     }
     
     func loadPosts() {
@@ -82,7 +88,6 @@ class HomeViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
             navigationController?.setNavigationBarHidden(true, animated: true)
         } else {
