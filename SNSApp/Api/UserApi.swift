@@ -33,6 +33,19 @@ class UserApi {
         }
     }
     
+    func saveUserProfile(dict: Dictionary<String, Any>,onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        REF_USERS.child(currentUser.uid).updateChildValues(dict) { (error, dataRef) in
+            if error != nil {
+                onError(error!.localizedDescription)
+                return
+            }
+            onSuccess()
+        }
+    }
+    
     var REF_CURRENT_USER: DatabaseReference? {
         guard let currentUser = Auth.auth().currentUser else {
             return nil

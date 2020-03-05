@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var followerCountLabel: UILabel!
@@ -27,14 +28,24 @@ class ProfileTableViewCell: UITableViewCell {
     
     func setupUserInfo() {
         usernameLabel.text = user?.username
+        selfIntroLabel.text = user?.selfIntro
+        if let dateOfBirth = dateOfBirthLabel.text, !dateOfBirth.isEmpty {
+            birthdayLabel.text = "生年月日"
+        }
+        dateOfBirthLabel.text = user?.birthday
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, completed: nil)
+        }
+        if let photoUrlString = user?.headerImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            headerImage.sd_setImage(with: photoUrl, completed: nil)
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        profileImage.image = UIImage(named: "placeholderImg")
         profileImage.layer.cornerRadius = 40
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 4
@@ -42,8 +53,8 @@ class ProfileTableViewCell: UITableViewCell {
         changeButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor
         changeButton.layer.borderWidth = 1
         selfIntroLabel.text = ""
-        birthdayLabel.text = ""
         dateOfBirthLabel.text = ""
+        birthdayLabel.text = ""
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

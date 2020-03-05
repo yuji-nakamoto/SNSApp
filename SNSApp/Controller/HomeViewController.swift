@@ -18,10 +18,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     var posts = [Post]()
     var users = [User]()
+    var user: User?
     var username = ""
     var profileImageUrl = ""
     var caption = ""
     var contentImageUrl = ""
+    let refresh = UIRefreshControl()
     var avatarImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
     
     override func viewDidLoad() {
@@ -29,6 +31,8 @@ class HomeViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
+        tableView.refreshControl = refresh
+        refresh.addTarget(self, action: #selector(update), for: .valueChanged)
         setupAvatar()
         loadPosts()
         setupTableView()
@@ -36,7 +40,14 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupAvatar()
         tableView.reloadData()
+    }
+    
+    @objc func update(){
+        loadPosts()
+        tableView.reloadData()
+        refresh.endRefreshing()
     }
     
     func setupTableView() {
@@ -47,6 +58,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadPosts() {
+        self.posts.removeAll()
         activityIndicatorView.startAnimating()
         PostApi().observePosts { (post) in
             self.fetchUser(uid: post.uid!) {

@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     var posts = [Post]()
     var users = [User]()
     var user = User()
+    let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +27,25 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
         fetchUser()
         loadMyPosts()
+        tableView.refreshControl = refresh
+        refresh.addTarget(self, action: #selector(update), for: .valueChanged)
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+        fetchUser()
+        loadMyPosts()
+        tableView.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = false
+    @objc func update(){
+        fetchUser()
+        loadMyPosts()
+        tableView.reloadData()
+        refresh.endRefreshing()
     }
+    
     func fetchUser() {
         UserApi().observeCurrentUser { (user) in
             self.user = user
@@ -49,6 +57,7 @@ class ProfileViewController: UIViewController {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
+        self.posts.removeAll()
         MyPostApi().REF_MYPOSTS.child(currentUser.uid).observe(.childAdded) { (snapshot) in
             PostApi().observePost(withId: snapshot.key) { (post) in
                 self.fetchPostUser(uid: post.uid!) {
