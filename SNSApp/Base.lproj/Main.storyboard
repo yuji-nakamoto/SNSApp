@@ -939,7 +939,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="sos-Tc-1CH">
-                                                    <rect key="frame" x="25" y="21" width="80" height="80"/>
+                                                    <rect key="frame" x="25" y="26" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="7t6-g0-Cgx"/>
                                                         <constraint firstAttribute="height" constant="80" id="D9z-2a-bA5"/>
@@ -1032,7 +1032,7 @@
                                                 <constraint firstItem="Y6M-zQ-UJA" firstAttribute="leading" secondItem="gdI-d4-gcg" secondAttribute="trailing" constant="5" id="N8q-yh-cc3"/>
                                                 <constraint firstItem="nOA-XE-4Lq" firstAttribute="baseline" secondItem="Jpv-nY-zVv" secondAttribute="firstBaseline" id="OXz-sD-fSs"/>
                                                 <constraint firstItem="sos-Tc-1CH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fPL-yK-qQK" secondAttribute="topMargin" id="Ojw-oq-lxO"/>
-                                                <constraint firstItem="qzp-yZ-as4" firstAttribute="top" secondItem="sos-Tc-1CH" secondAttribute="bottom" constant="10" id="P4d-FO-7lc"/>
+                                                <constraint firstItem="qzp-yZ-as4" firstAttribute="top" secondItem="sos-Tc-1CH" secondAttribute="bottom" constant="5" id="P4d-FO-7lc"/>
                                                 <constraint firstItem="ESI-jv-34Y" firstAttribute="leading" secondItem="Y6M-zQ-UJA" secondAttribute="trailing" constant="20" id="P9d-ps-PdE"/>
                                                 <constraint firstItem="qzp-yZ-as4" firstAttribute="leading" secondItem="sos-Tc-1CH" secondAttribute="leading" id="PBg-K1-EaD"/>
                                                 <constraint firstAttribute="trailing" secondItem="QMr-uH-yL4" secondAttribute="trailing" constant="20" id="STX-bM-Aww"/>

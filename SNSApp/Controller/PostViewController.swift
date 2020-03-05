@@ -156,6 +156,13 @@ class PostViewController: UIViewController {
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
+            let myPostRef = MyPostApi().REF_MYPOSTS.child(currentUserId).child(postId!)
+            myPostRef.setValue(true) { (error, ref) in
+                if error != nil {
+                    ProgressHUD.showError(error?.localizedDescription)
+                    return
+                }
+            }
             ProgressHUD.showSuccess()
             self.dismiss(animated: true, completion: nil)
         }

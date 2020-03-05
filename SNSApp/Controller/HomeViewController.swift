@@ -88,7 +88,6 @@ class HomeViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
             navigationController?.setNavigationBarHidden(true, animated: true)
         } else {

@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
     
     var posts = [Post]()
     var users = [User]()
-    var post = Post()
     var user = User()
     
     override func viewDidLoad() {
@@ -26,7 +25,7 @@ class ProfileViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.reloadData()
         fetchUser()
-        loadPosts()
+        loadMyPosts()
 
     }
     
@@ -46,16 +45,21 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func loadPosts() {
-        PostApi().observePosts { (post) in
-            self.fetchUser(uid: post.uid!) {
-                self.posts.insert(post, at: 0)
-                self.tableView.reloadData()
+    func loadMyPosts() {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        MyPostApi().REF_MYPOSTS.child(currentUser.uid).observe(.childAdded) { (snapshot) in
+            PostApi().observePost(withId: snapshot.key) { (post) in
+                self.fetchPostUser(uid: post.uid!) {
+                    self.posts.insert(post, at: 0)
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
-    func fetchUser(uid: String, completed: @escaping () -> Void) {
+    func fetchPostUser(uid: String, completed: @escaping () -> Void) {
         UserApi().observeUser(withId: uid) { (user) in
             self.users.insert(user, at: 0)
             completed()
