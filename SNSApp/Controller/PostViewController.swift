@@ -64,7 +64,7 @@ class PostViewController: UIViewController {
         textView.delegate = self
         pleaceholderLbl.isHidden = false
         
-        let pleaceholderX: CGFloat = self.view.frame.size.width / 75
+        let pleaceholderX: CGFloat = self.view.frame.size.width / 40
         let pleaceholderY: CGFloat = 0
         let pleaceholderWidth: CGFloat = textView.bounds.width - pleaceholderX
         let pleaceholderHeight: CGFloat = textView.bounds.height
@@ -167,7 +167,6 @@ class PostViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
     
 }
 
