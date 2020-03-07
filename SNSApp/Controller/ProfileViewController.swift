@@ -26,7 +26,6 @@ class ProfileViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.reloadData()
         fetchUser()
-        loadMyPosts()
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
 

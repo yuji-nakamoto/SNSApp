@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     var posts = [Post]()
     var users = [User]()
-    var user: User?
     var username = ""
     var profileImageUrl = ""
     var caption = ""
@@ -28,20 +27,24 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
         setupAvatar()
-        loadPosts()
         setupTableView()
+        fetchCurrentUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAvatar()
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadPosts()
     }
     
     @objc func update(){
@@ -54,18 +57,32 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.reloadData()
     }
     
     func loadPosts() {
         self.posts.removeAll()
-        activityIndicatorView.startAnimating()
-        PostApi().observePosts { (post) in
-            self.fetchUser(uid: post.uid!) {
-                self.posts.insert(post, at: 0)
-                self.activityIndicatorView.stopAnimating()
-                self.tableView.reloadData()
+        FeedApi().observeFeed(withId: Auth.auth().currentUser!.uid) { (post) in
+            guard let postId = post.uid else {
+                return
             }
+            self.activityIndicatorView.startAnimating()
+                self.fetchUser(uid: postId) {
+                    self.posts.insert(post, at: 0)
+                    self.activityIndicatorView.stopAnimating()
+                    self.tableView.reloadData()
+                }
+        }
+        
+        FeedApi().observeFeedRemove(withId: Auth.auth().currentUser!.uid) { (post) in
+            self.posts = self.posts.filter { $0.id != post.id }
+            self.users = self.users.filter { $0.id != post.uid }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func fetchCurrentUser() {
+        UserApi().observeCurrentUser { (user) in
+            self.navigationItem.title = user.username
         }
     }
     
@@ -106,7 +123,7 @@ class HomeViewController: UIViewController {
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
-
+    
     
 }
 

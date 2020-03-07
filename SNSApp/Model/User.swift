@@ -15,7 +15,7 @@ class User {
     var birthday: String?
     var selfIntro: String?
     var headerImageUrl: String?
-//    var isFollowing: Bool?
+    var isFollowing: Bool?
 }
 
 extension User {
