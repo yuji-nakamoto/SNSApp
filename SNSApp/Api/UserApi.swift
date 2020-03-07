@@ -37,7 +37,9 @@ class UserApi {
         REF_USERS.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                completion(user)
+                if user.id! != Auth.auth().currentUser!.uid {
+                    completion(user)
+                }
             }
         }
     }
