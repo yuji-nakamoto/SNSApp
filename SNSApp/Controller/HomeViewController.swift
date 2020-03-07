@@ -34,17 +34,17 @@ class HomeViewController: UIViewController {
         setupAvatar()
         setupTableView()
         fetchCurrentUser()
+        loadPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAvatar()
-        tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadPosts()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     @objc func update(){

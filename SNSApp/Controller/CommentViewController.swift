@@ -26,6 +26,7 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         tableView.delegate = self
         tableView.dataSource = self
         textField.delegate = self
@@ -163,6 +164,11 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
         self.sendButton.isEnabled = false
         self.sendButton.backgroundColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 0.5)
     }
+    
+    @IBAction func dismissAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
 }
 

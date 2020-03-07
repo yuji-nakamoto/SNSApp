@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     
     var posts = [Post]()
     var users = [User]()
-    var user = User()
+    var user: User!
     let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.reloadData()
         fetchUser()
+        loadMyPosts()
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
         
@@ -34,7 +35,6 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchUser()
-        loadMyPosts()
         tableView.reloadData()
     }
     
@@ -101,8 +101,9 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
         
         if indexNumber == 0 {
             let cell_1 = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
-            cell_1.user = user
-            cell_1.profileVC = self
+            if let user = self.user {
+                cell_1.user = user
+            }
             return cell_1
         }
         let cell_2 = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeTableViewCell

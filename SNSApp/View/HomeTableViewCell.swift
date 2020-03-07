@@ -20,6 +20,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var commentCountLabel: UILabel!
     
     var animationView: AnimationView! = AnimationView()
     var postRef: DatabaseReference!
@@ -53,6 +54,9 @@ class HomeTableViewCell: UITableViewCell {
             if let value = snapshot.value as? Int {
                 self.likeCountLabel.text = "\(value)"
             }
+        }
+        Post_CommentApi().fetchCountComment(postId: post!.id!) { (count) in
+            self.commentCountLabel.text = "\(count)"
         }
     }
     
