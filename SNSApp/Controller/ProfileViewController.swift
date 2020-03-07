@@ -11,7 +11,7 @@ import Firebase
 import ProgressHUD
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         fetchUser()
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,8 +47,11 @@ class ProfileViewController: UIViewController {
     
     func fetchUser() {
         UserApi().observeCurrentUser { (user) in
-            self.user = user
-            self.tableView.reloadData()
+            MyPostApi().fetchCountMyPosts(userId: user.id!) { (count) in
+                self.navigationItem.title = "\(user.username!)のツイート \(count)"
+                self.user = user
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -57,8 +60,8 @@ class ProfileViewController: UIViewController {
             return
         }
         self.posts.removeAll()
-        MyPostApi().REF_MYPOSTS.child(currentUser.uid).observe(.childAdded) { (snapshot) in
-            PostApi().observePost(withId: snapshot.key) { (post) in
+        MyPostApi().fetchMyPosts(userId: currentUser.uid) { (key) in
+            PostApi().observePost(withId: key) { (post) in
                 self.fetchPostUser(uid: post.uid!) {
                     self.posts.insert(post, at: 0)
                     self.tableView.reloadData()
@@ -81,7 +84,7 @@ class ProfileViewController: UIViewController {
             commentVC.postId = postId!
         }
     }
-   
+    
     @IBAction func dismissAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -99,6 +102,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
         if indexNumber == 0 {
             let cell_1 = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
             cell_1.user = user
+            cell_1.profileVC = self
             return cell_1
         }
         let cell_2 = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeTableViewCell

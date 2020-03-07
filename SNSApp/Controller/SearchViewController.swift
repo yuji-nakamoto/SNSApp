@@ -39,8 +39,6 @@ class SearchViewController: UIViewController {
         FollowApi().isFollowing(userId: userId, completed: completed)
     }
 
-   
-
 }
 
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
