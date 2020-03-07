@@ -20,6 +20,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var selfIntroLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    var profileVC: ProfileViewController?
     var user: User? {
         didSet {
             setupUserInfo()
@@ -41,6 +42,13 @@ class ProfileTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             headerImage.sd_setImage(with: photoUrl, completed: nil)
         }
+//        FollowApi().fetchCountFollowers(userId: user!.id!) { (count) in
+//            self.followerCountLabel.text = "\(count)"
+//        }
+//        FollowApi().fetchCountFollowing(userId: user!.id!) { (count) in
+//            self.followCountLabel.text = "\(count)"
+//        }
+        
     }
     
     override func awakeFromNib() {

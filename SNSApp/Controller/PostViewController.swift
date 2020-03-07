@@ -20,6 +20,7 @@ class PostViewController: UIViewController {
     
     var image: UIImage?
     var pleaceholderLbl = UILabel()
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,6 +157,9 @@ class PostViewController: UIViewController {
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
+            
+            FeedApi().REF_FEED.child(Auth.auth().currentUser!.uid).child(postId!).setValue(true)
+            
             let myPostRef = MyPostApi().REF_MYPOSTS.child(currentUserId).child(postId!)
             myPostRef.setValue(true) { (error, ref) in
                 if error != nil {

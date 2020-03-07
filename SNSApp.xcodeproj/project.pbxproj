@@ -38,6 +38,10 @@
 		836579702410F1E1009BE554 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796F2410F1E1009BE554 /* MyPostApi.swift */; };
 		836579742410FE34009BE554 /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836579732410FE34009BE554 /* EditTableViewController.swift */; };
 		83657978241124CF009BE554 /* StorageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657977241124CF009BE554 /* StorageApi.swift */; };
+		8365797A24138066009BE554 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797924138066009BE554 /* SearchViewController.swift */; };
+		8365797C24138250009BE554 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797B24138250009BE554 /* SearchTableViewCell.swift */; };
+		8365797E24138C3B009BE554 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797D24138C3B009BE554 /* FollowApi.swift */; };
+		836579802413AC21009BE554 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797F2413AC21009BE554 /* FeedApi.swift */; };
 		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +82,10 @@
 		8365796F2410F1E1009BE554 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
 		836579732410FE34009BE554 /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		83657977241124CF009BE554 /* StorageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageApi.swift; sourceTree = "<group>"; };
+		8365797924138066009BE554 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8365797B24138250009BE554 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		8365797D24138C3B009BE554 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
+		8365797F2413AC21009BE554 /* FeedApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,8 @@
 				834F5A54240CD83B00EE05E9 /* Post_CommentApi.swift */,
 				8365796F2410F1E1009BE554 /* MyPostApi.swift */,
 				83657977241124CF009BE554 /* StorageApi.swift */,
+				8365797D24138C3B009BE554 /* FollowApi.swift */,
+				8365797F2413AC21009BE554 /* FeedApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -155,6 +165,7 @@
 				834F5A58240D0D2900EE05E9 /* SideMenuViewController.swift */,
 				83657969240FC629009BE554 /* ProfileViewController.swift */,
 				836579732410FE34009BE554 /* EditTableViewController.swift */,
+				8365797924138066009BE554 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +178,7 @@
 				834F5A41240AB43200EE05E9 /* CommentTableViewCell.swift */,
 				834F5A64240E7D1300EE05E9 /* SideMenuTableViewCell.swift */,
 				8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */,
+				8365797B24138250009BE554 /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,15 +330,19 @@
 				836579702410F1E1009BE554 /* MyPostApi.swift in Sources */,
 				83508B4824078A93000DFD8C /* PostViewController.swift in Sources */,
 				83508B2324070744000DFD8C /* AppDelegate.swift in Sources */,
+				8365797A24138066009BE554 /* SearchViewController.swift in Sources */,
 				8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */,
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
 				834F5A3E240A740400EE05E9 /* Post.swift in Sources */,
 				834F5A59240D0D2900EE05E9 /* SideMenuViewController.swift in Sources */,
+				836579802413AC21009BE554 /* FeedApi.swift in Sources */,
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,
 				8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */,
 				834F5A65240E7D1300EE05E9 /* SideMenuTableViewCell.swift in Sources */,
 				834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */,
 				834F5A55240CD83B00EE05E9 /* Post_CommentApi.swift in Sources */,
+				8365797C24138250009BE554 /* SearchTableViewCell.swift in Sources */,
+				8365797E24138C3B009BE554 /* FollowApi.swift in Sources */,
 				83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */,
 				836579742410FE34009BE554 /* EditTableViewController.swift in Sources */,
 				834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */,
