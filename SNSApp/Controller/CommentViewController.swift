@@ -169,6 +169,13 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OtherVC"{
+            let otherVC = segue.destination as! OtherProfileViewController
+            let userId = sender as? String
+            otherVC.userId = userId!
+        }
+    }
     
 }
 
@@ -184,6 +191,7 @@ extension CommentViewController: UITableViewDelegate,UITableViewDataSource {
             let cell_1 = tableView.dequeueReusableCell(withIdentifier: "ContributorCell", for: indexPath) as! ContributorTableViewCell
             cell_1.user = user
             cell_1.post = post
+            cell_1.commentVC = self
             return cell_1
         }
         let cell_2 = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
@@ -191,6 +199,7 @@ extension CommentViewController: UITableViewDelegate,UITableViewDataSource {
         let user = users[indexPath.row - 1]
         cell_2.user = user
         cell_2.comment = comment
+        cell_2.commentVC = self
         
         return cell_2
     }

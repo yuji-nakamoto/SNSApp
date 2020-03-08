@@ -26,6 +26,7 @@ class HomeTableViewCell: UITableViewCell {
     var postRef: DatabaseReference!
     var homeVC: HomeViewController?
     var profileVC: ProfileViewController?
+    var otherVC: OtherProfileViewController?
     var post: Post? {
         didSet {
             updateView()
@@ -87,6 +88,7 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
+        contentImage.image = nil
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.contentImageTap))
         contentImage.addGestureRecognizer(tapGesture)
@@ -94,7 +96,10 @@ class HomeTableViewCell: UITableViewCell {
         commentButton.addGestureRecognizer(tapGestureForBtn)
         let tapGestureForLike = UITapGestureRecognizer(target: self, action: #selector(self.likeImageTap))
         likeImage.addGestureRecognizer(tapGestureForLike)
-        
+        let tapGestureForProfile  = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTap))
+        profileImage.addGestureRecognizer(tapGestureForProfile)
+        let tapGestureForUsername  = UITapGestureRecognizer(target: self, action: #selector(self.usernameLabelTap))
+        usernameLabel.addGestureRecognizer(tapGestureForUsername)
     }
     
     @objc func likeImageTap() {
@@ -159,6 +164,7 @@ class HomeTableViewCell: UITableViewCell {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
             profileVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+            otherVC?.performSegue(withIdentifier: "CommentVC", sender: id)
         }
     }
     
@@ -166,6 +172,19 @@ class HomeTableViewCell: UITableViewCell {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
             profileVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+            otherVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+        }
+    }
+    
+    @objc func profileImageTap() {
+        if let id = user?.id {
+            homeVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+        }
+    }
+    
+    @objc func usernameLabelTap() {
+        if let id = user?.id {
+            homeVC?.performSegue(withIdentifier: "OtherVC", sender: id)
         }
     }
     
@@ -174,6 +193,4 @@ class HomeTableViewCell: UITableViewCell {
         profileImage.image = UIImage(named: "placeholderImg")
     }
     
-    
- 
 }
