@@ -17,6 +17,7 @@ class Post {
     var likeCount: Int?
     var likes: Dictionary<String, Any>?
     var isLiked: Bool?
+    var timestamp: Int?
 }
 
 extension Post {
@@ -26,6 +27,7 @@ extension Post {
         post.uid = dict["uid"] as? String
         post.caption = dict["caption"] as? String
         post.photoImageUrl = dict["photoImageUrl"] as? String
+        post.timestamp = dict["timestamp"] as? Int
         post.likeCount = dict["likeCount"] as? Int
         post.likes = dict["likes"] as? Dictionary<String, Any>
         if let currentUserId = Auth.auth().currentUser?.uid {
@@ -37,8 +39,6 @@ extension Post {
                 }
             }
         }
-        
         return post
-        
     }
 }

@@ -38,9 +38,9 @@ class SendDataApi {
             return
         }
         let currentUserId = currentUser.uid
+        let timestamp = Int(Date().timeIntervalSince1970)
         
-        
-        newPostReference.setValue(["uid": currentUserId,"photoImageUrl": photoUrl, "caption": caption, "likeCount": 0]) { (error, ref) in
+        newPostReference.setValue(["uid": currentUserId,"photoImageUrl": photoUrl, "caption": caption, "likeCount": 0, "timestamp": timestamp]) { (error, ref) in
             if error != nil{
                 ProgressHUD.showError(error?.localizedDescription)
                 return

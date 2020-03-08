@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
         headerUsernameLbl.text = ""
         setupAvatar()
         setupTableView()
-        fetchCurrentUser()
+        fetchCurrentUsername()
         loadPosts()
     }
     
@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func fetchCurrentUser() {
+    func fetchCurrentUsername() {
         UserApi().observeCurrentUser { (user) in
             self.headerUsernameLbl.text = user.username
         }
@@ -118,13 +118,14 @@ class HomeViewController: UIViewController {
         }
     }
     
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
-                bottomConstraint.constant = -50
-            } else {
-                bottomConstraint.constant = 0
-            }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
+            bottomConstraint.constant = -50
+        } else {
+            bottomConstraint.constant = 0
         }
+    }
+    
     @IBAction func toProfileVC(_ sender: Any) {
         performSegue(withIdentifier: "ProfileVC", sender: nil)
     }

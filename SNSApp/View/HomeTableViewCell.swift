@@ -20,6 +20,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var animationView: AnimationView! = AnimationView()
     var postRef: DatabaseReference!
@@ -58,6 +59,34 @@ class HomeTableViewCell: UITableViewCell {
         }
         Post_CommentApi().fetchCountComment(postId: post!.id!) { (count) in
             self.commentCountLabel.text = "\(count)"
+        }
+        
+        if let timestamp = post?.timestamp {
+            let timestampDate = Date(timeIntervalSince1970: Double(timestamp))
+            let now = Date()
+            let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .weekOfMonth])
+            let diff = Calendar.current.dateComponents(components, from: timestampDate, to: now)
+            
+            var timeText = ""
+            if diff.second! <= 0 {
+                timeText = "今"
+            }
+            if diff.second! > 0 && diff.minute! == 0 {
+                timeText = "\(diff.second!) 秒前"
+            }
+            if diff.minute! > 0 && diff.hour! == 0 {
+                timeText = "\(diff.minute!) 分前"
+            }
+            if diff.hour! > 0 && diff.day! == 0 {
+                timeText = "\(diff.hour!) 時間前"
+            }
+            if diff.day! > 0 && diff.weekOfMonth! == 0 {
+                timeText = "\(diff.day!) 日前"
+            }
+            if diff.weekOfMonth! > 0 {
+                timeText = "\(diff.weekOfMonth!) 週前"
+            }
+            dateLabel.text = timeText
         }
     }
     
