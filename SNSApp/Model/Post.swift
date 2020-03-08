@@ -11,7 +11,7 @@ import Firebase
 
 class Post {
     var caption: String?
-    var contentImageUrl: String?
+    var photoImageUrl: String?
     var uid: String?
     var id: String?
     var likeCount: Int?
@@ -25,7 +25,7 @@ extension Post {
         post.id = key
         post.uid = dict["uid"] as? String
         post.caption = dict["caption"] as? String
-        post.contentImageUrl = dict["contentImageUrl"] as? String
+        post.photoImageUrl = dict["photoImageUrl"] as? String
         post.likeCount = dict["likeCount"] as? Int
         post.likes = dict["likes"] as? Dictionary<String, Any>
         if let currentUserId = Auth.auth().currentUser?.uid {

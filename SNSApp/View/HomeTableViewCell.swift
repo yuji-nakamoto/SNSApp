@@ -12,7 +12,6 @@ import Lottie
 
 class HomeTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
@@ -27,6 +26,7 @@ class HomeTableViewCell: UITableViewCell {
     var homeVC: HomeViewController?
     var profileVC: ProfileViewController?
     var otherVC: OtherProfileViewController?
+    
     var post: Post? {
         didSet {
             updateView()
@@ -41,7 +41,7 @@ class HomeTableViewCell: UITableViewCell {
     
     func updateView() {
         captionLabel.text = post?.caption
-        if let photoUrlString = post?.contentImageUrl {
+        if let photoUrlString = post?.photoImageUrl {
             let photoUrl = URL(string: photoUrlString)
             contentImage.sd_setImage(with: photoUrl, completed: nil)
         }
@@ -86,6 +86,7 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
         contentImage.image = nil

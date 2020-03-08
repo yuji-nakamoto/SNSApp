@@ -644,7 +644,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionLabel" destination="to1-aJ-vcj" id="ccD-o1-kfm"/>
+                                            <outlet property="captionLabel" destination="to1-aJ-vcj" id="YRA-ur-dH7"/>
                                             <outlet property="commentButton" destination="t3p-YY-LVh" id="xVo-MZ-Rhr"/>
                                             <outlet property="commentCountLabel" destination="PUf-BL-SbK" id="QSk-S4-I2m"/>
                                             <outlet property="contentImage" destination="piZ-Eb-4jf" id="soj-eA-NFd"/>
@@ -1624,7 +1624,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-hR-Dvv">
-                                <rect key="frame" x="0.0" y="44" width="375" height="530"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContributorCell" rowHeight="390" id="oAj-mO-fte" customClass="ContributorTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -1676,7 +1676,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionLabel" destination="3j6-2E-sa2" id="mnp-LV-oC2"/>
+                                            <outlet property="captionLabel" destination="3j6-2E-sa2" id="Y0s-Hz-IV0"/>
                                             <outlet property="contentImage" destination="gF2-Gu-fcM" id="fz4-Nr-oFN"/>
                                             <outlet property="profileImage" destination="GX9-Wo-pyP" id="8x5-KM-hHT"/>
                                             <outlet property="usernameLabel" destination="xnJ-eH-zYs" id="oiw-8C-8MF"/>
@@ -1722,7 +1722,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionLabel" destination="YvY-Vr-Pjn" id="J2w-4h-dBA"/>
+                                            <outlet property="captionLabel" destination="YvY-Vr-Pjn" id="iYz-0X-hKW"/>
                                             <outlet property="profileImage" destination="re7-rr-jP1" id="pPh-jE-AZQ"/>
                                             <outlet property="usernameLabel" destination="LNP-eO-XR7" id="261-UE-TEw"/>
                                         </connections>
@@ -2338,8 +2338,8 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UUD-DW-y1N"/>
-        <segue reference="A5P-Rs-NM4"/>
+        <segue reference="KuG-xH-WcT"/>
+        <segue reference="CDE-T0-3qP"/>
         <segue reference="6mU-IE-ia2"/>
         <segue reference="nh1-Ev-uT1"/>
     </inferredMetricsTieBreakers>

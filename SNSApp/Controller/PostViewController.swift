@@ -117,58 +117,17 @@ class PostViewController: UIViewController {
     }
     
     @IBAction func sendAction(_ sender: Any) {
+        view.endEditing(true)
         ProgressHUD.show()
         
         guard self.image != nil else {
             ProgressHUD.showError("画像を選択してください")
             return
         }
-        let photoId = NSUUID().uuidString
-        let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/").child("posts").child(photoId)
-        if let profileImg = self.image, let imageData = profileImg.jpegData(compressionQuality: 0.1) {
-            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                if error != nil {
-                    ProgressHUD.showError(error?.localizedDescription)
-                    return
-                }
-                storageRef.downloadURL { (url, error) in
-                    if let imageUrl = url?.absoluteString {
-                        self.sendDataToFirebase(imageUrl: imageUrl)
-                    } else {
-                        ProgressHUD.showError(error?.localizedDescription)
-                        return
-                    }
-                }
+        if let profileImg = self.image, let imageData = profileImg.jpegData(compressionQuality: 0.5) {
+            SendDataApi().uploadImageToFirebaseStorage(data: imageData, caption: textView.text) { (_ ) in
+                self.dismiss(animated: true, completion: nil)
             }
-        }
-        
-    }
-    
-    func sendDataToFirebase(imageUrl: String) {
-        let ref = Database.database().reference().child("posts")
-        let postId = ref.childByAutoId().key
-        let postRef = ref.child(postId!)
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        let currentUserId = currentUser.uid
-        postRef.setValue(["uid": currentUserId, "contentImageUrl": imageUrl, "caption": textView.text!]) { (error, ref) in
-            if error != nil {
-                ProgressHUD.showError(error?.localizedDescription)
-                return
-            }
-            
-            FeedApi().REF_FEED.child(Auth.auth().currentUser!.uid).child(postId!).setValue(true)
-            
-            let myPostRef = MyPostApi().REF_MYPOSTS.child(currentUserId).child(postId!)
-            myPostRef.setValue(true) { (error, ref) in
-                if error != nil {
-                    ProgressHUD.showError(error?.localizedDescription)
-                    return
-                }
-            }
-            ProgressHUD.showSuccess()
-            self.dismiss(animated: true, completion: nil)
         }
     }
     

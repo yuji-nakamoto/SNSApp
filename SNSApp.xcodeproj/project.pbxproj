@@ -33,6 +33,7 @@
 		83508B4624075591000DFD8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4524075591000DFD8C /* HomeViewController.swift */; };
 		83508B4824078A93000DFD8C /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4724078A93000DFD8C /* PostViewController.swift */; };
 		83508B4C2407F0BD000DFD8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4B2407F0BD000DFD8C /* User.swift */; };
+		83516347241533570083C444 /* SendDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83516346241533570083C444 /* SendDataApi.swift */; };
 		8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657969240FC629009BE554 /* ProfileViewController.swift */; };
 		8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */; };
 		836579702410F1E1009BE554 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796F2410F1E1009BE554 /* MyPostApi.swift */; };
@@ -78,6 +79,7 @@
 		83508B4524075591000DFD8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		83508B4724078A93000DFD8C /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		83508B4B2407F0BD000DFD8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		83516346241533570083C444 /* SendDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataApi.swift; sourceTree = "<group>"; };
 		83657969240FC629009BE554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8365796F2410F1E1009BE554 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				83657977241124CF009BE554 /* StorageApi.swift */,
 				8365797D24138C3B009BE554 /* FollowApi.swift */,
 				8365797F2413AC21009BE554 /* FeedApi.swift */,
+				83516346241533570083C444 /* SendDataApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -224,7 +227,7 @@
 				83508B1B24070744000DFD8C /* Sources */,
 				83508B1C24070744000DFD8C /* Frameworks */,
 				83508B1D24070744000DFD8C /* Resources */,
-				12761EA001A22C1F1AD7CD83 /* [CP] Copy Pods Resources */,
+				0A95E6695B25F87EC3AC323C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,7 +287,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		12761EA001A22C1F1AD7CD83 /* [CP] Copy Pods Resources */ = {
+		0A95E6695B25F87EC3AC323C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -334,6 +337,7 @@
 				83508B4824078A93000DFD8C /* PostViewController.swift in Sources */,
 				83508B2324070744000DFD8C /* AppDelegate.swift in Sources */,
 				8365797A24138066009BE554 /* SearchViewController.swift in Sources */,
+				83516347241533570083C444 /* SendDataApi.swift in Sources */,
 				8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */,
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
 				834F5A3E240A740400EE05E9 /* Post.swift in Sources */,
