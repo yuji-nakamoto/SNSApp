@@ -1,22 +1,22 @@
 //
-//  ProfileViewController.swift
+//  OtherProfileViewController.swift
 //  SNSApp
 //
-//  Created by yuji_nakamoto on 2020/03/04.
+//  Created by yuji_nakamoto on 2020/03/08.
 //  Copyright © 2020 yuji_nakamoto. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import ProgressHUD
 
-class ProfileViewController: UIViewController {
+class OtherProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var delegate: ProfileViewDelegate?
     var posts = [Post]()
     var users = [User]()
     var user: User!
+    var userId = ""
     let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -29,13 +29,7 @@ class ProfileViewController: UIViewController {
         loadMyPosts()
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchUser()
-        tableView.reloadData()
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     @objc func update(){
@@ -46,21 +40,21 @@ class ProfileViewController: UIViewController {
     }
     
     func fetchUser() {
-        UserApi().observeCurrentUser { (user) in
+        UserApi().observeUser(withId: userId) { (user) in
             MyPostApi().fetchCountMyPosts(userId: user.id!) { (count) in
                 self.navigationItem.title = "\(user.username!)のツイート \(count)"
-                self.user = user
-                self.tableView.reloadData()
+                self.isFollowing(userId: user.id!) { (value) in
+                    user.isFollowing = value
+                    self.user = user
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     func loadMyPosts() {
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
         self.posts.removeAll()
-        MyPostApi().fetchMyPosts(userId: currentUser.uid) { (key) in
+        MyPostApi().fetchMyPosts(userId: userId) { (key) in
             PostApi().observePost(withId: key) { (post) in
                 self.fetchPostUser(uid: post.uid!) {
                     self.posts.insert(post, at: 0)
@@ -77,6 +71,10 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
+        FollowApi().isFollowing(userId: userId, completed: completed)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentVC"{
             let commentVC = segue.destination as! CommentViewController
@@ -91,7 +89,7 @@ class ProfileViewController: UIViewController {
     
 }
 
-extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
+extension OtherProfileViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1 + posts.count
     }
@@ -103,6 +101,8 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
             let cell_1 = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
             if let user = self.user {
                 cell_1.user = user
+                cell_1.otherVC = self
+                cell_1.delegate = self.delegate
             }
             return cell_1
         }
@@ -111,7 +111,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
         let user = users[indexPath.row - 1]
         cell_2.user = user
         cell_2.post = post
-        cell_2.profileVC = self
+        cell_2.otherVC = self
         
         return cell_2
     }

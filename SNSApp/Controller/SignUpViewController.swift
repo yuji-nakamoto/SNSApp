@@ -87,7 +87,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             if let authData = result {
                 var dict: Dictionary<String, Any> = [
                     "uid": authData.user.uid,
-                    "username" : self.usernameTextField.text,
+                    "username" : username,
+                    "username_lowercase": username.lowercased(),
                     "email" : authData.user.email,
                     "profileImageUrl" : ""
                 ]

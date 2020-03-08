@@ -15,6 +15,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var followButton: UIButton!
     
+    var delegate: ProfileViewDelegate?
     var searchVC: SearchViewController?
     var user: User? {
         didSet {
@@ -82,12 +83,23 @@ class SearchTableViewCell: UITableViewCell {
         followButton.layer.cornerRadius = 14
         followButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor
         followButton.layer.borderWidth = 1
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTap))
+        profileImage.addGestureRecognizer(tapGesture)
+        let tapGestureForLbl = UITapGestureRecognizer(target: self, action: #selector(self.usernameLblTap))
+        usernameLabel.addGestureRecognizer(tapGestureForLbl)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    @objc func profileImageTap() {
+        if let id = user?.id {
+            searchVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+        }
+    }
+    
+    @objc func usernameLblTap() {
+        if let id = user?.id {
+            searchVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+        }
     }
     
 }

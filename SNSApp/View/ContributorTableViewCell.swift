@@ -15,6 +15,7 @@ class ContributorTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var contentImage: UIImageView!
     
+    var commentVC: CommentViewController?
     var post: Post? {
         didSet {
             updateView()
@@ -47,6 +48,23 @@ class ContributorTableViewCell: UITableViewCell {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
+        
+        let tapGestureForProfile  = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTap))
+        profileImage.addGestureRecognizer(tapGestureForProfile)
+        let tapGestureForUsername  = UITapGestureRecognizer(target: self, action: #selector(self.usernameLabelTap))
+        usernameLabel.addGestureRecognizer(tapGestureForUsername)
+    }
+    
+    @objc func profileImageTap() {
+        if let id = user?.id {
+            commentVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+        }
+    }
+    
+    @objc func usernameLabelTap() {
+        if let id = user?.id {
+            commentVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+        }
     }
     
     override func prepareForReuse() {

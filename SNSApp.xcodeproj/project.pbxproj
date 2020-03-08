@@ -42,6 +42,7 @@
 		8365797C24138250009BE554 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797B24138250009BE554 /* SearchTableViewCell.swift */; };
 		8365797E24138C3B009BE554 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797D24138C3B009BE554 /* FollowApi.swift */; };
 		836579802413AC21009BE554 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797F2413AC21009BE554 /* FeedApi.swift */; };
+		83657982241419AE009BE554 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657981241419AE009BE554 /* OtherProfileViewController.swift */; };
 		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		8365797B24138250009BE554 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		8365797D24138C3B009BE554 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		8365797F2413AC21009BE554 /* FeedApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
+		83657981241419AE009BE554 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				83657969240FC629009BE554 /* ProfileViewController.swift */,
 				836579732410FE34009BE554 /* EditTableViewController.swift */,
 				8365797924138066009BE554 /* SearchViewController.swift */,
+				83657981241419AE009BE554 /* OtherProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				834F5A4D240BBA3000EE05E9 /* PostApi.swift in Sources */,
 				834F5A40240AB41C00EE05E9 /* ContributorTableViewCell.swift in Sources */,
 				834F5A4F240BBB7700EE05E9 /* UserApi.swift in Sources */,
+				83657982241419AE009BE554 /* OtherProfileViewController.swift in Sources */,
 				83657978241124CF009BE554 /* StorageApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

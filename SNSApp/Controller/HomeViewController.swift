@@ -14,6 +14,9 @@ import SideMenu
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerUsernameLbl: UILabel!
+    @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     var posts = [Post]()
@@ -27,24 +30,26 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
+        headerUsernameLbl.text = ""
         setupAvatar()
         setupTableView()
         fetchCurrentUser()
+        loadPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         setupAvatar()
-        tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadPosts()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     @objc func update(){
@@ -66,11 +71,11 @@ class HomeViewController: UIViewController {
                 return
             }
             self.activityIndicatorView.startAnimating()
-                self.fetchUser(uid: postId) {
-                    self.posts.insert(post, at: 0)
-                    self.activityIndicatorView.stopAnimating()
-                    self.tableView.reloadData()
-                }
+            self.fetchUser(uid: postId) {
+                self.posts.insert(post, at: 0)
+                self.activityIndicatorView.stopAnimating()
+                self.tableView.reloadData()
+            }
         }
         
         FeedApi().observeFeedRemove(withId: Auth.auth().currentUser!.uid) { (post) in
@@ -82,7 +87,7 @@ class HomeViewController: UIViewController {
     
     func fetchCurrentUser() {
         UserApi().observeCurrentUser { (user) in
-            self.navigationItem.title = user.username
+            self.headerUsernameLbl.text = user.username
         }
     }
     
@@ -94,17 +99,9 @@ class HomeViewController: UIViewController {
     }
     
     func setupAvatar() {
-        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
-        avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.layer.cornerRadius = 18
-        avatarImageView.clipsToBounds = true
-        containView.addSubview(avatarImageView)
-        
-        let leftBarButton = UIBarButtonItem(customView: containView)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-        
+        avatarImage.layer.cornerRadius = 35/2
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
-            avatarImageView.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
+            avatarImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
     }
     
@@ -114,14 +111,22 @@ class HomeViewController: UIViewController {
             let postId = sender as? String
             commentVC.postId = postId!
         }
+        if segue.identifier == "OtherVC"{
+            let otherVC = segue.destination as! OtherProfileViewController
+            let userId = sender as? String
+            otherVC.userId = userId!
+        }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        } else {
-            navigationController?.setNavigationBarHidden(false, animated: true)
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
+                bottomConstraint.constant = -50
+            } else {
+                bottomConstraint.constant = 0
+            }
         }
+    @IBAction func toProfileVC(_ sender: Any) {
+        performSegue(withIdentifier: "ProfileVC", sender: nil)
     }
     
     

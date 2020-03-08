@@ -11,4 +11,11 @@ import Firebase
 
 class Post_CommentApi {
     var REF_POST_COMMENTS = Database.database().reference().child("post-comments")
+    
+    func fetchCountComment(postId: String, completion: @escaping (Int) -> Void) {
+        REF_POST_COMMENTS.child(postId).observe(.value) { (snapshot) in
+            let count = Int(snapshot.childrenCount)
+            completion(count)
+        }
+    }
 }

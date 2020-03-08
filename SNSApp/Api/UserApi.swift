@@ -37,7 +37,9 @@ class UserApi {
         REF_USERS.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                completion(user)
+                if user.id! != Auth.auth().currentUser!.uid {
+                    completion(user)
+                }
             }
         }
     }
@@ -52,6 +54,20 @@ class UserApi {
                 return
             }
             onSuccess()
+        }
+    }
+    
+    func queryUsers(withText text: String, completion: @escaping (User) -> Void) {
+        REF_USERS.queryOrdered(byChild: "username_lowercase").queryStarting(atValue: text).queryEnding(atValue: text+"\u{f8ff}").queryLimited(toLast: 10).observeSingleEvent(of: .value) { (snapshot) in
+            snapshot.children.forEach { (s) in
+                let child = s as! DataSnapshot
+                if let dict = child.value as? [String: Any] {
+                    let user = User.transformUser(dict: dict, key: child.key)
+                    if user.id! != Auth.auth().currentUser!.uid {
+                        completion(user)
+                    }
+                }
+            }
         }
     }
     

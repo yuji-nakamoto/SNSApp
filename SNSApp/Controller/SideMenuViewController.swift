@@ -11,7 +11,7 @@ import Firebase
 import ProgressHUD
 
 class SideMenuViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -52,6 +52,12 @@ class SideMenuViewController: UIViewController {
                 if let photoUrlString = user.profileImageUrl {
                     let photoUrl = URL(string: photoUrlString)
                     self.profileImage.sd_setImage(with: photoUrl, completed: nil)
+                    FollowApi().fetchCountFollowers(userId: user.id!) { (count) in
+                        self.followerCountLabel.text = "\(count)"
+                    }
+                    FollowApi().fetchCountFollowing(userId: user.id!) { (count) in
+                        self.followCountLabel.text = "\(count)"
+                    }
                 }
             }
         })
@@ -84,19 +90,19 @@ class SideMenuViewController: UIViewController {
     
     
     
-
+    
 }
 
 extension SideMenuViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuCell") as! SideMenuTableViewCell
-
+        
         return cell
     }
-
-
+    
+    
 }
