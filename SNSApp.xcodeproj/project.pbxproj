@@ -34,6 +34,10 @@
 		83508B4824078A93000DFD8C /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4724078A93000DFD8C /* PostViewController.swift */; };
 		83508B4C2407F0BD000DFD8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B4B2407F0BD000DFD8C /* User.swift */; };
 		83516347241533570083C444 /* SendDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83516346241533570083C444 /* SendDataApi.swift */; };
+		835163492415616E0083C444 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835163482415616E0083C444 /* NotificationViewController.swift */; };
+		8351634D241561F60083C444 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351634C241561F60083C444 /* NotificationTableViewCell.swift */; };
+		8351634F241568AF0083C444 /* NotificationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351634E241568AF0083C444 /* NotificationApi.swift */; };
+		8351635124156A580083C444 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351635024156A580083C444 /* Notification.swift */; };
 		8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657969240FC629009BE554 /* ProfileViewController.swift */; };
 		8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */; };
 		836579702410F1E1009BE554 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796F2410F1E1009BE554 /* MyPostApi.swift */; };
@@ -80,6 +84,10 @@
 		83508B4724078A93000DFD8C /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		83508B4B2407F0BD000DFD8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		83516346241533570083C444 /* SendDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataApi.swift; sourceTree = "<group>"; };
+		835163482415616E0083C444 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		8351634C241561F60083C444 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		8351634E241568AF0083C444 /* NotificationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationApi.swift; sourceTree = "<group>"; };
+		8351635024156A580083C444 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		83657969240FC629009BE554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8365796F2410F1E1009BE554 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
@@ -116,6 +124,7 @@
 				8365797D24138C3B009BE554 /* FollowApi.swift */,
 				8365797F2413AC21009BE554 /* FeedApi.swift */,
 				83516346241533570083C444 /* SendDataApi.swift */,
+				8351634E241568AF0083C444 /* NotificationApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -172,6 +181,7 @@
 				836579732410FE34009BE554 /* EditTableViewController.swift */,
 				8365797924138066009BE554 /* SearchViewController.swift */,
 				83657981241419AE009BE554 /* OtherProfileViewController.swift */,
+				835163482415616E0083C444 /* NotificationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +195,7 @@
 				834F5A64240E7D1300EE05E9 /* SideMenuTableViewCell.swift */,
 				8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */,
 				8365797B24138250009BE554 /* SearchTableViewCell.swift */,
+				8351634C241561F60083C444 /* NotificationTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +206,7 @@
 				83508B4B2407F0BD000DFD8C /* User.swift */,
 				834F5A3D240A740400EE05E9 /* Post.swift */,
 				834F5A45240AC7DD00EE05E9 /* Comment.swift */,
+				8351635024156A580083C444 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,7 +239,7 @@
 				83508B1B24070744000DFD8C /* Sources */,
 				83508B1C24070744000DFD8C /* Frameworks */,
 				83508B1D24070744000DFD8C /* Resources */,
-				0A95E6695B25F87EC3AC323C /* [CP] Copy Pods Resources */,
+				550DDFE78E75DD4FB1F16100 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,7 +299,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A95E6695B25F87EC3AC323C /* [CP] Copy Pods Resources */ = {
+		550DDFE78E75DD4FB1F16100 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,16 +358,20 @@
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,
 				8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */,
 				834F5A65240E7D1300EE05E9 /* SideMenuTableViewCell.swift in Sources */,
+				8351634F241568AF0083C444 /* NotificationApi.swift in Sources */,
 				834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */,
 				834F5A55240CD83B00EE05E9 /* Post_CommentApi.swift in Sources */,
 				8365797C24138250009BE554 /* SearchTableViewCell.swift in Sources */,
 				8365797E24138C3B009BE554 /* FollowApi.swift in Sources */,
 				83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */,
 				836579742410FE34009BE554 /* EditTableViewController.swift in Sources */,
+				8351635124156A580083C444 /* Notification.swift in Sources */,
 				834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */,
 				83508B4C2407F0BD000DFD8C /* User.swift in Sources */,
 				83508B3B2407125C000DFD8C /* SignInViewController.swift in Sources */,
 				834F5A53240CD28600EE05E9 /* CommentApi.swift in Sources */,
+				835163492415616E0083C444 /* NotificationViewController.swift in Sources */,
+				8351634D241561F60083C444 /* NotificationTableViewCell.swift in Sources */,
 				834F5A46240AC7DD00EE05E9 /* Comment.swift in Sources */,
 				83508B4624075591000DFD8C /* HomeViewController.swift in Sources */,
 				834F5A42240AB43200EE05E9 /* CommentTableViewCell.swift in Sources */,

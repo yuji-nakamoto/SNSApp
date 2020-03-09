@@ -71,6 +71,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             ProgressHUD.showError("ユーザーネームを入力してください")
             return
         }
+        guard let email = self.emailTextField.text, !email.isEmpty else {
+            ProgressHUD.showError("メールアドレスを入力してください")
+            return
+        }
         guard let imageSelected = self.image else {
             ProgressHUD.showError("プロフィール画像を設定してください")
             return
@@ -89,7 +93,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                     "uid": authData.user.uid,
                     "username" : username,
                     "username_lowercase": username.lowercased(),
-                    "email" : authData.user.email,
+                    "email" : email,
                     "profileImageUrl" : ""
                 ]
                 

@@ -112,10 +112,6 @@ class PostViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     @IBAction func sendAction(_ sender: Any) {
         view.endEditing(true)
         ProgressHUD.show()

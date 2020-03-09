@@ -67,29 +67,27 @@ class SideMenuViewController: UIViewController {
         performSegue(withIdentifier: "ProfileVC", sender: nil)
     }
     
-    
     @objc func logoutLabelTap() {
-        let alert: UIAlertController = UIAlertController(title: "Log Out", message: "本当にログアウトしますか？", preferredStyle: .actionSheet)
-        let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
-            do {
-                try Auth.auth().signOut()
-            } catch  {
-                ProgressHUD.showError(error.localizedDescription)
-                return
+        UserApi().observeCurrentUser { (user) in
+            let alert: UIAlertController = UIAlertController(title: "\(user.username!)", message: "ログアウトしてもよろしいですか？", preferredStyle: .actionSheet)
+            let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
+                do {
+                    try Auth.auth().signOut()
+                } catch  {
+                    ProgressHUD.showError(error.localizedDescription)
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC")
+                self.present(signInVC, animated: true, completion: nil)
             }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC")
-            self.present(signInVC, animated: true, completion: nil)
+            let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
+            }
+            alert.addAction(logout)
+            alert.addAction(cancel)
+            self.present(alert,animated: true,completion: nil)
         }
-        let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
-        }
-        alert.addAction(logout)
-        alert.addAction(cancel)
-        self.present(alert,animated: true,completion: nil)
     }
-    
-    
-    
     
 }
 

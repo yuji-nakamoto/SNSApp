@@ -48,6 +48,16 @@ class SendDataApi {
             
             FeedApi().REF_FEED.child(Auth.auth().currentUser!.uid).child(newPostId!).setValue(true)
             
+            FollowApi().REF_FOLLOWERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+                let arraySnapshot = snapshot.children.allObjects as! [DataSnapshot]
+                arraySnapshot.forEach { (child) in
+                    FeedApi().REF_FEED.child(child.key).updateChildValues(["\(newPostId!)": true])
+                    let newNotiId = NotificationApi().REF_NOTIFICATION.child(child.key).childByAutoId().key
+                    let newNotiReference = NotificationApi().REF_NOTIFICATION.child(child.key).child(newNotiId!)
+                    newNotiReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": newPostId!,"type": "feed", "timestamp": timestamp])
+                }
+            }
+            
             let myPostRef = MyPostApi().REF_MYPOSTS.child(currentUserId).child(newPostId!)
             myPostRef.setValue(true) { (error, ref) in
                 if error != nil {
