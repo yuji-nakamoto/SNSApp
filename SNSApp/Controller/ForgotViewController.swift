@@ -24,7 +24,7 @@ class ForgotViewController: UIViewController,UITextFieldDelegate {
     
     func setupUI() {
         emailTextField.delegate = self
-        let descriptionTitle = "パスワードをリセットするため、登録したEmailアドレスを入力してください。"
+        let descriptionTitle = "パスワードをリセットするため、登録したメールアドレスを入力してください。"
         let attributedText = NSMutableAttributedString(string: descriptionTitle, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15),NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         descriptionLabel.numberOfLines = 0
         descriptionLabel.attributedText = attributedText
@@ -47,7 +47,7 @@ class ForgotViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func resetAction(_ sender: Any) {
         guard let email = emailTextField.text, !email.isEmpty else {
-            ProgressHUD.showError("Emailアドレスを入力してください")
+            ProgressHUD.showError("メールアドレスを入力してください")
             return
         }
         ProgressHUD.show()

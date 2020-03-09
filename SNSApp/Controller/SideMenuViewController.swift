@@ -12,6 +12,7 @@ import ProgressHUD
 
 class SideMenuViewController: UIViewController {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -49,6 +50,7 @@ class SideMenuViewController: UIViewController {
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
                 self.usernameLabel.text = user.username
+                self.accountLabel.text = user.account
                 if let photoUrlString = user.profileImageUrl {
                     let photoUrl = URL(string: photoUrlString)
                     self.profileImage.sd_setImage(with: photoUrl, completed: nil)

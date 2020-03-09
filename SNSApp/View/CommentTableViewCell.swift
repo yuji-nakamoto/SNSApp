@@ -10,6 +10,7 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
@@ -33,6 +34,7 @@ class CommentTableViewCell: UITableViewCell {
     
     func setupUserInfo() {
         usernameLabel.text = user?.username
+        accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, completed: nil)

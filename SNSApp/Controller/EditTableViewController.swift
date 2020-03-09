@@ -12,6 +12,7 @@ import ProgressHUD
 
 class EditTableViewController: UITableViewController,UITextFieldDelegate {
     
+    @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -125,6 +126,7 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
     func fetchUser() {
         UserApi().observeCurrentUser { (user) in
             self.usernameTextField.text = user.username
+            self.accountTextField.text = user.account
             self.emailTextField.text = user.email
             self.birthdayTextField.text = user.birthday
             if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
@@ -144,6 +146,9 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
         var dict = Dictionary<String, Any>()
         if let username = usernameTextField.text, !username.isEmpty {
             dict["username"] = username
+        }
+        if let account = accountTextField.text, !account.isEmpty {
+            dict["account"] = "@\(account)"
         }
         if let email = emailTextField.text, !email.isEmpty {
             dict["email"] = email

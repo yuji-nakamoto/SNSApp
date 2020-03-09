@@ -10,6 +10,7 @@ import UIKit
 
 class NotificationTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -49,22 +50,22 @@ class NotificationTableViewCell: UITableViewCell {
             
             var timeText = ""
             if diff.second! <= 0 {
-                timeText = "今"
+                timeText = "・今"
             }
             if diff.second! > 0 && diff.minute! == 0 {
-                timeText = "\(diff.second!) 秒前"
+                timeText = "・\(diff.second!) 秒前"
             }
             if diff.minute! > 0 && diff.hour! == 0 {
-                timeText = "\(diff.minute!) 分前"
+                timeText = "・\(diff.minute!) 分前"
             }
             if diff.hour! > 0 && diff.day! == 0 {
-                timeText = "\(diff.hour!) 時間前"
+                timeText = "・\(diff.hour!) 時間前"
             }
             if diff.day! > 0 && diff.weekOfMonth! == 0 {
-                timeText = "\(diff.day!) 日前"
+                timeText = "・\(diff.day!) 日前"
             }
             if diff.weekOfMonth! > 0 {
-                timeText = "\(diff.weekOfMonth!) 週前"
+                timeText = "・\(diff.weekOfMonth!) 週前"
             }
             dateLabel.text = timeText
         }
@@ -72,6 +73,7 @@ class NotificationTableViewCell: UITableViewCell {
     
     func setupUserInfo() {
         usernameLabel.text = "\(user!.username!) さん"
+        accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, completed: nil)

@@ -14,6 +14,7 @@ protocol ProfileViewDelegate {
 
 class ProfileTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
@@ -34,6 +35,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     func setupUserInfo() {
         usernameLabel.text = user?.username
+        accountLabel.text = user?.account
         selfIntroLabel.text = user?.selfIntro
         if let dateOfBirth = dateOfBirthLabel.text, !dateOfBirth.isEmpty {
             birthdayLabel.text = "生年月日"
