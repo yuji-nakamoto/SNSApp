@@ -38,7 +38,7 @@ class ProfileTableViewCell: UITableViewCell {
         accountLabel.text = user?.account
         selfIntroLabel.text = user?.selfIntro
         if let dateOfBirth = dateOfBirthLabel.text, !dateOfBirth.isEmpty {
-            birthdayLabel.text = "生年月日"
+            birthdayLabel.text = "誕生日"
         }
         dateOfBirthLabel.text = user?.birthday
         if let photoUrlString = user?.profileImageUrl {
@@ -92,6 +92,12 @@ class ProfileTableViewCell: UITableViewCell {
             configureUnFollowButton()
             user?.isFollowing = true
             delegate?.updateFollowButton(forUser: user!)
+            
+            let timestamp = Int(Date().timeIntervalSince1970)
+            let newFollowerId = FollowApi().REF_FOLLOWERS.childByAutoId().key
+            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id!).childByAutoId().key
+            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id!).child(newNotiId!)
+            newNotiReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": newFollowerId!,"type": "follower", "timestamp": timestamp])
         }
     }
     

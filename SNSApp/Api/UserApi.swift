@@ -71,6 +71,20 @@ class UserApi {
         }
     }
     
+    func queryAccounts(withText text: String, completion: @escaping (User) -> Void) {
+        REF_USERS.queryOrdered(byChild: "account").queryStarting(atValue: text).queryEnding(atValue: text+"\u{f8ff}").queryLimited(toLast: 10).observeSingleEvent(of: .value) { (snapshot) in
+            snapshot.children.forEach { (s) in
+                let child = s as! DataSnapshot
+                if let dict = child.value as? [String: Any] {
+                    let user = User.transformUser(dict: dict, key: child.key)
+                    if user.id! != Auth.auth().currentUser!.uid {
+                        completion(user)
+                    }
+                }
+            }
+        }
+    }
+    
     var REF_CURRENT_USER: DatabaseReference? {
         guard let currentUser = Auth.auth().currentUser else {
             return nil

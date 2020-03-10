@@ -69,6 +69,7 @@ class SideMenuViewController: UIViewController {
         performSegue(withIdentifier: "ProfileVC", sender: nil)
     }
     
+    
     @objc func logoutLabelTap() {
         UserApi().observeCurrentUser { (user) in
             let alert: UIAlertController = UIAlertController(title: "\(user.username!)", message: "ログアウトしてもよろしいですか？", preferredStyle: .actionSheet)

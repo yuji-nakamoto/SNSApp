@@ -31,6 +31,10 @@ class NotificationTableViewCell: UITableViewCell {
         }
     }
     
+    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
+        FollowApi().isFollowing(userId: userId, completed: completed)
+    }
+    
     func updateView() {
         switch notification?.type {
         case "feed":
@@ -39,8 +43,11 @@ class NotificationTableViewCell: UITableViewCell {
             PostApi().observePost(withId: postId) { (post) in
                 self.captionLabel.text = post.caption
             }
+        case "follower":
+            descriptionLabel.text = "\(user!.username!)さんがフォローしました"
+            captionLabel.text = ""
         default:
-            print("")
+            break
         }
         if let timestamp = notification?.timestamp {
             let timestampDate = Date(timeIntervalSince1970: Double(timestamp))
@@ -72,7 +79,7 @@ class NotificationTableViewCell: UITableViewCell {
     }
     
     func setupUserInfo() {
-        usernameLabel.text = "\(user!.username!) さん"
+        usernameLabel.text = user?.username
         accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)

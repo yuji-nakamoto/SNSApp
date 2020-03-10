@@ -58,6 +58,13 @@ class SearchTableViewCell: UITableViewCell {
             FollowApi().followAction(withUser: user!.id!)
             configureUnFollowButton()
             user?.isFollowing = true
+            
+            let timestamp = Int(Date().timeIntervalSince1970)
+            let newFollowerId = FollowApi().REF_FOLLOWERS.childByAutoId().key
+            
+            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id!).childByAutoId().key
+            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id!).child(newNotiId!)
+            newNotiReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": newFollowerId!,"type": "follower", "timestamp": timestamp])
         }
     }
     
