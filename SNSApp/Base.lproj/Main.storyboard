@@ -399,9 +399,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGp-Qn-NU3">
-                                                    <rect key="frame" x="230" y="25.5" width="130" height="34"/>
+                                                    <rect key="frame" x="231" y="25.5" width="129" height="34"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="ZeA-9A-5YB"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="ZeA-9A-5YB"/>
                                                     </constraints>
                                                     <state key="normal" title="  フォローする  ">
                                                         <color key="titleColor" red="0.22952792050000001" green="0.58915597200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -479,15 +479,15 @@
                                 <rect key="frame" x="0.0" y="45" width="375" height="622"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" rowHeight="106" id="dPK-xS-dfP" customClass="NotificationTableViewCell" customModule="SNSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="106"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" rowHeight="80" id="dPK-xS-dfP" customClass="NotificationTableViewCell" customModule="SNSApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dPK-xS-dfP" id="lxo-EP-vkt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="zwS-ge-NCe">
-                                                    <rect key="frame" x="15" y="15" width="50" height="50"/>
+                                                    <rect key="frame" x="15" y="15" width="50" height="49.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="CEh-Cz-Ol3"/>
                                                         <constraint firstAttribute="width" constant="50" id="mlQ-gl-Ofe"/>
@@ -500,13 +500,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEo-Rc-UOE">
-                                                    <rect key="frame" x="75" y="47" width="114" height="18"/>
+                                                    <rect key="frame" x="75" y="46.5" width="114" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLm-p4-IPa">
-                                                    <rect key="frame" x="0.0" y="105.5" width="375" height="0.5"/>
+                                                    <rect key="frame" x="0.0" y="79.5" width="375" height="0.5"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.29999999999999999" id="4uQ-ZA-uo5"/>
@@ -516,12 +516,6 @@
                                                     <rect key="frame" x="330" y="16.5" width="30" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="captionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmX-Xa-d6I">
-                                                    <rect key="frame" x="15" y="75" width="345" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1u-5K-4gj">
@@ -539,25 +533,20 @@
                                                 <constraint firstItem="BEo-Rc-UOE" firstAttribute="bottom" secondItem="zwS-ge-NCe" secondAttribute="bottom" id="LJk-1s-EdX"/>
                                                 <constraint firstItem="1RK-Jw-XLG" firstAttribute="leading" secondItem="zwS-ge-NCe" secondAttribute="trailing" constant="10" id="Lcv-sc-tQb"/>
                                                 <constraint firstItem="FLm-p4-IPa" firstAttribute="leading" secondItem="lxo-EP-vkt" secondAttribute="leading" id="Nw7-qw-pzr"/>
-                                                <constraint firstItem="FLm-p4-IPa" firstAttribute="top" secondItem="vmX-Xa-d6I" secondAttribute="bottom" constant="10" id="UgI-wR-LPK"/>
                                                 <constraint firstItem="zwS-ge-NCe" firstAttribute="top" secondItem="lxo-EP-vkt" secondAttribute="top" constant="15" id="Wru-BQ-xp5"/>
                                                 <constraint firstAttribute="trailing" secondItem="Csz-cf-EBK" secondAttribute="trailing" constant="15" id="Yi3-jz-Ie5"/>
                                                 <constraint firstItem="Csz-cf-EBK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J1u-5K-4gj" secondAttribute="trailing" id="abC-QY-ad7"/>
-                                                <constraint firstAttribute="trailing" secondItem="vmX-Xa-d6I" secondAttribute="trailing" constant="15" id="ceq-h7-z2u"/>
                                                 <constraint firstItem="Csz-cf-EBK" firstAttribute="centerY" secondItem="1RK-Jw-XLG" secondAttribute="centerY" id="d7a-zF-oGp"/>
+                                                <constraint firstItem="FLm-p4-IPa" firstAttribute="top" secondItem="zwS-ge-NCe" secondAttribute="bottom" constant="15" id="eun-Yd-jQS"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="BEo-Rc-UOE" secondAttribute="trailing" id="goC-IX-YFV"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="1RK-Jw-XLG" secondAttribute="trailing" id="l8n-bL-gIw"/>
                                                 <constraint firstItem="1RK-Jw-XLG" firstAttribute="top" secondItem="zwS-ge-NCe" secondAttribute="top" id="mQY-jT-YG7"/>
                                                 <constraint firstItem="BEo-Rc-UOE" firstAttribute="leading" secondItem="1RK-Jw-XLG" secondAttribute="leading" id="qOx-mm-jRt"/>
                                                 <constraint firstAttribute="bottom" secondItem="FLm-p4-IPa" secondAttribute="bottom" id="teq-tf-1pg"/>
-                                                <constraint firstItem="vmX-Xa-d6I" firstAttribute="top" secondItem="zwS-ge-NCe" secondAttribute="bottom" constant="10" id="vaF-EA-WbR"/>
-                                                <constraint firstItem="vmX-Xa-d6I" firstAttribute="leading" secondItem="zwS-ge-NCe" secondAttribute="leading" id="wRU-DC-qND"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BEo-Rc-UOE" secondAttribute="trailing" id="xqw-Eh-zb4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="accountLabel" destination="J1u-5K-4gj" id="NZ1-bC-1O7"/>
-                                            <outlet property="bottomConstraint" destination="UgI-wR-LPK" id="l6A-WH-ZvH"/>
-                                            <outlet property="captionLabel" destination="vmX-Xa-d6I" id="9Xz-QZ-haV"/>
                                             <outlet property="dateLabel" destination="Csz-cf-EBK" id="4mG-2I-Ss0"/>
                                             <outlet property="descriptionLabel" destination="BEo-Rc-UOE" id="cUb-e4-hFL"/>
                                             <outlet property="profileImage" destination="zwS-ge-NCe" id="f5f-W4-cSD"/>
@@ -625,8 +614,9 @@
                     <connections>
                         <outlet property="profileImage" destination="0GW-yW-kdE" id="Tag-7G-JSa"/>
                         <outlet property="tableView" destination="hGP-EI-lE4" id="Cu9-r3-Jov"/>
-                        <segue destination="Cgc-ga-EPg" kind="show" identifier="CommentVC" id="MuU-yc-F3h"/>
                         <segue destination="JW6-Fy-Lpg" kind="show" identifier="ProfileVC" id="MCw-Ce-usF"/>
+                        <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="qlY-G6-BKM"/>
+                        <segue destination="Cgc-ga-EPg" kind="show" identifier="CommentVC" id="qFw-Hi-gad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCN-RO-abN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2708,9 +2698,9 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KuG-xH-WcT"/>
-        <segue reference="MuU-yc-F3h"/>
-        <segue reference="1jj-gB-T4n"/>
-        <segue reference="v5n-Eu-28b"/>
+        <segue reference="qlY-G6-BKM"/>
+        <segue reference="qFw-Hi-gad"/>
+        <segue reference="6mU-IE-ia2"/>
+        <segue reference="MCw-Ce-usF"/>
     </inferredMetricsTieBreakers>
 </document>

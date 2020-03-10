@@ -11,11 +11,9 @@ import UIKit
 class NotificationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var accountLabel: UILabel!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var notiVC: NotificationViewController?
@@ -38,14 +36,13 @@ class NotificationTableViewCell: UITableViewCell {
     func updateView() {
         switch notification?.type {
         case "feed":
-            descriptionLabel.text = "新しい投稿です"
+            
             let postId = notification!.objectId!
             PostApi().observePost(withId: postId) { (post) in
-                self.captionLabel.text = post.caption
+                self.descriptionLabel.text = "新しい投稿です \(post.caption!)"
             }
         case "follower":
             descriptionLabel.text = "\(user!.username!)さんがフォローしました"
-            captionLabel.text = ""
         default:
             break
         }
@@ -99,9 +96,20 @@ class NotificationTableViewCell: UITableViewCell {
     }
     
     @objc func cellTap() {
-        if let id = notification?.objectId {
-            notiVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+        switch notification?.type {
+        case "feed":
+            if let id = notification?.objectId {
+                notiVC?.performSegue(withIdentifier: "CommentVC", sender: id)
+            }
+        case "follower":
+            if let id = user?.id {
+                notiVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+            }
+        default:
+            break
         }
+        
+        
     }
     
 }

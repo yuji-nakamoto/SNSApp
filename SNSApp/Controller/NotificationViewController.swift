@@ -67,6 +67,11 @@ class NotificationViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OtherVC"{
+            let otherVC = segue.destination as! OtherProfileViewController
+            let userId = sender as? String
+            otherVC.userId = userId!
+        }
         if segue.identifier == "CommentVC"{
             let commentVC = segue.destination as! CommentViewController
             let postId = sender as? String
