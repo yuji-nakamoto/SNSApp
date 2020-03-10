@@ -14,6 +14,7 @@ protocol ProfileViewDelegate {
 
 class ProfileTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
@@ -34,9 +35,10 @@ class ProfileTableViewCell: UITableViewCell {
     
     func setupUserInfo() {
         usernameLabel.text = user?.username
+        accountLabel.text = user?.account
         selfIntroLabel.text = user?.selfIntro
         if let dateOfBirth = dateOfBirthLabel.text, !dateOfBirth.isEmpty {
-            birthdayLabel.text = "生年月日"
+            birthdayLabel.text = "誕生日"
         }
         dateOfBirthLabel.text = user?.birthday
         if let photoUrlString = user?.profileImageUrl {
@@ -90,6 +92,12 @@ class ProfileTableViewCell: UITableViewCell {
             configureUnFollowButton()
             user?.isFollowing = true
             delegate?.updateFollowButton(forUser: user!)
+            
+            let timestamp = Int(Date().timeIntervalSince1970)
+            let newFollowerId = FollowApi().REF_FOLLOWERS.childByAutoId().key
+            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id!).childByAutoId().key
+            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id!).child(newNotiId!)
+            newNotiReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": newFollowerId!,"type": "follower", "timestamp": timestamp])
         }
     }
     

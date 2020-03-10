@@ -10,6 +10,7 @@ import UIKit
 
 class ContributorTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -38,6 +39,7 @@ class ContributorTableViewCell: UITableViewCell {
 
     func setupUserInfo() {
         usernameLabel.text = user?.username
+        accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, completed: nil)

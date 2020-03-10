@@ -49,6 +49,20 @@ class SearchViewController: UIViewController {
         }
     }
     
+    func doAccountSearch() {
+        if let searchText = searchBar.text?.lowercased() {
+            self.users.removeAll()
+            self.tableView.reloadData()
+            UserApi().queryAccounts(withText: searchText) { (user) in
+                self.isFollowing(userId: user.id!) { (value) in
+                    user.isFollowing = value
+                    self.users.append(user)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OtherVC"{
             let otherVC = segue.destination as! OtherProfileViewController
@@ -78,11 +92,19 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        doSearch()
+        if searchBar.text?.hasPrefix("@") == true {
+            doAccountSearch()
+        } else {
+            doSearch()
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        doSearch()
+        if searchBar.text?.hasPrefix("@") == true {
+            doAccountSearch()
+        } else {
+            doSearch()
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 class User {
+    var account: String?
     var email: String?
     var profileImageUrl: String?
     var username: String?
@@ -22,6 +23,7 @@ extension User {
     static func transformUser(dict: [String: Any], key: String) -> User {
         let user = User()
         user.id = key
+        user.account = dict["account"] as? String
         user.email = dict["email"] as? String
         user.profileImageUrl = dict["profileImageUrl"] as? String
         user.username = dict["username"] as? String

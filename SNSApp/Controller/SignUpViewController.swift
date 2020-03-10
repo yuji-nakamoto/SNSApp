@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var accountTextField: UITextField!
     
     var image: UIImage?
     
@@ -31,7 +32,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         usernameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        let descriptionTitle = "新しいアカウントのユーザー情報を作成してください。プロフィール画像、ユーザーネーム、Emailアドレスはいつでも変更できます。"
+        let descriptionTitle = "新しいアカウントのユーザー情報を作成してください。プロフィール画像、ユーザーネーム、アカウント名、メールアドレスはいつでも変更できます。"
         let attributedText = NSMutableAttributedString(string: descriptionTitle, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15),NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         descriptionLabel.numberOfLines = 0
         descriptionLabel.attributedText = attributedText
@@ -71,6 +72,14 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
             ProgressHUD.showError("ユーザーネームを入力してください")
             return
         }
+        guard let account = self.accountTextField.text, !account.isEmpty else {
+            ProgressHUD.showError("アカウント名を入力してください")
+            return
+        }
+        guard let email = self.emailTextField.text, !email.isEmpty else {
+            ProgressHUD.showError("メールアドレスを入力してください")
+            return
+        }
         guard let imageSelected = self.image else {
             ProgressHUD.showError("プロフィール画像を設定してください")
             return
@@ -89,8 +98,9 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                     "uid": authData.user.uid,
                     "username" : username,
                     "username_lowercase": username.lowercased(),
-                    "email" : authData.user.email,
-                    "profileImageUrl" : ""
+                    "email" : email,
+                    "profileImageUrl" : "",
+                    "account": "@\(account)"
                 ]
                 
                 let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/")

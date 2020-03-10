@@ -12,6 +12,7 @@ import ProgressHUD
 
 class SideMenuViewController: UIViewController {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -49,6 +50,7 @@ class SideMenuViewController: UIViewController {
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
                 self.usernameLabel.text = user.username
+                self.accountLabel.text = user.account
                 if let photoUrlString = user.profileImageUrl {
                     let photoUrl = URL(string: photoUrlString)
                     self.profileImage.sd_setImage(with: photoUrl, completed: nil)
@@ -69,27 +71,26 @@ class SideMenuViewController: UIViewController {
     
     
     @objc func logoutLabelTap() {
-        let alert: UIAlertController = UIAlertController(title: "Log Out", message: "本当にログアウトしますか？", preferredStyle: .actionSheet)
-        let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
-            do {
-                try Auth.auth().signOut()
-            } catch  {
-                ProgressHUD.showError(error.localizedDescription)
-                return
+        UserApi().observeCurrentUser { (user) in
+            let alert: UIAlertController = UIAlertController(title: "\(user.username!)", message: "ログアウトしてもよろしいですか？", preferredStyle: .actionSheet)
+            let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
+                do {
+                    try Auth.auth().signOut()
+                } catch  {
+                    ProgressHUD.showError(error.localizedDescription)
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC")
+                self.present(signInVC, animated: true, completion: nil)
             }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC")
-            self.present(signInVC, animated: true, completion: nil)
+            let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
+            }
+            alert.addAction(logout)
+            alert.addAction(cancel)
+            self.present(alert,animated: true,completion: nil)
         }
-        let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
-        }
-        alert.addAction(logout)
-        alert.addAction(cancel)
-        self.present(alert,animated: true,completion: nil)
     }
-    
-    
-    
     
 }
 

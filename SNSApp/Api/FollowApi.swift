@@ -20,7 +20,6 @@ class FollowApi {
                 }
             }
         }
-        
         FollowApi().REF_FOLLOWERS.child(id).child(Auth.auth().currentUser!.uid).setValue(true)
         FollowApi().REF_FOLLOWING.child(Auth.auth().currentUser!.uid).child(id).setValue(true)
     }
@@ -33,10 +32,8 @@ class FollowApi {
                 }
             }
         }
-        
         FollowApi().REF_FOLLOWERS.child(id).child(Auth.auth().currentUser!.uid).setValue(NSNull())
         FollowApi().REF_FOLLOWING.child(Auth.auth().currentUser!.uid).child(id).setValue(NSNull())
-        
     }
     
     func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {

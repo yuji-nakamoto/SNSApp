@@ -14,7 +14,7 @@ import SideMenu
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerUsernameLbl: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -120,16 +120,15 @@ class HomeViewController: UIViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
-            bottomConstraint.constant = -50
+            topConstraint.constant = -50
         } else {
-            bottomConstraint.constant = 0
+            topConstraint.constant = 0
         }
     }
     
     @IBAction func toProfileVC(_ sender: Any) {
         performSegue(withIdentifier: "ProfileVC", sender: nil)
     }
-    
     
 }
 
