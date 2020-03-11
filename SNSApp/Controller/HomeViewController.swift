@@ -14,6 +14,7 @@ import SideMenu
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerUsernameLbl: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
@@ -35,6 +36,7 @@ class HomeViewController: UIViewController {
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
         headerUsernameLbl.text = ""
+        accountLabel.text = ""
         setupAvatar()
         setupTableView()
         fetchCurrentUsername()
@@ -88,6 +90,7 @@ class HomeViewController: UIViewController {
     func fetchCurrentUsername() {
         UserApi().observeCurrentUser { (user) in
             self.headerUsernameLbl.text = user.username
+            self.accountLabel.text = user.account
         }
     }
     
@@ -119,7 +122,7 @@ class HomeViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -200 {
             topConstraint.constant = -50
         } else {
             topConstraint.constant = 0

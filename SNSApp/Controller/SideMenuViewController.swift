@@ -52,8 +52,7 @@ class SideMenuViewController: UIViewController {
                 self.usernameLabel.text = user.username
                 self.accountLabel.text = user.account
                 if let photoUrlString = user.profileImageUrl {
-                    let photoUrl = URL(string: photoUrlString)
-                    self.profileImage.sd_setImage(with: photoUrl, completed: nil)
+                    self.profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
                     FollowApi().fetchCountFollowers(userId: user.id!) { (count) in
                         self.followerCountLabel.text = "\(count)"
                     }

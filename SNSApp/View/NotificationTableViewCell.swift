@@ -79,8 +79,7 @@ class NotificationTableViewCell: UITableViewCell {
         usernameLabel.text = user?.username
         accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
-            let photoUrl = URL(string: photoUrlString)
-            profileImage.sd_setImage(with: photoUrl, completed: nil)
+            profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
     }
     

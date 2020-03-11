@@ -42,12 +42,10 @@ class ProfileTableViewCell: UITableViewCell {
         }
         dateOfBirthLabel.text = user?.birthday
         if let photoUrlString = user?.profileImageUrl {
-            let photoUrl = URL(string: photoUrlString)
-            profileImage.sd_setImage(with: photoUrl, completed: nil)
+            profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
         if let photoUrlString = user?.headerImageUrl {
-            let photoUrl = URL(string: photoUrlString)
-            headerImage.sd_setImage(with: photoUrl, completed: nil)
+            headerImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
         FollowApi().fetchCountFollowers(userId: user!.id!) { (count) in
             self.followerCountLabel.text = "\(count)"

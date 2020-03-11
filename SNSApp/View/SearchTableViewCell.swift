@@ -28,8 +28,7 @@ class SearchTableViewCell: UITableViewCell {
         usernameLabel.text = user?.username
         accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
-            let photoUrl = URL(string: photoUrlString)
-            profileImage.sd_setImage(with: photoUrl, completed: nil)
+            profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
         
         if user?.isFollowing == true {
@@ -71,7 +70,6 @@ class SearchTableViewCell: UITableViewCell {
     @objc func unFollowAction() {
         if user?.isFollowing == true {
             let alert: UIAlertController = UIAlertController(title: "フォロー解除しますか？", message: "", preferredStyle: .actionSheet)
-            
             let unFollow: UIAlertAction = UIAlertAction(title: "\(user!.username!)のフォローを解除", style: UIAlertAction.Style.default) { (alert) in
                 FollowApi().unFollowAction(withUser: self.user!.id!)
                 self.configureFollowButton()
@@ -87,7 +85,7 @@ class SearchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImage.layer.cornerRadius = 30
+        profileImage.layer.cornerRadius = 25
         usernameLabel.text = ""
         followButton.layer.cornerRadius = 14
         followButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor
