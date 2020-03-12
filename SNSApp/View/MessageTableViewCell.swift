@@ -72,6 +72,7 @@ class MessageTableViewCell: UITableViewCell {
             }
             dateLabel.textColor = .lightGray
         } else {
+            dateLabel.textColor = .white
             photoImage.isHidden = false
             profileImage.contentMode = .scaleAspectFill
             if let photoUrlString = message.imageUrl {

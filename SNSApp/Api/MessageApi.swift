@@ -20,5 +20,15 @@ class MessageApi {
             }
         }
     }
+    
+    func sendMessage(from: String, to: String, value: [String: Any]) {
+        REF_MESSAGE.child(from).child(to).childByAutoId().updateChildValues(value)
+        var dict = value
+        if let text = dict["messageText"] as? String, text.isEmpty {
+            dict["imageUrl"] = nil
+            dict["height"] = nil
+            dict["width"] = nil
+        }
+    }
 
 }

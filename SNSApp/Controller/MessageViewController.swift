@@ -25,6 +25,8 @@ class MessageViewController: UIViewController {
     var partnerId: String!
     var partnerUser: User!
     var imagePartner: UIImage!
+    var image: UIImage!
+    var currentUserId = Auth.auth().currentUser!.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +55,13 @@ class MessageViewController: UIViewController {
     }
     
     func loadMessage() {
-        MessageApi().observeMessage(from: Auth.auth().currentUser!.uid, to: partnerId) { (message) in
-                self.messages.append(message)
-                self.sortMessage()
+        MessageApi().observeMessage(from: currentUserId, to: partnerId) { (message) in
+            self.messages.append(message)
+            self.sortMessage()
         }
-        MessageApi().observeMessage(from: partnerId, to: Auth.auth().currentUser!.uid) { (message) in
-                self.messages.append(message)
-                self.sortMessage()
+        MessageApi().observeMessage(from: partnerId, to: currentUserId) { (message) in
+            self.messages.append(message)
+            self.sortMessage()
         }
     }
     
@@ -140,7 +142,10 @@ class MessageViewController: UIViewController {
     
     
     @IBAction func pickerAction(_ sender: Any) {
-        
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
     }
     
     @IBAction func sendAction(_ sender: Any) {
@@ -162,6 +167,17 @@ class MessageViewController: UIViewController {
         }
     }
     
+    func sendToFirebase(dict: [String: Any]) {
+        let date: Double = Date().timeIntervalSince1970
+        var value = dict
+        value["from"] = currentUserId
+        value["to"] = partnerId
+        value["date"] = date
+        value["read"] = false
+        
+        MessageApi().sendMessage(from: currentUserId, to: partnerId, value: value)
+    }
+    
 }
 
 extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
@@ -172,7 +188,7 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageTableViewCell
         cell.timeLabel.isHidden = indexPath.row % 3 == 0 ? true : false
-        cell.configureCell(uid: Auth.auth().currentUser!.uid, message: messages[indexPath.row], image: imagePartner)
+        cell.configureCell(uid: currentUserId, message: messages[indexPath.row], image: imagePartner)
         
         return cell
     }
@@ -191,5 +207,22 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
             height = CGFloat(heightMessage! / widthMessage! * 250)
         }
         return height
+    }
+}
+
+extension MessageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let imageSelected = info[.originalImage] as? UIImage {
+            image = imageSelected
+            sendButton.isEnabled = false
+            SendDataApi().savePhotoMessage(image: image, onSuccess: { (anyValue) in
+                if let dict = anyValue as? [String: Any] {
+                    self.sendToFirebase(dict: dict)
+                }
+            }) { (error) in
+                ProgressHUD.showError(error)
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }
