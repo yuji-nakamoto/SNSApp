@@ -64,6 +64,8 @@ class NotificationViewController: UIViewController {
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
             profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
+        let tapGestureForProfileImg = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        profileImage.addGestureRecognizer(tapGestureForProfileImg)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,8 +81,10 @@ class NotificationViewController: UIViewController {
         }
     }
     
-    @IBAction func toProfileVC(_ sender: Any) {
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    @objc func toProfile() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
 

@@ -36,7 +36,6 @@
                 messageVC.partnerId = partnerId!
             }
         }
-        
     }
     
     extension InboxViewController: UITableViewDelegate,UITableViewDataSource {

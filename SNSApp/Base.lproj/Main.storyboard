@@ -592,9 +592,6 @@
                                     <constraint firstItem="0GW-yW-kdE" firstAttribute="top" secondItem="pQQ-tV-GlA" secondAttribute="top" constant="5" id="hov-eo-Bkq"/>
                                     <constraint firstItem="kS6-FQ-CI3" firstAttribute="centerY" secondItem="pQQ-tV-GlA" secondAttribute="centerY" id="lbV-Bo-C07"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="sge-i6-SMb" appends="YES" id="EZI-53-hhK"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -612,19 +609,13 @@
                     <navigationItem key="navigationItem" id="yi1-fQ-oMJ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="profileImage" destination="0GW-yW-kdE" id="Tag-7G-JSa"/>
+                        <outlet property="profileImage" destination="0GW-yW-kdE" id="xUI-lp-8Ss"/>
                         <outlet property="tableView" destination="hGP-EI-lE4" id="Cu9-r3-Jov"/>
-                        <segue destination="JW6-Fy-Lpg" kind="show" identifier="ProfileVC" id="MCw-Ce-usF"/>
                         <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="qlY-G6-BKM"/>
                         <segue destination="Cgc-ga-EPg" kind="show" identifier="CommentVC" id="qFw-Hi-gad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCN-RO-abN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="sge-i6-SMb">
-                    <connections>
-                        <action selector="toProfileVC:" destination="dzz-mn-EsP" id="hgJ-p9-BEp"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="3223.5382308845578"/>
         </scene>
@@ -857,7 +848,7 @@
                                 <rect key="frame" x="0.0" y="45" width="375" height="572"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="105" id="kbe-96-tJ6" customClass="MessageTableViewCell" customModule="JChat" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="105" id="kbe-96-tJ6" customClass="MessageTableViewCell" customModule="SNSApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kbe-96-tJ6" id="pCz-N3-9IR">
@@ -999,9 +990,6 @@
                                             <constraint firstAttribute="width" constant="35" id="Tak-ea-j7u"/>
                                             <constraint firstAttribute="height" constant="35" id="sy5-8r-isA"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="NTx-IE-VaJ" appends="YES" id="hRl-cS-3Vo"/>
-                                        </connections>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SJ-cN-F2b">
                                         <rect key="frame" x="339" y="15" width="21" height="22"/>
@@ -1231,21 +1219,15 @@
                     <connections>
                         <outlet property="accountLabel" destination="530-QI-izT" id="XjO-QG-bdy"/>
                         <outlet property="activityIndicatorView" destination="ct6-AH-vPY" id="t9G-Tx-gbC"/>
-                        <outlet property="avatarImage" destination="inl-EL-iQy" id="5Hf-O6-jpd"/>
                         <outlet property="headerUsernameLbl" destination="JxG-d4-f4J" id="Vil-0t-SeQ"/>
+                        <outlet property="profileImage" destination="inl-EL-iQy" id="Itq-Dm-5UJ"/>
                         <outlet property="tableView" destination="7q0-u4-fIu" id="Gwe-UP-fAA"/>
                         <outlet property="topConstraint" destination="ztP-0j-GV2" id="uXy-H5-7cU"/>
                         <segue destination="Cgc-ga-EPg" kind="show" identifier="CommentVC" id="CDE-T0-3qP"/>
                         <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="KuG-xH-WcT"/>
-                        <segue destination="JW6-Fy-Lpg" kind="show" identifier="ProfileVC" id="nh1-Ev-uT1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2mY-04-lTN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="NTx-IE-VaJ">
-                    <connections>
-                        <action selector="toProfileVC:" destination="ZON-4E-UUo" id="tlM-iS-4vc"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="867.61619190404804"/>
         </scene>
@@ -1425,9 +1407,6 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
-                                                            <connections>
-                                                                <outletCollection property="gestureRecognizers" destination="bqI-r4-O7V" appends="YES" id="uzh-mM-1aE"/>
-                                                            </connections>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="dFA-4P-hk5">
                                                             <rect key="frame" x="20" y="20" width="20" height="20"/>
@@ -1478,9 +1457,6 @@
                                             <constraint firstAttribute="width" constant="60" id="3cY-Zr-Ptx"/>
                                             <constraint firstAttribute="height" constant="60" id="rHr-fX-qlu"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="2qr-FT-drZ" appends="YES" id="2K6-dc-rRJ"/>
-                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDk-Uh-jzj">
                                         <rect key="frame" x="125" y="149.5" width="10.5" height="20.5"/>
@@ -1584,25 +1560,14 @@
                         <outlet property="accountLabel" destination="gmy-QE-ng1" id="Jow-dy-xbx"/>
                         <outlet property="followCountLabel" destination="fwO-L4-Kvp" id="e90-4d-k5f"/>
                         <outlet property="followerCountLabel" destination="jDk-Uh-jzj" id="gu6-ZW-xVU"/>
-                        <outlet property="profileImage" destination="Ejn-xd-0Wj" id="5wh-F3-Ef7"/>
+                        <outlet property="profileImage" destination="Ejn-xd-0Wj" id="BOu-zb-WPJ"/>
                         <outlet property="sideMenuView" destination="akx-2C-Tcl" id="mQN-QZ-zQL"/>
                         <outlet property="tableView" destination="bir-5G-vh2" id="SdU-Ud-yTL"/>
                         <outlet property="toLogoutLabel" destination="sHW-fj-C6O" id="vGi-kO-EG6"/>
                         <outlet property="usernameLabel" destination="Zek-5A-fOS" id="AwI-Be-nXr"/>
-                        <segue destination="JW6-Fy-Lpg" kind="show" identifier="ProfileVC" id="v5n-Eu-28b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7Q-E1-gsX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="bqI-r4-O7V">
-                    <connections>
-                        <action selector="toProfileVC:" destination="YD9-ec-01v" id="of1-u4-oNk"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="2qr-FT-drZ">
-                    <connections>
-                        <action selector="toProfileVC:" destination="YD9-ec-01v" id="OU0-aC-Xw8"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2816.8000000000002" y="1638.5307346326838"/>
         </scene>
@@ -1615,7 +1580,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="36z-Jq-uQd">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="311" id="g2V-Ur-rer" customClass="ProfileTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -1923,7 +1888,7 @@
         <!--Edit Table View Controller-->
         <scene sceneID="Rdt-ve-Hw3">
             <objects>
-                <tableViewController id="fCl-pf-mjX" customClass="EditTableViewController" customModule="SNSApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fCl-pf-mjX" customClass="EditTableViewController" customModule="SNSApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hdw-X3-1PN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2693,13 +2658,13 @@
         <!--Other Profile View Controller-->
         <scene sceneID="sPm-3L-slW">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="a4t-Qx-JNc" customClass="OtherProfileViewController" customModule="SNSApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a4t-Qx-JNc" customClass="OtherProfileViewController" customModule="SNSApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ug9-67-UC9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-Vw-2N3">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="311" id="EF5-TF-3hQ" customClass="ProfileTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -2995,7 +2960,6 @@
                     <connections>
                         <outlet property="tableView" destination="2YL-Vw-2N3" id="cIg-6A-XFh"/>
                         <segue destination="Cgc-ga-EPg" kind="show" identifier="CommentVC" id="A5P-Rs-NM4"/>
-                        <segue destination="fCl-pf-mjX" kind="show" identifier="EditVC" id="6mU-IE-ia2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVM-aa-waA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3064,9 +3028,7 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MX8-I4-jgy"/>
-        <segue reference="CDE-T0-3qP"/>
-        <segue reference="6mU-IE-ia2"/>
-        <segue reference="nh1-Ev-uT1"/>
+        <segue reference="KuG-xH-WcT"/>
+        <segue reference="qFw-Hi-gad"/>
     </inferredMetricsTieBreakers>
 </document>

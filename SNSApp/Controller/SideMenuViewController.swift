@@ -31,6 +31,11 @@ class SideMenuViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
         toLogoutLabel.addGestureRecognizer(tapGesture)
+        let tapGestureForProfileIImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        profileImage.addGestureRecognizer(tapGestureForProfileIImg)
+        let tapGestureForUsernameLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        profileImage.addGestureRecognizer(tapGestureForUsernameLbl)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,8 +69,10 @@ class SideMenuViewController: UIViewController {
         })
     }
     
-    @IBAction func toProfileVC(_ sender: Any) {
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    @objc func toProfile() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
     

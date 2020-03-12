@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerUsernameLbl: UILabel!
-    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     var posts = [Post]()
@@ -102,10 +102,12 @@ class HomeViewController: UIViewController {
     }
     
     func setupAvatar() {
-        avatarImage.layer.cornerRadius = 35/2
+        profileImage.layer.cornerRadius = 35/2
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
-            avatarImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
+            profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
+        let tapGestureForProfileImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        profileImage.addGestureRecognizer(tapGestureForProfileImg)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -129,8 +131,10 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @IBAction func toProfileVC(_ sender: Any) {
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    @objc func toProfile() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
 }

@@ -118,7 +118,9 @@ class ProfileTableViewCell: UITableViewCell {
     }
     
     @objc func toEditVC() {
-        otherVC?.performSegue(withIdentifier: "EditVC", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = storyboard.instantiateViewController(withIdentifier: "EditVC") as! EditTableViewController
+        otherVC?.navigationController?.pushViewController(editVC, animated: true)
     }
     
     override func awakeFromNib() {
