@@ -147,7 +147,7 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
         if let username = usernameTextField.text, !username.isEmpty {
             dict["username"] = username
         }
-        if let account = accountTextField.text, !account.isEmpty {
+        if let account = accountTextField.text, !account.isEmpty && account.hasPrefix("@") {
             dict["account"] = account
         }
         if let email = emailTextField.text, !email.isEmpty {

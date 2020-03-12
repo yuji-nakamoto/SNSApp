@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MessageTableViewCell: UITableViewCell {
     
@@ -20,15 +21,95 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var bubleRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bubleLeftConstraint: NSLayoutConstraint!
     
+    var user: User?
+    var message: Message?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        profileImage.layer.cornerRadius = 18
+        bubleView.layer.cornerRadius = 15
+        bubleView.layer.borderWidth = 1
+        photoImage.layer.cornerRadius = 15
+        
+        photoImage.isHidden = true
+        profileImage.isHidden = true
+        messageLabel.isHidden = true
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImage.isHidden = true
+        profileImage.isHidden = true
+        messageLabel.isHidden = true
     }
+ 
+    func formatHeaderTimeLabel(time: Date, comletion: @escaping (String) -> ()) {
+        var text = ""
+        let currentDate = Date()
+        let currentDateString = currentDate.toString(dateFormat: "yyyymmdd")
+        let pastDateString = time.toString(dateFormat: "yyyymmdd")
+        
+        if pastDateString.elementsEqual(currentDateString) == true {
+            text = time.toString(dateFormat: "HH:mm a") + ", 今日"
+        } else {
+            text = time.toString(dateFormat: "MM/dd/yyyy")
+        }
+        comletion(text)
+    }
+    
+    func configureCell(uid: String, message: Message, image: UIImage) {
+        self.message = message
+        let text = message.messageText
+        if !text!.isEmpty {
+            messageLabel.isHidden = false
+            messageLabel.text = message.messageText
+            
+            let widthValue = text!.estimateFrameForText(text!).width + 40
+            if widthValue < 100 {
+                widthConstraint.constant = 100
+            } else {
+                widthConstraint.constant = widthValue
+            }
+            dateLabel.textColor = .lightGray
+        } else {
+            photoImage.isHidden = false
+            profileImage.contentMode = .scaleAspectFill
+            if let photoUrlString = message.imageUrl {
+                photoImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
+            }
+            bubleView.layer.borderColor = UIColor.clear.cgColor
+            dateLabel.textColor = .white
+            widthConstraint.constant = 250
+        }
+        
+        if uid == message.from {
+            bubleView.backgroundColor = UIColor.groupTableViewBackground
+            bubleView.layer.borderColor = UIColor.clear.cgColor
+            bubleRightConstraint.constant = 8
+            bubleLeftConstraint.constant = UIScreen.main.bounds.width - widthConstraint.constant - bubleRightConstraint.constant
+        } else {
+            profileImage.isHidden = false
+            bubleView.backgroundColor = UIColor.white
+            profileImage.image = image
+            bubleView.layer.borderColor = UIColor.lightGray.cgColor
+            bubleLeftConstraint.constant = 55
+            bubleRightConstraint.constant = UIScreen.main.bounds.width - widthConstraint.constant - bubleLeftConstraint.constant
+        }
+        
+        let date = Date(timeIntervalSince1970: message.date!)
+        let dateString = timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+        dateLabel.text = dateString
+        self.formatHeaderTimeLabel(time: date) { (text) in
+            self.timeLabel.text = text
+        }
+    }
+    
+}
 
+extension String {
+    func estimateFrameForText(_ text: String) -> CGRect {
+        let size = CGSize(width: 250, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+    }
 }

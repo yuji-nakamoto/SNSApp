@@ -32,8 +32,8 @@
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "MessageVC"{
                 let messageVC = segue.destination as! MessageViewController
-                let userId = sender as? String
-                messageVC.userId = userId!
+                let partnerId = sender as? String
+                messageVC.partnerId = partnerId!
             }
         }
         
@@ -50,5 +50,17 @@
             cell.user = user
             cell.inboxVC = self
             return cell
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            if let cell = tableView.cellForRow(at: indexPath) as? InboxTableViewCell {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let messageVC = storyboard.instantiateViewController(withIdentifier: "MessageVC") as! MessageViewController
+                messageVC.imagePartner = cell.profileImage.image
+                messageVC.partnerUsername = cell.usernameLabel.text!
+                messageVC.partnerId = cell.user!.uid!
+                messageVC.partnerUser = cell.user
+                self.navigationController?.pushViewController(messageVC, animated: true)
+            }
         }
     }

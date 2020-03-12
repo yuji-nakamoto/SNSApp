@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import ProgressHUD
 
 class MessageViewController: UIViewController {
     
@@ -18,8 +20,11 @@ class MessageViewController: UIViewController {
     @IBOutlet weak var partnerImage: UIImageView!
     @IBOutlet weak var accountLabel: UILabel!
     
-    var userId = ""
-    var users = [User]()
+    var messages = [Message]()
+    var partnerUsername: String!
+    var partnerId: String!
+    var partnerUser: User!
+    var imagePartner: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,8 @@ class MessageViewController: UIViewController {
         setupTextField()
         setupKeyboard()
         handleTextField()
-   
+        loadMessage()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +50,32 @@ class MessageViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func loadMessage() {
+        MessageApi().observeMessage(from: Auth.auth().currentUser!.uid, to: partnerId) { (message) in
+                self.messages.append(message)
+                self.sortMessage()
+        }
+        MessageApi().observeMessage(from: partnerId, to: Auth.auth().currentUser!.uid) { (message) in
+                self.messages.append(message)
+                self.sortMessage()
+        }
+    }
+    
+    func sortMessage() {
+        messages = messages.sorted(by: { $0.date! < $1.date! })
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.scrollToBottom()
+        }
+    }
+    
+    func scrollToBottom() {
+        if messages.count > 0 {
+            let index = IndexPath(row: messages.count - 1, section: 0)
+            tableView.scrollToRow(at: index, at: UITableView.ScrollPosition.bottom, animated: true)
+        }
     }
     
     func setupKeyboard() {
@@ -81,7 +113,7 @@ class MessageViewController: UIViewController {
     
     func setupNavigationBarUser() {
         partnerImage.layer.cornerRadius = 18
-        UserApi().observeUser(withId: userId) { (user) in
+        UserApi().observeUser(withId: partnerId) { (user) in
             self.usernameLabel.text = user.username
             self.accountLabel.text = user.account
             if let photoUrlString = user.profileImageUrl {
@@ -102,35 +134,62 @@ class MessageViewController: UIViewController {
         sendButton.isEnabled = false
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "OtherVC"{
-            let otherVC = segue.destination as! OtherProfileViewController
-            let userId = sender as! String
-            otherVC.userId = userId
-        }
-    }
-
     @IBAction func dismissActon(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     
     @IBAction func pickerAction(_ sender: Any) {
+        
     }
     
     @IBAction func sendAction(_ sender: Any) {
+        let date: Double = Date().timeIntervalSince1970
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        let currentUserId = currentUser.uid
+        
+        let messageRef = MessageApi().REF_MESSAGE.child(Auth.auth().currentUser!.uid).child(partnerId).childByAutoId()
+        messageRef.setValue(["date": date, "from": currentUserId, "to": partnerId!, "messageText": messageTextField.text!, "read": false]) { (error, ref) in
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+            self.messageTextField.text = ""
+            self.messageTextField.resignFirstResponder()
+            self.sendButton.isEnabled = false
+        }
     }
     
 }
 
 extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageTableViewCell
+        cell.timeLabel.isHidden = indexPath.row % 3 == 0 ? true : false
+        cell.configureCell(uid: Auth.auth().currentUser!.uid, message: messages[indexPath.row], image: imagePartner)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat = 0
+        let message = messages[indexPath.row]
+        let text = message.messageText
+        if !text!.isEmpty {
+            height = text!.estimateFrameForText(text!).height + 60
+        }
+        
+        let heightMessage = message.height
+        let widthMessage = message.width
+        if heightMessage != 0, widthMessage != 0 {
+            height = CGFloat(heightMessage! / widthMessage! * 250)
+        }
+        return height
     }
 }

@@ -40,15 +40,5 @@ class InboxTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 25
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.cellTap))
-        addGestureRecognizer(tapGesture)
     }
-    
-    @objc func cellTap() {
-        if let id = user?.id {
-            inboxVC?.performSegue(withIdentifier: "MessageVC", sender: id)
-        }
-    }
-    
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class Comment {
     var commentText: String?
-    var uid:String?
+    var uid: String?
 }
 
 extension Comment {
