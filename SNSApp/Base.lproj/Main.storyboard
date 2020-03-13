@@ -449,6 +449,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="lxL-Hc-QYP" secondAttribute="bottom" id="Uo8-wP-kxi"/>
                             <constraint firstItem="lxL-Hc-QYP" firstAttribute="leading" secondItem="zcJ-Zy-DfQ" secondAttribute="leading" id="Yat-gf-O6w"/>
@@ -456,6 +457,9 @@
                             <constraint firstItem="lxL-Hc-QYP" firstAttribute="top" secondItem="cbI-9r-9d7" secondAttribute="top" id="xxg-Q1-5IN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zcJ-Zy-DfQ"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="g8r-g2-nAE" appends="YES" id="v1C-tm-Mj1"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="9hz-Kt-SpX"/>
                     <connections>
@@ -464,6 +468,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkI-gU-akj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="g8r-g2-nAE">
+                    <connections>
+                        <action selector="toSideMenuVC:" destination="dmT-qV-ZgL" id="TrI-UG-1Vv"/>
+                        <segue destination="7BR-pG-4L3" kind="show" id="Heq-9E-CXn"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1959" y="2481"/>
         </scene>
@@ -565,10 +575,13 @@
                                             <constraint firstAttribute="width" constant="35" id="E7Y-P1-zps"/>
                                             <constraint firstAttribute="height" constant="35" id="bCM-Ed-w4q"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="rK3-Yz-r9H" appends="YES" id="D3I-BY-9BG"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kS6-FQ-CI3">
                                         <rect key="frame" x="170" y="12" width="35" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -595,6 +608,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hGP-EI-lE4" secondAttribute="bottom" id="00A-q3-95E"/>
                             <constraint firstItem="pQQ-tV-GlA" firstAttribute="top" secondItem="lPP-iz-uvh" secondAttribute="top" id="BHZ-6O-aew"/>
@@ -605,6 +619,9 @@
                             <constraint firstItem="hGP-EI-lE4" firstAttribute="leading" secondItem="lPP-iz-uvh" secondAttribute="leading" id="vjq-vL-pRN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lPP-iz-uvh"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fmz-9j-25T" appends="YES" id="EFp-tw-trc"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="yi1-fQ-oMJ"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -616,6 +633,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCN-RO-abN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rK3-Yz-r9H">
+                    <connections>
+                        <action selector="toSideMenuVC:" destination="dzz-mn-EsP" id="ugP-V9-HPm"/>
+                        <segue destination="7BR-pG-4L3" kind="show" id="63z-VP-W4b"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="fmz-9j-25T">
+                    <connections>
+                        <action selector="toSideMenuVC:" destination="dzz-mn-EsP" id="yBa-Ge-xrZ"/>
+                        <segue destination="7BR-pG-4L3" kind="show" id="Rjt-1z-N3e"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="3223.5382308845578"/>
         </scene>
@@ -708,6 +737,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="fWy-1m-gfL" secondAttribute="bottom" id="0G9-3c-2Ah"/>
                             <constraint firstItem="fWy-1m-gfL" firstAttribute="top" secondItem="afr-Jc-Cho" secondAttribute="top" id="C03-4d-7Pt"/>
@@ -715,6 +745,9 @@
                             <constraint firstItem="fWy-1m-gfL" firstAttribute="trailing" secondItem="8rI-yC-hEF" secondAttribute="trailing" id="heR-xV-kDh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8rI-yC-hEF"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="KZv-Or-zhZ" appends="YES" id="QGO-4N-zdD"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="svC-2I-pUU"/>
                     <connections>
@@ -722,6 +755,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcf-Al-h7Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="KZv-Or-zhZ">
+                    <connections>
+                        <action selector="toSideMenuVC:" destination="4pS-ST-qKw" id="D51-EG-MU8"/>
+                        <segue destination="7BR-pG-4L3" kind="show" id="Hb0-FT-obr"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="3958.4707646176917"/>
         </scene>
@@ -970,7 +1009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSB-wZ-9XT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725.5999999999999" y="3958.4707646176917"/>
+            <point key="canvasLocation" x="2817" y="3958"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="rf6-FR-hbJ">
@@ -990,6 +1029,9 @@
                                             <constraint firstAttribute="width" constant="35" id="Tak-ea-j7u"/>
                                             <constraint firstAttribute="height" constant="35" id="sy5-8r-isA"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="L2A-kt-QIy" appends="YES" id="dta-5X-0vr"/>
+                                        </connections>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SJ-cN-F2b">
                                         <rect key="frame" x="339" y="15" width="21" height="22"/>
@@ -1213,6 +1255,9 @@
                             <constraint firstItem="juL-nF-bod" firstAttribute="trailing" secondItem="RpA-qa-9WN" secondAttribute="trailing" id="zu2-NU-teT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="juL-nF-bod"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="LMv-Kb-A22" appends="YES" id="Tcm-DO-qib"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="uAJ-yD-G8a"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1228,6 +1273,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2mY-04-lTN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="L2A-kt-QIy">
+                    <connections>
+                        <action selector="toSideMenuVC:" destination="ZON-4E-UUo" id="kuV-pf-7B6"/>
+                        <segue destination="7BR-pG-4L3" kind="show" id="fGc-go-hPq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="LMv-Kb-A22">
+                    <connections>
+                        <action selector="toSideMenuVC:" destination="ZON-4E-UUo" id="gml-gd-B9y"/>
+                        <segue destination="7BR-pG-4L3" kind="show" id="ZkA-ia-cjH"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="867.61619190404804"/>
         </scene>
@@ -1408,7 +1465,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="dFA-4P-hk5">
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="dFA-4P-hk5">
                                                             <rect key="frame" x="20" y="20" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="0NV-y4-9aB"/>
@@ -1438,13 +1495,14 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="profileIcon" destination="dFA-4P-hk5" id="omK-pG-ApP"/>
                                                     <outlet property="toProfileLabel" destination="Kdr-NX-PyR" id="qT9-tb-Pgi"/>
                                                     <outlet property="toSettingLabel" destination="mKH-VZ-uOi" id="k9g-zv-Qts"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zek-5A-fOS">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zek-5A-fOS">
                                         <rect key="frame" x="20" y="90" width="100" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <nil key="textColor"/>
@@ -2215,7 +2273,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-hR-Dvv">
-                                <rect key="frame" x="0.0" y="44" width="375" height="530"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContributorCell" rowHeight="390" id="oAj-mO-fte" customClass="ContributorTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -2645,6 +2703,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gst-V8-dPo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2664,7 +2723,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-Vw-2N3">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="311" id="EF5-TF-3hQ" customClass="ProfileTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -2994,6 +3053,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lBU-sa-eTe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -3028,7 +3088,8 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MX8-I4-jgy"/>
-        <segue reference="A5P-Rs-NM4"/>
+        <segue reference="qlY-G6-BKM"/>
+        <segue reference="Rjt-1z-N3e"/>
+        <segue reference="qFw-Hi-gad"/>
     </inferredMetricsTieBreakers>
 </document>

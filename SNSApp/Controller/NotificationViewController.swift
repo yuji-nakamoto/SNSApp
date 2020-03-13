@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 class NotificationViewController: UIViewController {
 
@@ -64,8 +65,7 @@ class NotificationViewController: UIViewController {
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
             profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
-        let tapGestureForProfileImg = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
-        profileImage.addGestureRecognizer(tapGestureForProfileImg)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,13 +81,13 @@ class NotificationViewController: UIViewController {
         }
     }
     
-    @objc func toProfile() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        self.navigationController?.pushViewController(profileVC, animated: true)
+ 
+    
+    @IBAction func toSideMenuVC(_ sender: Any) {
+        let menu = SideMenuManager.default.leftMenuNavigationController!
+        present(menu, animated: true, completion: nil)
     }
     
-
 }
 
 extension NotificationViewController: UITableViewDelegate,UITableViewDataSource {

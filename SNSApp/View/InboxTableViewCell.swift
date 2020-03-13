@@ -29,12 +29,12 @@ class InboxTableViewCell: UITableViewCell {
         if let photoUrlString = user?.profileImageUrl {
             profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
-        let dateformattar = DateFormatter()
-        dateformattar.timeStyle = .none
-        dateformattar.dateStyle = .long
-        dateformattar.locale = Locale(identifier: "ja_JP")
-        let now = Date()
-        dateLabel.text = dateformattar.string(from: now)
+//        let dateformattar = DateFormatter()
+//        dateformattar.timeStyle = .none
+//        dateformattar.dateStyle = .long
+//        dateformattar.locale = Locale(identifier: "ja_JP")
+//        let now = Date()
+//        dateLabel.text = dateformattar.string(from: now)
     }
     
     override func awakeFromNib() {

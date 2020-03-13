@@ -7,6 +7,7 @@
     //
     
     import UIKit
+    import SideMenu
     
     class InboxViewController: UIViewController {
         
@@ -36,6 +37,12 @@
                 messageVC.partnerId = partnerId!
             }
         }
+        @IBAction func toSideMenuVC(_ sender: Any) {
+            let menu = SideMenuManager.default.leftMenuNavigationController!
+            present(menu, animated: true, completion: nil)
+        }
+        
+        
     }
     
     extension InboxViewController: UITableViewDelegate,UITableViewDataSource {

@@ -34,7 +34,7 @@ class SideMenuViewController: UIViewController {
         let tapGestureForProfileIImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
         profileImage.addGestureRecognizer(tapGestureForProfileIImg)
         let tapGestureForUsernameLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
-        profileImage.addGestureRecognizer(tapGestureForUsernameLbl)
+        usernameLabel.addGestureRecognizer(tapGestureForUsernameLbl)
         
     }
     
@@ -107,7 +107,7 @@ extension SideMenuViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuCell") as! SideMenuTableViewCell
-        
+        cell.sideMenuVC = self
         return cell
     }
     

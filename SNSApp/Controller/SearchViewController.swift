@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class SearchViewController: UIViewController {
     
@@ -71,6 +72,12 @@ class SearchViewController: UIViewController {
             otherVC.delegate = self
         }
     }
+    
+    @IBAction func toSideMenuVC(_ sender: Any) {
+        let menu = SideMenuManager.default.leftMenuNavigationController!
+        present(menu, animated: true, completion: nil)
+    }
+    
     
 }
 
