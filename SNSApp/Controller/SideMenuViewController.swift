@@ -31,6 +31,11 @@ class SideMenuViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
         toLogoutLabel.addGestureRecognizer(tapGesture)
+        let tapGestureForProfileIImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        profileImage.addGestureRecognizer(tapGestureForProfileIImg)
+        let tapGestureForUsernameLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        usernameLabel.addGestureRecognizer(tapGestureForUsernameLbl)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,8 +57,7 @@ class SideMenuViewController: UIViewController {
                 self.usernameLabel.text = user.username
                 self.accountLabel.text = user.account
                 if let photoUrlString = user.profileImageUrl {
-                    let photoUrl = URL(string: photoUrlString)
-                    self.profileImage.sd_setImage(with: photoUrl, completed: nil)
+                    self.profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
                     FollowApi().fetchCountFollowers(userId: user.id!) { (count) in
                         self.followerCountLabel.text = "\(count)"
                     }
@@ -65,8 +69,10 @@ class SideMenuViewController: UIViewController {
         })
     }
     
-    @IBAction func toProfileVC(_ sender: Any) {
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    @objc func toProfile() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
     
@@ -101,7 +107,7 @@ extension SideMenuViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuCell") as! SideMenuTableViewCell
-        
+        cell.sideMenuVC = self
         return cell
     }
     

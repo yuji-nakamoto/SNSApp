@@ -14,9 +14,10 @@ import SideMenu
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerUsernameLbl: UILabel!
-    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     var posts = [Post]()
@@ -35,6 +36,7 @@ class HomeViewController: UIViewController {
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
         headerUsernameLbl.text = ""
+        accountLabel.text = ""
         setupAvatar()
         setupTableView()
         fetchCurrentUsername()
@@ -88,6 +90,7 @@ class HomeViewController: UIViewController {
     func fetchCurrentUsername() {
         UserApi().observeCurrentUser { (user) in
             self.headerUsernameLbl.text = user.username
+            self.accountLabel.text = user.account
         }
     }
     
@@ -99,9 +102,9 @@ class HomeViewController: UIViewController {
     }
     
     func setupAvatar() {
-        avatarImage.layer.cornerRadius = 35/2
+        profileImage.layer.cornerRadius = 35/2
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
-            avatarImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
+            profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
     }
     
@@ -119,15 +122,16 @@ class HomeViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -50 {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < -200 {
             topConstraint.constant = -50
         } else {
             topConstraint.constant = 0
         }
     }
     
-    @IBAction func toProfileVC(_ sender: Any) {
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    @IBAction func toSideMenuVC(_ sender: Any) {
+        let menu = SideMenuManager.default.leftMenuNavigationController!
+        present(menu, animated: true, completion: nil)
     }
     
 }

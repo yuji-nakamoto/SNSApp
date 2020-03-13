@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class NotificationModel {
     var from: String?
     var objectId: String?

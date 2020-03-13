@@ -44,8 +44,7 @@ class HomeTableViewCell: UITableViewCell {
     func updateView() {
         captionLabel.text = post?.caption
         if let photoUrlString = post?.photoImageUrl {
-            let photoUrl = URL(string: photoUrlString)
-            contentImage.sd_setImage(with: photoUrl, completed: nil)
+            contentImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
         PostApi().REF_POSTS.child(post!.id!).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
@@ -110,8 +109,7 @@ class HomeTableViewCell: UITableViewCell {
         usernameLabel.text = user?.username
         accountLabel.text = user?.account
         if let photoUrlString = user?.profileImageUrl {
-            let photoUrl = URL(string: photoUrlString)
-            profileImage.sd_setImage(with: photoUrl, completed: nil)
+            profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
     }
     

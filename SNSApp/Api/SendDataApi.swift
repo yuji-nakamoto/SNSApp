@@ -30,6 +30,31 @@ class SendDataApi {
         }
     }
     
+     func savePhotoMessage(image: UIImage? ,onSuccess: @escaping(_ value: Any) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        if let imagePhoto = image {
+            let photoIdString = NSUUID().uuidString
+            let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/").child("messages").child(photoIdString)
+            if let data = imagePhoto.jpegData(compressionQuality: 0.1) {
+                storageRef.putData(data, metadata: nil) { (metadata, error) in
+                    if error != nil {
+                        onError(error!.localizedDescription)
+                    }
+                    storageRef.downloadURL { (url, error) in
+                        if let metaImageUrl = url?.absoluteString {
+                            let dict: Dictionary<String, Any> = [
+                                "imageUrl": metaImageUrl as Any,
+                                "height": imagePhoto.size.height as Any,
+                                "width": image?.size.width as Any,
+                                "messageText": "" as Any
+                            ]
+                            onSuccess(dict)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func sendDataToDatabase(photoUrl: String, caption: String, onSuccess: @escaping () -> Void) {
         let newPostId = PostApi().REF_POSTS.childByAutoId().key
         let newPostReference = PostApi().REF_POSTS.child(newPostId!)

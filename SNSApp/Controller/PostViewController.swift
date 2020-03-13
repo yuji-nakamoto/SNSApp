@@ -120,7 +120,7 @@ class PostViewController: UIViewController {
             ProgressHUD.showError("画像を選択してください")
             return
         }
-        if let profileImg = self.image, let imageData = profileImg.jpegData(compressionQuality: 0.5) {
+        if let profileImg = self.image, let imageData = profileImg.jpegData(compressionQuality: 0.1) {
             SendDataApi().uploadImageToFirebaseStorage(data: imageData, caption: textView.text) { (_ ) in
                 self.dismiss(animated: true, completion: nil)
             }

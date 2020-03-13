@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 class NotificationViewController: UIViewController {
 
@@ -79,11 +80,13 @@ class NotificationViewController: UIViewController {
         }
     }
     
-    @IBAction func toProfileVC(_ sender: Any) {
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+ 
+    
+    @IBAction func toSideMenuVC(_ sender: Any) {
+        let menu = SideMenuManager.default.leftMenuNavigationController!
+        present(menu, animated: true, completion: nil)
     }
     
-
 }
 
 extension NotificationViewController: UITableViewDelegate,UITableViewDataSource {

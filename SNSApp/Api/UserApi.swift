@@ -44,7 +44,16 @@ class UserApi {
         }
     }
     
-    func saveUserProfile(dict: Dictionary<String, Any>,onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    func getUserInfo(uid: String, completion: @escaping (User) -> Void) {
+        REF_USERS.child(uid).observe(.value) { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(dict: dict, key: snapshot.key)
+                completion(user)
+            }
+        }
+    }
+    
+    func saveUserProfile(dict: [String: Any], onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
