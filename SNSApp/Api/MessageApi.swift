@@ -29,6 +29,10 @@ class MessageApi {
             dict["height"] = nil
             dict["width"] = nil
         }
+        let refFrom = InboxApi().REF_INBOX.child(from).child(to)
+        refFrom.updateChildValues(dict)
+        let refTo = InboxApi().REF_INBOX.child(to).child(from)
+        refTo.updateChildValues(dict)
     }
 
 }

@@ -34,7 +34,7 @@ class SendDataApi {
         if let imagePhoto = image {
             let photoIdString = NSUUID().uuidString
             let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/").child("messages").child(photoIdString)
-            if let data = imagePhoto.jpegData(compressionQuality: 0.5) {
+            if let data = imagePhoto.jpegData(compressionQuality: 0.1) {
                 storageRef.putData(data, metadata: nil) { (metadata, error) in
                     if error != nil {
                         onError(error!.localizedDescription)
@@ -45,7 +45,7 @@ class SendDataApi {
                                 "imageUrl": metaImageUrl as Any,
                                 "height": imagePhoto.size.height as Any,
                                 "width": image?.size.width as Any,
-                                "text": "" as Any
+                                "messageText": "" as Any
                             ]
                             onSuccess(dict)
                         }

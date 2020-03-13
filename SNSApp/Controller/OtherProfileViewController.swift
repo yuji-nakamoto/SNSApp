@@ -81,7 +81,12 @@ class OtherProfileViewController: UIViewController {
             let postId = sender as? String
             commentVC.postId = postId!
         }
-    }
+        if segue.identifier == "MessageVC"{
+            let messageVC = segue.destination as! MessageViewController
+            let partnerId = sender as? String
+            messageVC.partnerId = partnerId!
+        }
+    }   
     
     @IBAction func dismissAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

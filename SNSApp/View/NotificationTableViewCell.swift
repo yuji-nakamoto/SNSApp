@@ -107,8 +107,6 @@ class NotificationTableViewCell: UITableViewCell {
         default:
             break
         }
-        
-        
     }
     
 }

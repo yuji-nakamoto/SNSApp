@@ -21,10 +21,8 @@ class MessageViewController: UIViewController {
     @IBOutlet weak var accountLabel: UILabel!
     
     var messages = [Message]()
-    var partnerUsername: String!
     var partnerId: String!
-    var partnerUser: User!
-    var imagePartner: UIImage!
+    var user: User!
     var image: UIImage!
     var currentUserId = Auth.auth().currentUser!.uid
     
@@ -39,7 +37,6 @@ class MessageViewController: UIViewController {
         setupKeyboard()
         handleTextField()
         loadMessage()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,8 +57,10 @@ class MessageViewController: UIViewController {
             self.sortMessage()
         }
         MessageApi().observeMessage(from: partnerId, to: currentUserId) { (message) in
-            self.messages.append(message)
-            self.sortMessage()
+            self.fetchUsers(uid: self.partnerId) {
+                self.messages.append(message)
+                self.sortMessage()
+            }
         }
     }
     
@@ -77,6 +76,13 @@ class MessageViewController: UIViewController {
         if messages.count > 0 {
             let index = IndexPath(row: messages.count - 1, section: 0)
             tableView.scrollToRow(at: index, at: UITableView.ScrollPosition.bottom, animated: true)
+        }
+    }
+    
+    func fetchUsers(uid: String, completed: @escaping () -> Void) {
+        UserApi().observeUser(withId: uid) { (user) in
+            self.user = user
+            completed()
         }
     }
     
@@ -114,6 +120,8 @@ class MessageViewController: UIViewController {
     }
     
     func setupNavigationBarUser() {
+        usernameLabel.text = ""
+        accountLabel.text = ""
         partnerImage.layer.cornerRadius = 18
         UserApi().observeUser(withId: partnerId) { (user) in
             self.usernameLabel.text = user.username
@@ -149,21 +157,11 @@ class MessageViewController: UIViewController {
     }
     
     @IBAction func sendAction(_ sender: Any) {
-        let date: Double = Date().timeIntervalSince1970
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        let currentUserId = currentUser.uid
-        
-        let messageRef = MessageApi().REF_MESSAGE.child(Auth.auth().currentUser!.uid).child(partnerId).childByAutoId()
-        messageRef.setValue(["date": date, "from": currentUserId, "to": partnerId!, "messageText": messageTextField.text!, "read": false]) { (error, ref) in
-            if error != nil {
-                ProgressHUD.showError(error?.localizedDescription)
-                return
-            }
-            self.messageTextField.text = ""
-            self.messageTextField.resignFirstResponder()
-            self.sendButton.isEnabled = false
+        if let messageText = messageTextField.text, messageText != "" {
+            messageTextField.text = ""
+            messageTextField.resignFirstResponder()
+            sendButton.isEnabled = false
+            sendToFirebase(dict: ["messageText": messageText as Any])
         }
     }
     
@@ -188,7 +186,9 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageTableViewCell
         cell.timeLabel.isHidden = indexPath.row % 3 == 0 ? true : false
-        cell.configureCell(uid: currentUserId, message: messages[indexPath.row], image: imagePartner)
+        let message = messages[indexPath.row]
+        cell.user = self.user
+        cell.message = message
         
         return cell
     }

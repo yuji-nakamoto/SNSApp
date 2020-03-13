@@ -14,6 +14,7 @@ protocol ProfileViewDelegate {
 
 class ProfileTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var changeButton: UIButton!
@@ -54,15 +55,18 @@ class ProfileTableViewCell: UITableViewCell {
             self.followCountLabel.text = "\(count)"
         }
         if user?.id == Auth.auth().currentUser?.uid {
+            messageButton.isHidden = true
+            changeButton.isHidden = false
             changeButton.setTitle("  変更  ", for: UIControl.State.normal)
             changeButton.addTarget(self, action: #selector(self.toEditVC), for: UIControl.Event.touchUpInside)
         } else {
             updateStateFollowButton()
         }
-        
     }
     
     func updateStateFollowButton() {
+        messageButton.isHidden = false
+        changeButton.isHidden = false
         if user?.isFollowing == true {
             configureUnFollowButton()
         } else {
@@ -123,6 +127,13 @@ class ProfileTableViewCell: UITableViewCell {
         otherVC?.navigationController?.pushViewController(editVC, animated: true)
     }
     
+    @IBAction func toMessageVC(_ sender: Any) {
+        if let id = user?.id {
+            otherVC?.performSegue(withIdentifier: "MessageVC", sender: id)
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.image = UIImage(named: "placeholderImg")
@@ -132,10 +143,14 @@ class ProfileTableViewCell: UITableViewCell {
         changeButton.layer.cornerRadius = 14
         changeButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor
         changeButton.layer.borderWidth = 1
+        changeButton.isHidden = true
+        messageButton.tintColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1)
+        messageButton.isHidden = true
         usernameLabel.text = ""
         selfIntroLabel.text = ""
         dateOfBirthLabel.text = ""
         birthdayLabel.text = ""
+        accountLabel.text = ""
     }
 
 }

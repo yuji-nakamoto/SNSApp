@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 import SideMenu
 
 class SearchViewController: UIViewController {
     
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    var searchBar = UISearchBar()
     var users = [User]()
     var delegate: ProfileViewDelegate?
     
@@ -21,15 +23,26 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        
+        setupSearchBar()
+        setupAvatar()
+        doSearch()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    func setupSearchBar() {
         searchBar.delegate = self
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "ユーザー名を検索"
-        searchBar.frame.size.width = view.frame.size.width - 60
-        
-        let searchItem = UIBarButtonItem(customView: searchBar)
-        self.navigationItem.rightBarButtonItem = searchItem
-        doSearch()
+        searchBar.keyboardType = .emailAddress
+        searchBar.placeholder = "ユーザー・アカウント名で検索"
     }
     
     func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
@@ -61,6 +74,13 @@ class SearchViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             }
+        }
+    }
+    
+    func setupAvatar() {
+        profileImage.layer.cornerRadius = 35/2
+        if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
+            profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
     }
     
@@ -99,19 +119,21 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar.text?.hasPrefix("@") == true {
-            doAccountSearch()
-        } else {
-            doSearch()
-        }
+        searchBar.text?.hasPrefix("@") == true ? doAccountSearch() : doSearch()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.hasPrefix("@") == true {
-            doAccountSearch()
-        } else {
-            doSearch()
-        }
+        searchBar.text?.hasPrefix("@") == true ? doAccountSearch() : doSearch()
+    }
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        doSearch()
     }
 }
 

@@ -65,7 +65,6 @@ class NotificationViewController: UIViewController {
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
             profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
         }
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
