@@ -31,7 +31,7 @@ class ContributorTableViewCell: UITableViewCell {
     
     func updateView() {
         captionLabel.text = post?.caption
-        if let photoUrlString = post?.photoImageUrl {
+        if let photoUrlString = post?.imageUrl {
             contentImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
     }

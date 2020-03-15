@@ -53,7 +53,7 @@ class MessageTableViewCell: UITableViewCell {
             messageLabel.isHidden = false
             messageLabel.text = message!.messageText
             
-            let widthValue = text!.estimateFrameForText(text!).width + 40
+            let widthValue = text!.estimateFrameForText_1(text!).width + 40
             if widthValue < 100 {
                 widthConstraint.constant = 100
             } else {
@@ -110,12 +110,4 @@ class MessageTableViewCell: UITableViewCell {
         comletion(text)
     }
     
-}
-
-extension String {
-    func estimateFrameForText(_ text: String) -> CGRect {
-        let size = CGSize(width: 250, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-    }
 }

@@ -46,11 +46,6 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
     }
     
-    
-    @IBAction func forgotPassword(_ sender: Any) {
-        
-    }
-    
     @IBAction func loginBtnDidTapped(_ sender: Any) {
         ProgressHUD.show()
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
@@ -59,6 +54,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
                 return
             }
             ProgressHUD.showSuccess()
+            UserApi().isOnline(bool: true)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
             self.present(tabBarVC, animated: true, completion: nil)

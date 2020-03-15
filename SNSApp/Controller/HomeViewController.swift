@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        fetchCurrentUsername()
         setupAvatar()
     }
     
@@ -63,7 +64,6 @@ class HomeViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
     }
     
     func loadPosts() {
@@ -77,6 +77,7 @@ class HomeViewController: UIViewController {
                 self.posts.insert(post, at: 0)
                 self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()
+                self.scrollToTop()
             }
         }
         
@@ -99,6 +100,10 @@ class HomeViewController: UIViewController {
             self.users.insert(user, at: 0)
             completed()
         }
+    }
+    
+    func scrollToTop() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
     }
     
     func setupAvatar() {
@@ -134,6 +139,12 @@ class HomeViewController: UIViewController {
         present(menu, animated: true, completion: nil)
     }
     
+    @IBAction func toEditVC(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = storyboard.instantiateViewController(withIdentifier: "EditVC") as! EditTableViewController
+        self.navigationController?.pushViewController(editVC, animated: true)
+    }
+    
 }
 
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
@@ -149,5 +160,32 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         cell.post = post
         cell.homeVC = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let post = posts[indexPath.row]
+        var height_1: CGFloat = 0
+        var height_2: CGFloat = 0
+
+        let caption = post.caption
+
+        if !post.caption!.isEmpty && post.imageUrl == nil {
+            height_1 = caption!.estimateFrameForText_2(caption!).height + 120
+            return height_1
+        }
+
+        let heightPost = post.height
+        let widthPost = post.width
+
+        if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
+            height_1 = CGFloat(heightPost! / widthPost! * 500)
+            height_2 = caption!.estimateFrameForText_2(caption!).height + 150
+            return height_1 + height_2
+        }
+
+        if post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
+            height_1 = CGFloat(heightPost! / widthPost! * 500)
+        }
+        return height_1
     }
 }

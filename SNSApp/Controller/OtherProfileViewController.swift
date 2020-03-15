@@ -23,7 +23,6 @@ class OtherProfileViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
         tableView.reloadData()
         fetchUser()
         loadMyPosts()
@@ -33,7 +32,6 @@ class OtherProfileViewController: UIViewController {
     }
     
     @objc func update(){
-        fetchUser()
         loadMyPosts()
         tableView.reloadData()
         refresh.endRefreshing()
@@ -120,4 +118,32 @@ extension OtherProfileViewController: UITableViewDelegate,UITableViewDataSource 
         
         return cell_2
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let  indexNumber = indexPath.row
+        
+        if indexNumber == 0 {
+            return UITableView.automaticDimension
+        }
+        let post = posts[indexPath.row - 1]
+            var height_1: CGFloat = 0
+            var height_2: CGFloat = 0
+            let heightPost = post.height
+            let widthPost = post.width
+            let caption = post.caption
+
+            if !post.caption!.isEmpty && post.imageUrl == nil {
+                height_1 = caption!.estimateFrameForText_2(caption!).height + 120
+                return height_1
+            }
+            if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
+                height_1 = CGFloat(heightPost! / widthPost! * 500)
+                height_2 = caption!.estimateFrameForText_2(caption!).height + 270
+                return height_1 + height_2
+            }
+            if  post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
+                height_1 = CGFloat(heightPost! / widthPost! * 500)
+            }
+            return height_1
+        }
 }

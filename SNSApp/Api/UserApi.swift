@@ -100,4 +100,23 @@ class UserApi {
         }
         return REF_USERS.child(currentUser.uid)
     }
+    
+    func isOnline(bool: Bool) {
+        if !Auth.auth().currentUser!.uid.isEmpty {
+            let ref = REF_USERS.child(Auth.auth().currentUser!.uid).child("isOnline")
+            let dict: [String: Any] = [
+                "online": bool as Any,
+                "latest": Date().timeIntervalSince1970 as Any
+            ]
+            ref.updateChildValues(dict)
+        }
+    }
+    
+    func typing(from: String, to: String) {
+        let ref = REF_USERS.child(from).child("isOnline")
+        let dict: [String: Any] = [
+            "typing": to
+        ]
+        ref.updateChildValues(dict)
+    }
 }

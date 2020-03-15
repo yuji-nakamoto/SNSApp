@@ -12,6 +12,7 @@ import ProgressHUD
 
 class SideMenuViewController: UIViewController {
     
+    @IBOutlet weak var logoutIcon: UIImageView!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sideMenuView: UIView!
@@ -29,13 +30,14 @@ class SideMenuViewController: UIViewController {
         
         updateView()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
-        toLogoutLabel.addGestureRecognizer(tapGesture)
+        let tapGestureForLogoutIcon = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
+        logoutIcon.addGestureRecognizer(tapGestureForLogoutIcon)
+        let tapGestureForLogoutLabl = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
+        toLogoutLabel.addGestureRecognizer(tapGestureForLogoutLabl)
         let tapGestureForProfileIImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
         profileImage.addGestureRecognizer(tapGestureForProfileIImg)
         let tapGestureForUsernameLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
         usernameLabel.addGestureRecognizer(tapGestureForUsernameLbl)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +51,7 @@ class SideMenuViewController: UIViewController {
     }
     
     func updateView() {
+        logoutIcon.tintColor = UIColor.red
         usernameLabel.text = " "
         profileImage.layer.cornerRadius = 30
         UserApi().REF_CURRENT_USER?.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -81,6 +84,7 @@ class SideMenuViewController: UIViewController {
             let alert: UIAlertController = UIAlertController(title: "\(user.username!)", message: "ログアウトしてもよろしいですか？", preferredStyle: .actionSheet)
             let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
                 do {
+                    UserApi().isOnline(bool: false)
                     try Auth.auth().signOut()
                 } catch  {
                     ProgressHUD.showError(error.localizedDescription)

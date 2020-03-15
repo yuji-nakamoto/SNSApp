@@ -11,13 +11,15 @@ import Firebase
 
 class Post {
     var caption: String?
-    var photoImageUrl: String?
+    var imageUrl: String?
     var uid: String?
     var id: String?
     var likeCount: Int?
     var likes: Dictionary<String, Any>?
     var isLiked: Bool?
     var timestamp: Int?
+    var height: Double?
+    var width: Double?
 }
 
 extension Post {
@@ -26,10 +28,12 @@ extension Post {
         post.id = key
         post.uid = dict["uid"] as? String
         post.caption = dict["caption"] as? String
-        post.photoImageUrl = dict["photoImageUrl"] as? String
+        post.imageUrl = dict["imageUrl"] as? String
         post.timestamp = dict["timestamp"] as? Int
         post.likeCount = dict["likeCount"] as? Int
         post.likes = dict["likes"] as? Dictionary<String, Any>
+        post.height = dict["height"] as? Double == nil ? 0 : dict["height"] as! Double
+        post.width = dict["width"] as? Double == nil ? 0 : dict["width"] as! Double
         if let currentUserId = Auth.auth().currentUser?.uid {
             if post.likes != nil {
                 if post.likes![currentUserId] != nil {

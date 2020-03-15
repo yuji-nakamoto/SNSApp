@@ -22,7 +22,9 @@ class MessageApi {
     }
     
     func sendMessage(from: String, to: String, value: [String: Any]) {
-        REF_MESSAGE.child(from).child(to).childByAutoId().updateChildValues(value)
+        let newMessageId = REF_MESSAGE.child(from).child(to).childByAutoId().key
+        let newMessageRef = REF_MESSAGE.child(from).child(to).child(newMessageId!)
+        newMessageRef.updateChildValues(value)
         var dict = value
         if let text = dict["messageText"] as? String, text.isEmpty {
             dict["imageUrl"] = nil

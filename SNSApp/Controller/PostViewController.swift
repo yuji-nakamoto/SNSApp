@@ -66,7 +66,7 @@ class PostViewController: UIViewController {
         pleaceholderLbl.isHidden = false
         
         let pleaceholderX: CGFloat = self.view.frame.size.width / 40
-        let pleaceholderY: CGFloat = 0
+        let pleaceholderY: CGFloat = -30
         let pleaceholderWidth: CGFloat = textView.bounds.width - pleaceholderX
         let pleaceholderHeight: CGFloat = textView.bounds.height
         let pleaceholderFontSize = self.view.frame.size.width / 25
@@ -97,6 +97,10 @@ class PostViewController: UIViewController {
         }
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     @IBAction func photoSelectedAction(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -116,12 +120,18 @@ class PostViewController: UIViewController {
         view.endEditing(true)
         ProgressHUD.show()
         
-        guard self.image != nil else {
-            ProgressHUD.showError("画像を選択してください")
-            return
+        SendDataApi().savePhotoPost(image: image, caption: textView.text, onSuccess: { (anyValue) in
+            if let dict = anyValue as? [String: Any] {
+                SendDataApi.sendDataToDatabase(caption: self.textView.text, dict: dict) {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }) { (error) in
+            ProgressHUD.showError(error)
         }
-        if let profileImg = self.image, let imageData = profileImg.jpegData(compressionQuality: 0.1) {
-            SendDataApi().uploadImageToFirebaseStorage(data: imageData, caption: textView.text) { (_ ) in
+        
+        if let caption = textView.text, !caption.isEmpty && image == nil {
+            SendDataApi.sendDataToDatabase(caption: caption, dict: ["" : ""]) {
                 self.dismiss(animated: true, completion: nil)
             }
         }

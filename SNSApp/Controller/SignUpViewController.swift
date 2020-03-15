@@ -130,10 +130,10 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                             Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict) { (error, ref) in
                                 if error == nil {
                                     ProgressHUD.showSuccess()
+                                    UserApi().isOnline(bool: true)
                                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                     let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
                                     self.present(tabBarVC, animated: true, completion: nil)
-
                                 }
                             }
                         }
