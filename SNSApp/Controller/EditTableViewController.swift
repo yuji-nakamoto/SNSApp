@@ -69,7 +69,7 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
         pleaceholderLbl.isHidden = false
         
         let pleaceholderX: CGFloat = self.view.frame.size.width / 75
-        let pleaceholderY: CGFloat = -35
+        let pleaceholderY: CGFloat = -40
         let pleaceholderWidth: CGFloat = selfIntroTextView.bounds.width - pleaceholderX
         let pleaceholderHeight: CGFloat = selfIntroTextView.bounds.height
         let pleaceholderFontSize = self.view.frame.size.width / 25

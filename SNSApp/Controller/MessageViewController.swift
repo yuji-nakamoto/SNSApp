@@ -22,9 +22,12 @@ class MessageViewController: UIViewController {
     
     var messages = [Message]()
     var partnerId: String!
+    var messageId: String!
     var user: User!
     var image: UIImage!
     var currentUserId = Auth.auth().currentUser!.uid
+    var isTyping = false
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,7 @@ class MessageViewController: UIViewController {
         setupKeyboard()
         handleTextField()
         loadMessage()
+        observeActivity()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,10 +143,51 @@ class MessageViewController: UIViewController {
     @objc func textFieldDidChange() {
         if let messageText = messageTextField.text, !messageText.isEmpty {
             sendButton.isEnabled = true
-            return
+        } else {
+            sendButton.isEnabled = false
         }
-        sendButton.isEnabled = false
+        
+        if !isTyping {
+            UserApi().typing(from: currentUserId, to: partnerId)
+            isTyping = true
+        } else {
+            timer.invalidate()
+        }
+        timerTyping()
     }
+    
+    func timerTyping() {
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (t) in
+            UserApi().typing(from: self.currentUserId, to: "")
+            self.isTyping = false
+        })
+    }
+    
+    func observeActivity() {
+        let ref = UserApi().REF_USERS.child(partnerId).child("isOnline")
+        ref.observe(.childChanged) { (snapshot) in
+            if let snap = snapshot.value {
+                if snapshot.key == "typing" {
+                    let typing = snap as! String
+                    self.isTyping = typing == self.currentUserId ? true : false
+                }
+                self.updateTopLabel(bool: self.isTyping)
+            }
+        }
+    }
+    
+    func updateTopLabel(bool: Bool) {
+        if bool {
+            if isTyping == true {
+                UserApi().observeUser(withId: partnerId) { (user) in
+                    self.accountLabel.text = "\(user.account!)さんが入力中です..."
+                }
+            }
+        } else {
+            self.accountLabel.text = user.account
+        }
+    }
+    
     
     @IBAction func dismissActon(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -198,7 +243,7 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
         let message = messages[indexPath.row]
         let text = message.messageText
         if !text!.isEmpty {
-            height = text!.estimateFrameForText(text!).height + 60
+            height = text!.estimateFrameForText_1(text!).height + 60
         }
         
         let heightMessage = message.height

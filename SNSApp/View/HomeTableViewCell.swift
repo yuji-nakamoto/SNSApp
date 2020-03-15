@@ -42,10 +42,16 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func updateView() {
-        captionLabel.text = post?.caption
-        if let photoUrlString = post?.photoImageUrl {
-            contentImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
+        let caption = post?.caption
+        let imageUrl = post?.imageUrl
+        if !caption!.isEmpty && imageUrl == nil {
+            captionLabel.text = caption
+        } else {
+            captionLabel.text = caption
+            contentImage.isHidden = false
+            contentImage.sd_setImage(with: URL(string: imageUrl!), completed: nil)
         }
+        
         PostApi().REF_POSTS.child(post!.id!).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let post = Post.transformPost(dict: dict, key: snapshot.key)
@@ -69,22 +75,22 @@ class HomeTableViewCell: UITableViewCell {
             
             var timeText = ""
             if diff.second! <= 0 {
-                timeText = "・今"
+                timeText = "今"
             }
             if diff.second! > 0 && diff.minute! == 0 {
-                timeText = "・\(diff.second!) 秒前"
+                timeText = "\(diff.second!) 秒前"
             }
             if diff.minute! > 0 && diff.hour! == 0 {
-                timeText = "・\(diff.minute!) 分前"
+                timeText = "\(diff.minute!) 分前"
             }
             if diff.hour! > 0 && diff.day! == 0 {
-                timeText = "・\(diff.hour!) 時間前"
+                timeText = "\(diff.hour!) 時間前"
             }
             if diff.day! > 0 && diff.weekOfMonth! == 0 {
-                timeText = "・\(diff.day!) 日前"
+                timeText = "\(diff.day!) 日前"
             }
             if diff.weekOfMonth! > 0 {
-                timeText = "・\(diff.weekOfMonth!) 週前"
+                timeText = "\(diff.weekOfMonth!) 週前"
             }
             dateLabel.text = timeText
         }
@@ -115,10 +121,10 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         profileImage.layer.cornerRadius = 20
         contentImage.layer.cornerRadius = 20
         contentImage.image = nil
+        contentImage.isHidden = true
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.contentImageTap))
         contentImage.addGestureRecognizer(tapGesture)
@@ -146,8 +152,8 @@ class HomeTableViewCell: UITableViewCell {
     func incrementLikes(forRef ref: DatabaseReference) {
         ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
-                var likes : Dictionary<String, Bool>
-                likes = post["likes"] as? [String : Bool] ?? [:]
+                var likes : [String: Bool]
+                likes = post["likes"] as? [String: Bool] ?? [:]
                 var likeCount = post["likeCount"] as? Int ?? 0
                 if let _ = likes[uid] {
                     likeCount -= 1
@@ -220,7 +226,8 @@ class HomeTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        profileImage.image = UIImage(named: "placeholderImg")
+        contentImage.image = nil
+        contentImage.isHidden = true
     }
     
 }

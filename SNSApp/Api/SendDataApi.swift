@@ -11,26 +11,34 @@ import Firebase
 import ProgressHUD
 
 class SendDataApi {
-    func uploadImageToFirebaseStorage(data: Data, caption: String, onSuccess: @escaping (_ imageUrl: String) -> Void) {
-        let photoIdString = NSUUID().uuidString
-        let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/").child("posts").child(photoIdString)
-        storageRef.putData(data, metadata: nil) { (metadata, error) in
-            if error != nil {
-                ProgressHUD.showError(error?.localizedDescription)
-                return
-            }
-            storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
-                if let photoUrl = url?.absoluteString{
-                    
-                    self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, onSuccess: {
-                        onSuccess(photoUrl)
-                    })
+    func savePhotoPost(image: UIImage?, caption: String, onSuccess: @escaping (_ value: Any) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        if let imagePhoto = image {
+            let photoIdString = NSUUID().uuidString
+            let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/").child("posts").child(photoIdString)
+            if let data = imagePhoto.jpegData(compressionQuality: 0.1) {
+                storageRef.putData(data, metadata: nil) { (metadata, error) in
+                    if error != nil {
+                        onError(error!.localizedDescription)
+                    }
+                    storageRef.downloadURL { (url, error) in
+                        if let photoUrl = url?.absoluteString{
+                            let dict: [String: Any] = [
+                                "imageUrl": photoUrl as Any,
+                                "height": imagePhoto.size.height as Any,
+                                "width": imagePhoto.size.width as Any,
+                            ]
+                            onSuccess(dict)
+//                            self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, onSuccess: {
+//                                onSuccess(photoUrl)
+//                            })
+                        }
+                    }
                 }
-            })
+            }
         }
     }
     
-     func savePhotoMessage(image: UIImage? ,onSuccess: @escaping(_ value: Any) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    func savePhotoMessage(image: UIImage? ,onSuccess: @escaping (_ value: Any) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         if let imagePhoto = image {
             let photoIdString = NSUUID().uuidString
             let storageRef = Storage.storage().reference(forURL: "gs://snsapp-bc1d9.appspot.com/").child("messages").child(photoIdString)
@@ -40,11 +48,11 @@ class SendDataApi {
                         onError(error!.localizedDescription)
                     }
                     storageRef.downloadURL { (url, error) in
-                        if let metaImageUrl = url?.absoluteString {
-                            let dict: Dictionary<String, Any> = [
-                                "imageUrl": metaImageUrl as Any,
+                        if let photoUrl = url?.absoluteString {
+                            let dict: [String: Any] = [
+                                "imageUrl": photoUrl as Any,
                                 "height": imagePhoto.size.height as Any,
-                                "width": image?.size.width as Any,
+                                "width": imagePhoto.size.width as Any,
                                 "messageText": "" as Any
                             ]
                             onSuccess(dict)
@@ -55,17 +63,17 @@ class SendDataApi {
         }
     }
     
-    func sendDataToDatabase(photoUrl: String, caption: String, onSuccess: @escaping () -> Void) {
+    static func sendDataToDatabase(caption: String, dict: [String: Any], onSuccess: @escaping () -> Void) {
         let newPostId = PostApi().REF_POSTS.childByAutoId().key
         let newPostReference = PostApi().REF_POSTS.child(newPostId!)
-        
+        newPostReference.updateChildValues(dict)
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
         let currentUserId = currentUser.uid
         let timestamp = Int(Date().timeIntervalSince1970)
         
-        newPostReference.setValue(["uid": currentUserId,"photoImageUrl": photoUrl, "caption": caption, "likeCount": 0, "timestamp": timestamp]) { (error, ref) in
+        newPostReference.updateChildValues(["uid": currentUserId, "caption": caption, "likeCount": 0, "timestamp": timestamp]) { (error, ref) in
             if error != nil{
                 ProgressHUD.showError(error?.localizedDescription)
                 return
