@@ -47,6 +47,8 @@
 		8351635124156A580083C444 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351635024156A580083C444 /* Notification.swift */; };
 		8351870D241B878300CB40B9 /* InboxApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351870C241B878300CB40B9 /* InboxApi.swift */; };
 		8351870F241B9F7E00CB40B9 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351870E241B9F7E00CB40B9 /* Inbox.swift */; };
+		83518713241E39A700CB40B9 /* refresh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 83518712241E39A600CB40B9 /* refresh.mp3 */; };
+		83518715241E39C200CB40B9 /* post.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 83518714241E39C200CB40B9 /* post.mp3 */; };
 		8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657969240FC629009BE554 /* ProfileViewController.swift */; };
 		8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */; };
 		836579702410F1E1009BE554 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796F2410F1E1009BE554 /* MyPostApi.swift */; };
@@ -106,6 +108,8 @@
 		8351635024156A580083C444 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		8351870C241B878300CB40B9 /* InboxApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxApi.swift; sourceTree = "<group>"; };
 		8351870E241B9F7E00CB40B9 /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
+		83518712241E39A600CB40B9 /* refresh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = refresh.mp3; sourceTree = "<group>"; };
+		83518714241E39C200CB40B9 /* post.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = post.mp3; sourceTree = "<group>"; };
 		83657969240FC629009BE554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8365796F2410F1E1009BE554 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				83508B2424070744000DFD8C /* SceneDelegate.swift */,
 				83508B2D24070747000DFD8C /* LaunchScreen.storyboard */,
 				83508B2B24070747000DFD8C /* Assets.xcassets */,
+				83518712241E39A600CB40B9 /* refresh.mp3 */,
+				83518714241E39C200CB40B9 /* post.mp3 */,
 				834F5A56240CFD3900EE05E9 /* heart.json */,
 				83508B3024070747000DFD8C /* Info.plist */,
 				83508B382407105D000DFD8C /* GoogleService-Info.plist */,
@@ -317,8 +323,10 @@
 			files = (
 				83508B2F24070747000DFD8C /* LaunchScreen.storyboard in Resources */,
 				83508B2C24070747000DFD8C /* Assets.xcassets in Resources */,
+				83518713241E39A700CB40B9 /* refresh.mp3 in Resources */,
 				83508B2A24070744000DFD8C /* Main.storyboard in Resources */,
 				834F5A57240CFD3900EE05E9 /* heart.json in Resources */,
+				83518715241E39C200CB40B9 /* post.mp3 in Resources */,
 				83508B392407105D000DFD8C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

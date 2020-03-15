@@ -125,6 +125,7 @@ class HomeTableViewCell: UITableViewCell {
         contentImage.layer.cornerRadius = 20
         contentImage.image = nil
         contentImage.isHidden = true
+        captionLabel.isHidden = false
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.contentImageTap))
         contentImage.addGestureRecognizer(tapGesture)
@@ -228,6 +229,7 @@ class HomeTableViewCell: UITableViewCell {
         super.prepareForReuse()
         contentImage.image = nil
         contentImage.isHidden = true
+        captionLabel.isHidden = false
     }
     
 }

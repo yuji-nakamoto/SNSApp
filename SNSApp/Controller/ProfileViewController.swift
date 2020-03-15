@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import ProgressHUD
+import AVFoundation
 
 class ProfileViewController: UIViewController {
     
@@ -17,13 +18,16 @@ class ProfileViewController: UIViewController {
     var posts = [Post]()
     var users = [User]()
     var user: User!
+    var player = AVAudioPlayer()
     let refresh = UIRefreshControl()
+    let soundFilePath = Bundle.main.path(forResource: "refresh", ofType: "mp3")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+        setupSound()
         fetchUser()
         loadMyPosts()
         tableView.refreshControl = refresh
@@ -35,7 +39,9 @@ class ProfileViewController: UIViewController {
         fetchUser()
     }
     
+    
     @objc func update(){
+        player.play()
         loadMyPosts()
         tableView.reloadData()
         refresh.endRefreshing()
@@ -78,6 +84,15 @@ class ProfileViewController: UIViewController {
             let commentVC = segue.destination as! CommentViewController
             let postId = sender as? String
             commentVC.postId = postId!
+        }
+    }
+    
+    func setupSound() {
+        do {
+            try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundFilePath!))
+            player.prepareToPlay()
+        } catch  {
+            print(error.localizedDescription)
         }
     }
     
@@ -126,12 +141,11 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
             let caption = post.caption
 
             if !post.caption!.isEmpty && post.imageUrl == nil {
-                height_1 = caption!.estimateFrameForText_2(caption!).height + 120
+                height_1 = caption!.estimateFrameForText_2(caption!).height + 110
                 return height_1
             }
             if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
-                height_1 = CGFloat(heightPost! / widthPost! * 500)
-                height_2 = caption!.estimateFrameForText_2(caption!).height + 270
+                height_2 = caption!.estimateFrameForText_2(caption!).height + 350
                 return height_1 + height_2
             }
             if  post.caption!.isEmpty && heightPost != 0, widthPost != 0 {

@@ -11,6 +11,7 @@ import Firebase
 import ProgressHUD
 import SDWebImage
 import SideMenu
+import AVFoundation
 
 class HomeViewController: UIViewController {
     
@@ -26,7 +27,9 @@ class HomeViewController: UIViewController {
     var profileImageUrl = ""
     var caption = ""
     var contentImageUrl = ""
+    var player = AVAudioPlayer()
     let refresh = UIRefreshControl()
+    let soundFilePath = Bundle.main.path(forResource: "refresh", ofType: "mp3")
     var avatarImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
     
     override func viewDidLoad() {
@@ -39,6 +42,7 @@ class HomeViewController: UIViewController {
         accountLabel.text = ""
         setupAvatar()
         setupTableView()
+        setupSound()
         fetchCurrentUsername()
         loadPosts()
     }
@@ -56,9 +60,19 @@ class HomeViewController: UIViewController {
     }
     
     @objc func update(){
+        player.play()
         loadPosts()
         tableView.reloadData()
         refresh.endRefreshing()
+    }
+    
+    func setupSound() {
+        do {
+            try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundFilePath!))
+            player.prepareToPlay()
+        } catch  {
+            print(error.localizedDescription)
+        }
     }
     
     func setupTableView() {
@@ -166,23 +180,18 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         let post = posts[indexPath.row]
         var height_1: CGFloat = 0
         var height_2: CGFloat = 0
-
         let caption = post.caption
-
-        if !post.caption!.isEmpty && post.imageUrl == nil {
-            height_1 = caption!.estimateFrameForText_2(caption!).height + 120
-            return height_1
-        }
-
         let heightPost = post.height
         let widthPost = post.width
 
+        if !post.caption!.isEmpty && post.imageUrl == nil {
+            height_1 = caption!.estimateFrameForText_2(caption!).height + 110
+            return height_1
+        }
         if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
-            height_1 = CGFloat(heightPost! / widthPost! * 500)
-            height_2 = caption!.estimateFrameForText_2(caption!).height + 150
+            height_2 = caption!.estimateFrameForText_2(caption!).height + 350
             return height_1 + height_2
         }
-
         if post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
             height_1 = CGFloat(heightPost! / widthPost! * 500)
         }

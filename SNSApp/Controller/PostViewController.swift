@@ -9,6 +9,7 @@
 import UIKit
 import ProgressHUD
 import Firebase
+import AVFoundation
 
 class PostViewController: UIViewController {
     
@@ -21,12 +22,15 @@ class PostViewController: UIViewController {
     var image: UIImage?
     var pleaceholderLbl = UILabel()
     var user: User?
+    var player = AVAudioPlayer()
+    let soundFilePath = Bundle.main.path(forResource: "post", ofType: "mp3")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupTextView()
         setupKeyboard()
+        setupSound()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +50,14 @@ class PostViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    func setupSound() {
+        do {
+            try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundFilePath!))
+        } catch  {
+            print(error.localizedDescription)
+        }
     }
     
     func setupView() {
@@ -118,6 +130,7 @@ class PostViewController: UIViewController {
     
     @IBAction func sendAction(_ sender: Any) {
         view.endEditing(true)
+        player.play()
         ProgressHUD.show()
         
         SendDataApi().savePhotoPost(image: image, caption: textView.text, onSuccess: { (anyValue) in
