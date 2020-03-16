@@ -60,10 +60,10 @@ class ProfileTableViewCell: UITableViewCell {
         usernameLabel.text = user?.username
         accountLabel.text = user?.account
         selfIntroLabel.text = user?.selfIntro
+        dateOfBirthLabel.text = user?.birthday
         if let dateOfBirth = dateOfBirthLabel.text, !dateOfBirth.isEmpty {
             birthdayLabel.text = "誕生日"
         }
-        dateOfBirthLabel.text = user?.birthday
         if let photoUrlString = user?.profileImageUrl {
             profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }

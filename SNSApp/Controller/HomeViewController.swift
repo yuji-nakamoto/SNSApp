@@ -93,10 +93,9 @@ class HomeViewController: UIViewController {
                 self.scrollToTop()
             }
         }
-        
         FeedApi().observeFeedRemove(withId: Auth.auth().currentUser!.uid) { (post) in
             self.posts = self.posts.filter { $0.id != post.id }
-            self.users = self.users.filter { $0.id != post.uid }
+            self.users = self.users.filter { $0.id != post.id }
             self.tableView.reloadData()
         }
     }
@@ -163,6 +162,7 @@ class HomeViewController: UIViewController {
         let postVC = storyboard.instantiateViewController(withIdentifier: "PostVC") as! PostViewController
         self.navigationController?.pushViewController(postVC, animated: true)
     }
+    
 }
 
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
@@ -201,4 +201,5 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         }
         return height_1
     }
+    
 }

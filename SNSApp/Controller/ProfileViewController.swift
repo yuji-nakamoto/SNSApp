@@ -153,4 +153,18 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
             }
             return height_1
         }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let  indexNumber = indexPath.row
+        
+        if indexNumber == 0 {
+        }
+        if editingStyle == .delete {
+            let post = posts[indexPath.row - 1]
+            PostApi().REF_POSTS.child(post.id!).removeValue()
+            posts.remove(at: indexPath.row - 1)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        }
+    }
 }
