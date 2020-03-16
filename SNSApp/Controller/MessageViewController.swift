@@ -125,7 +125,7 @@ class MessageViewController: UIViewController {
     
     func setupNavigationBarUser() {
         usernameLabel.text = ""
-        //        accountLabel.text = ""
+        accountLabel.text = ""
         partnerImage.layer.cornerRadius = 18
         UserApi().observeUser(withId: partnerId) { (user) in
             self.usernameLabel.text = user.username

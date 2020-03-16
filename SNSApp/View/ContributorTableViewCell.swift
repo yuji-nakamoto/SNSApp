@@ -47,7 +47,6 @@ class ContributorTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 20
-        contentImage.layer.cornerRadius = 20
         
         let tapGestureForProfile  = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTap))
         profileImage.addGestureRecognizer(tapGestureForProfile)

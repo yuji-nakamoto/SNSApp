@@ -12,13 +12,15 @@ import ProgressHUD
 
 class SideMenuViewController: UIViewController {
     
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followerLabel: UILabel!
     @IBOutlet weak var logoutIcon: UIImageView!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var followCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var toLogoutLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
     
@@ -29,15 +31,7 @@ class SideMenuViewController: UIViewController {
         tableView.separatorStyle = .none
         
         updateView()
-        
-        let tapGestureForLogoutIcon = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
-        logoutIcon.addGestureRecognizer(tapGestureForLogoutIcon)
-        let tapGestureForLogoutLabl = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
-        toLogoutLabel.addGestureRecognizer(tapGestureForLogoutLabl)
-        let tapGestureForProfileIImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
-        profileImage.addGestureRecognizer(tapGestureForProfileIImg)
-        let tapGestureForUsernameLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
-        usernameLabel.addGestureRecognizer(tapGestureForUsernameLbl)
+        setupGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,19 +59,49 @@ class SideMenuViewController: UIViewController {
                         self.followerCountLabel.text = "\(count)"
                     }
                     FollowApi().fetchCountFollowing(userId: user.id!) { (count) in
-                        self.followCountLabel.text = "\(count)"
+                        self.followingCountLabel.text = "\(count)"
                     }
                 }
             }
         })
     }
     
+    func setupGesture() {
+        let tapGestureForLogoutIcon = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
+        logoutIcon.addGestureRecognizer(tapGestureForLogoutIcon)
+        let tapGestureForLogoutLabl = UITapGestureRecognizer(target: self, action: #selector(self.logoutLabelTap))
+        toLogoutLabel.addGestureRecognizer(tapGestureForLogoutLabl)
+        let tapGestureForProfileIImg  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        profileImage.addGestureRecognizer(tapGestureForProfileIImg)
+        let tapGestureForUsernameLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toProfile))
+        usernameLabel.addGestureRecognizer(tapGestureForUsernameLbl)
+        let tapGestureForFollowerLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollower))
+        followerLabel.addGestureRecognizer(tapGestureForFollowerLbl)
+        let tapGestureForFollowerCountLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollower))
+        followerCountLabel.addGestureRecognizer(tapGestureForFollowerCountLbl)
+        let tapGestureForFollowingLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollowing))
+        followingLabel.addGestureRecognizer(tapGestureForFollowingLbl)
+        let tapGestureForFollowingCountLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollowing))
+        followingCountLabel.addGestureRecognizer(tapGestureForFollowingCountLbl)
+    }
+    
     @objc func toProfile() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        self.navigationController?.pushViewController(profileVC, animated: false)
     }
     
+    @objc func toFollower() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let followerVC = storyboard.instantiateViewController(withIdentifier: "FollowerVC") as! FollowerViewController
+        self.navigationController?.pushViewController(followerVC, animated: false)
+    }
+    
+    @objc func toFollowing() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let followingVC = storyboard.instantiateViewController(withIdentifier: "FollowingVC") as! FollowingViewController
+        self.navigationController?.pushViewController(followingVC, animated: false)
+    }
     
     @objc func logoutLabelTap() {
         UserApi().observeCurrentUser { (user) in
@@ -114,6 +138,4 @@ extension SideMenuViewController: UITableViewDelegate,UITableViewDataSource {
         cell.sideMenuVC = self
         return cell
     }
-    
-    
 }

@@ -49,6 +49,12 @@
 		8351870F241B9F7E00CB40B9 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351870E241B9F7E00CB40B9 /* Inbox.swift */; };
 		83518713241E39A700CB40B9 /* refresh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 83518712241E39A600CB40B9 /* refresh.mp3 */; };
 		83518715241E39C200CB40B9 /* post.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 83518714241E39C200CB40B9 /* post.mp3 */; };
+		83518719241EA2F500CB40B9 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83518718241EA2F500CB40B9 /* FollowerViewController.swift */; };
+		8351871B241EA33C00CB40B9 /* FollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351871A241EA33C00CB40B9 /* FollowerTableViewCell.swift */; };
+		8351871D241ECDF100CB40B9 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351871C241ECDF100CB40B9 /* FollowingViewController.swift */; };
+		8351871F241ECE1900CB40B9 /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351871E241ECE1900CB40B9 /* FollowingTableViewCell.swift */; };
+		83518721241F760400CB40B9 /* OtherFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83518720241F760300CB40B9 /* OtherFollowerViewController.swift */; };
+		83518723241F761800CB40B9 /* OtherFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83518722241F761800CB40B9 /* OtherFollowingViewController.swift */; };
 		8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657969240FC629009BE554 /* ProfileViewController.swift */; };
 		8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */; };
 		836579702410F1E1009BE554 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796F2410F1E1009BE554 /* MyPostApi.swift */; };
@@ -110,6 +116,12 @@
 		8351870E241B9F7E00CB40B9 /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		83518712241E39A600CB40B9 /* refresh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = refresh.mp3; sourceTree = "<group>"; };
 		83518714241E39C200CB40B9 /* post.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = post.mp3; sourceTree = "<group>"; };
+		83518718241EA2F500CB40B9 /* FollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewController.swift; sourceTree = "<group>"; };
+		8351871A241EA33C00CB40B9 /* FollowerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerTableViewCell.swift; sourceTree = "<group>"; };
+		8351871C241ECDF100CB40B9 /* FollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
+		8351871E241ECE1900CB40B9 /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
+		83518720241F760300CB40B9 /* OtherFollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFollowerViewController.swift; sourceTree = "<group>"; };
+		83518722241F761800CB40B9 /* OtherFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFollowingViewController.swift; sourceTree = "<group>"; };
 		83657969240FC629009BE554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8365796F2410F1E1009BE554 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
@@ -211,6 +223,10 @@
 				835163482415616E0083C444 /* NotificationViewController.swift */,
 				834807B62418170D00F6020E /* InboxViewController.swift */,
 				834807BA2418224F00F6020E /* MessageViewController.swift */,
+				83518718241EA2F500CB40B9 /* FollowerViewController.swift */,
+				8351871C241ECDF100CB40B9 /* FollowingViewController.swift */,
+				83518720241F760300CB40B9 /* OtherFollowerViewController.swift */,
+				83518722241F761800CB40B9 /* OtherFollowingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -227,6 +243,8 @@
 				8351634C241561F60083C444 /* NotificationTableViewCell.swift */,
 				834807B82418193500F6020E /* InboxTableViewCell.swift */,
 				834807BC2418234B00F6020E /* MessageTableViewCell.swift */,
+				8351871A241EA33C00CB40B9 /* FollowerTableViewCell.swift */,
+				8351871E241ECE1900CB40B9 /* FollowingTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,17 +407,21 @@
 				83516347241533570083C444 /* SendDataApi.swift in Sources */,
 				8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */,
 				83508B2524070744000DFD8C /* SceneDelegate.swift in Sources */,
+				83518719241EA2F500CB40B9 /* FollowerViewController.swift in Sources */,
 				834F5A3E240A740400EE05E9 /* Post.swift in Sources */,
 				834F5A59240D0D2900EE05E9 /* SideMenuViewController.swift in Sources */,
+				83518723241F761800CB40B9 /* OtherFollowingViewController.swift in Sources */,
 				836579802413AC21009BE554 /* FeedApi.swift in Sources */,
 				83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */,
 				8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */,
+				83518721241F760400CB40B9 /* OtherFollowerViewController.swift in Sources */,
 				834807BD2418234B00F6020E /* MessageTableViewCell.swift in Sources */,
 				834F5A65240E7D1300EE05E9 /* SideMenuTableViewCell.swift in Sources */,
 				8351634F241568AF0083C444 /* NotificationApi.swift in Sources */,
 				834F5A44240AB47700EE05E9 /* CommentViewController.swift in Sources */,
 				834F5A55240CD83B00EE05E9 /* Post_CommentApi.swift in Sources */,
 				8365797C24138250009BE554 /* SearchTableViewCell.swift in Sources */,
+				8351871F241ECE1900CB40B9 /* FollowingTableViewCell.swift in Sources */,
 				8351870D241B878300CB40B9 /* InboxApi.swift in Sources */,
 				834807BF24194AA700F6020E /* Message.swift in Sources */,
 				8365797E24138C3B009BE554 /* FollowApi.swift in Sources */,
@@ -413,6 +435,7 @@
 				834807C124194BCE00F6020E /* MessageApi.swift in Sources */,
 				834F5A53240CD28600EE05E9 /* CommentApi.swift in Sources */,
 				835163492415616E0083C444 /* NotificationViewController.swift in Sources */,
+				8351871B241EA33C00CB40B9 /* FollowerTableViewCell.swift in Sources */,
 				8351634D241561F60083C444 /* NotificationTableViewCell.swift in Sources */,
 				834F5A46240AC7DD00EE05E9 /* Comment.swift in Sources */,
 				834807C32419595A00F6020E /* Extension.swift in Sources */,
@@ -423,6 +446,7 @@
 				834F5A40240AB41C00EE05E9 /* ContributorTableViewCell.swift in Sources */,
 				834F5A4F240BBB7700EE05E9 /* UserApi.swift in Sources */,
 				83657982241419AE009BE554 /* OtherProfileViewController.swift in Sources */,
+				8351871D241ECDF100CB40B9 /* FollowingViewController.swift in Sources */,
 				83657978241124CF009BE554 /* StorageApi.swift in Sources */,
 				834807B72418170D00F6020E /* InboxViewController.swift in Sources */,
 			);

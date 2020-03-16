@@ -72,7 +72,7 @@ class MessageTableViewCell: UITableViewCell {
         }
         
         if Auth.auth().currentUser!.uid == message!.from {
-            bubleView.backgroundColor = UIColor.groupTableViewBackground
+            bubleView.backgroundColor = UIColor.systemGroupedBackground
             bubleView.layer.borderColor = UIColor.clear.cgColor
             bubleRightConstraint.constant = 8
             bubleLeftConstraint.constant = UIScreen.main.bounds.width - widthConstraint.constant - bubleRightConstraint.constant

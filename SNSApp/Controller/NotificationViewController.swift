@@ -80,7 +80,11 @@ class NotificationViewController: UIViewController {
         }
     }
     
- 
+    @IBAction func toPostVC(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let postVC = storyboard.instantiateViewController(withIdentifier: "PostVC") as! PostViewController
+        self.navigationController?.pushViewController(postVC, animated: true)
+    }
     
     @IBAction func toSideMenuVC(_ sender: Any) {
         let menu = SideMenuManager.default.leftMenuNavigationController!

@@ -21,6 +21,17 @@ class UserApi {
         }
     }
     
+    func observeFollowUser(withId uid: String, completion: @escaping (User) -> Void) {
+        REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(dict: dict, key: snapshot.key)
+                if user.id! != Auth.auth().currentUser!.uid {
+                    completion(user)
+                }
+            }
+        }
+    }
+    
     func observeCurrentUser(comletion: @escaping (User) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             return

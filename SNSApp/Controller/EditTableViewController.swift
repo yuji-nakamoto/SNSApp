@@ -129,6 +129,10 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
             self.accountTextField.text = user.account
             self.emailTextField.text = user.email
             self.birthdayTextField.text = user.birthday
+            self.selfIntroTextView.text = user.selfIntro
+            if !self.selfIntroTextView.text.isEmpty {
+                self.pleaceholderLbl.isHidden = true
+            }
             if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
                 self.profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
             }

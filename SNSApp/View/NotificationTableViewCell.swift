@@ -39,7 +39,11 @@ class NotificationTableViewCell: UITableViewCell {
             
             let postId = notification!.objectId!
             PostApi().observePost(withId: postId) { (post) in
-                self.descriptionLabel.text = "新しい投稿です \(post.caption!)"
+                if !post.caption!.isEmpty {
+                    self.descriptionLabel.text = "新しい投稿です: \(post.caption!)"
+                } else if post.caption!.isEmpty {
+                    self.descriptionLabel.text = "画像の投稿です"
+                }
             }
         case "follower":
             descriptionLabel.text = "\(user!.username!)さんがフォローしました"

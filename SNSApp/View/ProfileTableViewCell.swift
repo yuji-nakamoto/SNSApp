@@ -20,18 +20,40 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var followerCountLabel: UILabel!
-    @IBOutlet weak var followCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var dateOfBirthLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var selfIntroLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followerLabel: UILabel!
     
     var delegate: ProfileViewDelegate?
     var otherVC: OtherProfileViewController?
+    var profileVC: ProfileViewController?
     var user: User? {
         didSet {
             setupUserInfo()
+            setupTapGesture()
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        profileImage.layer.cornerRadius = 40
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderWidth = 4
+        changeButton.layer.cornerRadius = 15
+        changeButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor
+        changeButton.layer.borderWidth = 1
+        changeButton.isHidden = true
+        messageButton.tintColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1)
+        messageButton.isHidden = true
+        usernameLabel.text = ""
+        selfIntroLabel.text = ""
+        dateOfBirthLabel.text = ""
+        birthdayLabel.text = ""
+        accountLabel.text = ""
     }
     
     func setupUserInfo() {
@@ -52,7 +74,7 @@ class ProfileTableViewCell: UITableViewCell {
             self.followerCountLabel.text = "\(count)"
         }
         FollowApi().fetchCountFollowing(userId: user!.id!) { (count) in
-            self.followCountLabel.text = "\(count)"
+            self.followingCountLabel.text = "\(count)"
         }
         if user?.id == Auth.auth().currentUser?.uid {
             messageButton.isHidden = true
@@ -121,6 +143,17 @@ class ProfileTableViewCell: UITableViewCell {
         }
     }
     
+    func setupTapGesture() {
+        let tapGestureForFollowerLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollower))
+        followerLabel.addGestureRecognizer(tapGestureForFollowerLbl)
+        let tapGestureForFollowerCountLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollower))
+        followerCountLabel.addGestureRecognizer(tapGestureForFollowerCountLbl)
+        let tapGestureForFollowingLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollowing))
+        followingLabel.addGestureRecognizer(tapGestureForFollowingLbl)
+        let tapGestureForFollowingCountLbl  = UITapGestureRecognizer(target: self, action: #selector(self.toFollowing))
+        followingCountLabel.addGestureRecognizer(tapGestureForFollowingCountLbl)
+    }
+    
     @objc func toEditVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let editVC = storyboard.instantiateViewController(withIdentifier: "EditVC") as! EditTableViewController
@@ -133,24 +166,24 @@ class ProfileTableViewCell: UITableViewCell {
         }
     }
     
+    @objc func toFollower() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let followerVC = storyboard.instantiateViewController(withIdentifier: "FollowerVC") as! FollowerViewController
+        profileVC?.navigationController?.pushViewController(followerVC, animated: true)
+        
+        if let id = user?.id {
+            otherVC?.performSegue(withIdentifier: "OtherFollowerVC", sender: id)
+        }
+    }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        profileImage.image = UIImage(named: "placeholderImg")
-        profileImage.layer.cornerRadius = 40
-        profileImage.layer.borderColor = UIColor.white.cgColor
-        profileImage.layer.borderWidth = 4
-        changeButton.layer.cornerRadius = 15
-        changeButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor
-        changeButton.layer.borderWidth = 1
-        changeButton.isHidden = true
-        messageButton.tintColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1)
-        messageButton.isHidden = true
-        usernameLabel.text = ""
-        selfIntroLabel.text = ""
-        dateOfBirthLabel.text = ""
-        birthdayLabel.text = ""
-        accountLabel.text = ""
+    @objc func toFollowing() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let followingVC = storyboard.instantiateViewController(withIdentifier: "FollowingVC") as! FollowingViewController
+        profileVC?.navigationController?.pushViewController(followingVC, animated: true)
+        
+        if let id = user?.id {
+            otherVC?.performSegue(withIdentifier: "OtherFollowingVC", sender: id)
+        }
     }
 
 }

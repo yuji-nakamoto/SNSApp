@@ -42,7 +42,6 @@ class ProfileViewController: UIViewController {
     
     @objc func update(){
         player.play()
-        loadMyPosts()
         tableView.reloadData()
         refresh.endRefreshing()
     }
@@ -114,6 +113,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
             let cell_1 = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileTableViewCell
             if let user = self.user {
                 cell_1.user = user
+                cell_1.profileVC = self
             }
             return cell_1
         }
@@ -145,7 +145,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
                 return height_1
             }
             if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
-                height_2 = caption!.estimateFrameForText_2(caption!).height + 350
+                height_2 = caption!.estimateFrameForText_2(caption!).height + 300
                 return height_1 + height_2
             }
             if  post.caption!.isEmpty && heightPost != 0, widthPost != 0 {

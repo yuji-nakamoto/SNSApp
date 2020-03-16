@@ -37,7 +37,6 @@ class OtherProfileViewController: UIViewController {
     
     @objc func update(){
         player.play()
-        loadMyPosts()
         tableView.reloadData()
         refresh.endRefreshing()
     }
@@ -98,6 +97,16 @@ class OtherProfileViewController: UIViewController {
             let partnerId = sender as? String
             messageVC.partnerId = partnerId!
         }
+        if segue.identifier == "OtherFollowerVC"{
+            let otherFollowerVC = segue.destination as! OtherFollowerViewController
+            let userId = sender as? String
+            otherFollowerVC.userId = userId!
+        }
+        if segue.identifier == "OtherFollowingVC"{
+            let otherFollowingVC = segue.destination as! OtherFollowingViewController
+            let userId = sender as? String
+            otherFollowingVC.userId = userId!
+        }
     }   
     
     @IBAction func dismissAction(_ sender: Any) {
@@ -151,7 +160,7 @@ extension OtherProfileViewController: UITableViewDelegate,UITableViewDataSource 
                 return height_1
             }
             if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
-                height_2 = caption!.estimateFrameForText_2(caption!).height + 350
+                height_2 = caption!.estimateFrameForText_2(caption!).height + 300
                 return height_1 + height_2
             }
             if  post.caption!.isEmpty && heightPost != 0, widthPost != 0 {

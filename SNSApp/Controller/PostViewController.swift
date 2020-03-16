@@ -125,18 +125,18 @@ class PostViewController: UIViewController {
     }
     
     @IBAction func dismissAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func sendAction(_ sender: Any) {
         view.endEditing(true)
-        player.play()
         ProgressHUD.show()
         
         SendDataApi().savePhotoPost(image: image, caption: textView.text, onSuccess: { (anyValue) in
             if let dict = anyValue as? [String: Any] {
                 SendDataApi.sendDataToDatabase(caption: self.textView.text, dict: dict) {
-                    self.dismiss(animated: true, completion: nil)
+                    self.player.play()
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }) { (error) in
@@ -145,8 +145,8 @@ class PostViewController: UIViewController {
         
         if let caption = textView.text, !caption.isEmpty && image == nil {
             SendDataApi.sendDataToDatabase(caption: caption, dict: ["" : ""]) {
-                self.dismiss(animated: true, completion: nil)
-            }
+                self.player.play()
+                self.navigationController?.popViewController(animated: true)            }
         }
     }
     

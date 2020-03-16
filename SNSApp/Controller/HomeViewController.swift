@@ -61,7 +61,6 @@ class HomeViewController: UIViewController {
     
     @objc func update(){
         player.play()
-        loadPosts()
         tableView.reloadData()
         refresh.endRefreshing()
     }
@@ -81,7 +80,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadPosts() {
-        self.posts.removeAll()
+        posts.removeAll()
         FeedApi().observeFeed(withId: Auth.auth().currentUser!.uid) { (post) in
             guard let postId = post.uid else {
                 return
@@ -159,6 +158,11 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(editVC, animated: true)
     }
     
+    @IBAction func toPostVC(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let postVC = storyboard.instantiateViewController(withIdentifier: "PostVC") as! PostViewController
+        self.navigationController?.pushViewController(postVC, animated: true)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
@@ -189,7 +193,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
             return height_1
         }
         if !post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
-            height_2 = caption!.estimateFrameForText_2(caption!).height + 350
+            height_2 = caption!.estimateFrameForText_2(caption!).height + 300
             return height_1 + height_2
         }
         if post.caption!.isEmpty && heightPost != 0, widthPost != 0 {
