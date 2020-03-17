@@ -16,6 +16,8 @@ class ForgotViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    let generator = UINotificationFeedbackGenerator()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -47,6 +49,7 @@ class ForgotViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func resetAction(_ sender: Any) {
         guard let email = emailTextField.text, !email.isEmpty else {
+            generator.notificationOccurred(.error)
             ProgressHUD.showError("メールアドレスを入力してください")
             return
         }
@@ -58,6 +61,7 @@ class ForgotViewController: UIViewController,UITextFieldDelegate {
                 self.navigationController?.popViewController(animated: true)
                 
             } else {
+                self.generator.notificationOccurred(.error)
                 ProgressHUD.showError(error?.localizedDescription)
             }
         }

@@ -28,9 +28,6 @@ class SendDataApi {
                                 "width": imagePhoto.size.width as Any,
                             ]
                             onSuccess(dict)
-//                            self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, onSuccess: {
-//                                onSuccess(photoUrl)
-//                            })
                         }
                     }
                 }
@@ -100,6 +97,17 @@ class SendDataApi {
             }
             ProgressHUD.showSuccess()
             onSuccess()
+        }
+    }
+    
+    func deletePostAction(userId: String, postId: String, completion: @escaping () -> Void) {
+        let postRef = PostApi().REF_POSTS.child(userId).child(postId)
+        postRef.removeValue() { (error, ref) in
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+            completion()
         }
     }
 }

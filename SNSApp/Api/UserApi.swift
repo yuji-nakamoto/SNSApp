@@ -113,7 +113,7 @@ class UserApi {
     }
     
     func isOnline(bool: Bool) {
-        if !Auth.auth().currentUser!.uid.isEmpty {
+        if let currentUserId = Auth.auth().currentUser?.uid, !currentUserId.isEmpty {
             let ref = REF_USERS.child(Auth.auth().currentUser!.uid).child("isOnline")
             let dict: [String: Any] = [
                 "online": bool as Any,

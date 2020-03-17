@@ -133,9 +133,9 @@ class HomeTableViewCell: UITableViewCell {
         commentButton.addGestureRecognizer(tapGestureForBtn)
         let tapGestureForLike = UITapGestureRecognizer(target: self, action: #selector(self.likeImageTap))
         likeImage.addGestureRecognizer(tapGestureForLike)
-        let tapGestureForProfile  = UITapGestureRecognizer(target: self, action: #selector(self.profileImageTap))
+        let tapGestureForProfile  = UITapGestureRecognizer(target: self, action: #selector(self.profileTap))
         profileImage.addGestureRecognizer(tapGestureForProfile)
-        let tapGestureForUsername  = UITapGestureRecognizer(target: self, action: #selector(self.usernameLabelTap))
+        let tapGestureForUsername  = UITapGestureRecognizer(target: self, action: #selector(self.profileTap))
         usernameLabel.addGestureRecognizer(tapGestureForUsername)
     }
     
@@ -197,6 +197,14 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
+    @IBAction func shereAction(_ sender: Any) {
+        let activityItems: [Any] = ["\(user!.account!)さんの投稿をシェア", "\n\(post!.caption! as Any)", contentImage.image as Any]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        homeVC?.present(activityVC, animated: true)
+        profileVC?.present(activityVC, animated: true)
+        otherVC?.present(activityVC, animated: true)
+    }
+    
     @objc func contentImageTap() {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentVC", sender: id)
@@ -213,13 +221,13 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
-    @objc func profileImageTap() {
-        if let id = user?.id {
-            homeVC?.performSegue(withIdentifier: "OtherVC", sender: id)
+    @objc func profileTap() {
+        if Auth.auth().currentUser!.uid == post?.uid {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            homeVC?.navigationController?.pushViewController(profileVC, animated: true)
+            return
         }
-    }
-    
-    @objc func usernameLabelTap() {
         if let id = user?.id {
             homeVC?.performSegue(withIdentifier: "OtherVC", sender: id)
         }
