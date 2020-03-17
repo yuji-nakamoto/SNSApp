@@ -1541,7 +1541,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gDi-h1-waj">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowerCell" rowHeight="93" id="oiB-1i-Qqs" customClass="FollowerTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -1634,7 +1634,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rFz-s7-K5D"/>
                     </view>
-                    <navigationItem key="navigationItem" id="97P-xe-ffw"/>
+                    <navigationItem key="navigationItem" id="97P-xe-ffw">
+                        <barButtonItem key="leftBarButtonItem" title="＞" id="aLd-Ge-i0l">
+                            <connections>
+                                <action selector="dismissAction:" destination="VIu-IN-pfP" id="ph3-jH-hOz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="gDi-h1-waj" id="2sl-Gu-k0X"/>
                         <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="MZU-Zk-OIX"/>
@@ -2770,7 +2776,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-Vw-2N3">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="301" id="EF5-TF-3hQ" customClass="ProfileTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -3451,7 +3457,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5k-zg-jju">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowingCell" rowHeight="93" id="1SE-lR-TRz" customClass="FollowingTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -3544,7 +3550,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fDn-Ah-HdX"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qR6-Yo-pTv"/>
+                    <navigationItem key="navigationItem" id="qR6-Yo-pTv">
+                        <barButtonItem key="leftBarButtonItem" title="＞" id="Mgm-F8-oaj">
+                            <connections>
+                                <action selector="dismissAction:" destination="kOA-dv-tgT" id="5Hc-rD-HW6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="d5k-zg-jju" id="HPd-VC-vPn"/>
                         <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="g2b-LH-LUT"/>
@@ -3563,7 +3575,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aK8-b5-PNA">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowerCell" rowHeight="93" id="6ma-wI-VwM" customClass="FollowerTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -3656,7 +3668,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mAr-P8-75s"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8oG-br-V8K"/>
+                    <navigationItem key="navigationItem" id="8oG-br-V8K">
+                        <barButtonItem key="leftBarButtonItem" title="＞" id="K8c-ch-jgf">
+                            <connections>
+                                <action selector="dismissAction:" destination="nHJ-cf-7pE" id="Y6I-CP-Zwj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="aK8-b5-PNA" id="wZR-RL-sEm"/>
                         <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="7ab-6R-z0A"/>
@@ -3675,7 +3693,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vbZ-ar-9hH">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FollowingCell" rowHeight="93" id="Ws0-1T-QhH" customClass="FollowingTableViewCell" customModule="SNSApp" customModuleProvider="target">
@@ -3768,7 +3786,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x3o-f6-9jq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="SKx-fw-ifE"/>
+                    <navigationItem key="navigationItem" id="SKx-fw-ifE">
+                        <barButtonItem key="leftBarButtonItem" title="＞" id="9E0-yD-aaG">
+                            <connections>
+                                <action selector="dismissAction:" destination="8ET-XB-wM7" id="Uu4-HY-NdG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="vbZ-ar-9hH" id="gbu-8W-nzO"/>
                         <segue destination="a4t-Qx-JNc" kind="show" identifier="OtherVC" id="zFd-KZ-XYF"/>
@@ -3804,9 +3828,10 @@
         <image name="xmark.circle" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A9W-94-uye"/>
+        <segue reference="jow-OS-dq8"/>
+        <segue reference="7ab-6R-z0A"/>
         <segue reference="A3X-gu-cTB"/>
-        <segue reference="i0o-CS-9PK"/>
+        <segue reference="A5P-Rs-NM4"/>
         <segue reference="9tD-vc-f5k"/>
     </inferredMetricsTieBreakers>
 </document>

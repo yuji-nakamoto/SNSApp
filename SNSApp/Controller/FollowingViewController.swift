@@ -21,6 +21,7 @@ class FollowingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        navigationItem.title = "フォロー中"
         loadFollowing()
     }
     
@@ -61,6 +62,11 @@ class FollowingViewController: UIViewController {
             otherVC.delegate = self
         }
     }
+    
+    @IBAction func dismissAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     
 }
 

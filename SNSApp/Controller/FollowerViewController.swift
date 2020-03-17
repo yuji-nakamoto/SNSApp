@@ -21,6 +21,7 @@ class FollowerViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        navigationItem.title = "フォロワー"
         loadFollowers()
     }
     
@@ -57,6 +58,11 @@ class FollowerViewController: UIViewController {
             otherVC.delegate = self
         }
     }
+    
+    @IBAction func dismissAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     
 }
 

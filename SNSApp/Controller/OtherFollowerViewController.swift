@@ -22,6 +22,13 @@ class OtherFollowerViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         loadFollowers()
+        setupNavigation()
+    }
+    
+    func setupNavigation() {
+        UserApi().observeUser(withId: userId) { (user) in
+            self.navigationItem.title = user.username
+        }
     }
     
     func loadFollowers() {
@@ -57,6 +64,11 @@ class OtherFollowerViewController: UIViewController {
             otherVC.delegate = self
         }
     }
+    
+    @IBAction func dismissAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     
 }
 
