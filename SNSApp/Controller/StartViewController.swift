@@ -35,8 +35,5 @@ class StartViewController: UIViewController {
             self.present(signInVC, animated: true, completion: nil)
         }
     }
-    
-
-    
 
 }

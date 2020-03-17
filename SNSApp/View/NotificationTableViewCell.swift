@@ -46,7 +46,7 @@ class NotificationTableViewCell: UITableViewCell {
                 }
             }
         case "follower":
-            descriptionLabel.text = "\(user!.username!)さんがフォローしました"
+            descriptionLabel.text = "\(user!.account!)さんがフォローしました"
         default:
             break
         }
@@ -58,22 +58,22 @@ class NotificationTableViewCell: UITableViewCell {
             
             var timeText = ""
             if diff.second! <= 0 {
-                timeText = "・今"
+                timeText = "今"
             }
             if diff.second! > 0 && diff.minute! == 0 {
-                timeText = "・\(diff.second!) 秒前"
+                timeText = "\(diff.second!) 秒前"
             }
             if diff.minute! > 0 && diff.hour! == 0 {
-                timeText = "・\(diff.minute!) 分前"
+                timeText = "\(diff.minute!) 分前"
             }
             if diff.hour! > 0 && diff.day! == 0 {
-                timeText = "・\(diff.hour!) 時間前"
+                timeText = "\(diff.hour!) 時間前"
             }
             if diff.day! > 0 && diff.weekOfMonth! == 0 {
-                timeText = "・\(diff.day!) 日前"
+                timeText = "\(diff.day!) 日前"
             }
             if diff.weekOfMonth! > 0 {
-                timeText = "・\(diff.weekOfMonth!) 週前"
+                timeText = "\(diff.weekOfMonth!) 週前"
             }
             dateLabel.text = timeText
         }

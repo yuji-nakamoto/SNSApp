@@ -14,7 +14,6 @@
 		834807BF24194AA700F6020E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834807BE24194AA700F6020E /* Message.swift */; };
 		834807C124194BCE00F6020E /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834807C024194BCE00F6020E /* MessageApi.swift */; };
 		834807C32419595A00F6020E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834807C22419595A00F6020E /* Extension.swift */; };
-		834ED125241FD5CA007133BE /* ActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834ED124241FD5CA007133BE /* ActivityItem.swift */; };
 		834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A3B240A722B00EE05E9 /* HomeTableViewCell.swift */; };
 		834F5A3E240A740400EE05E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A3D240A740400EE05E9 /* Post.swift */; };
 		834F5A40240AB41C00EE05E9 /* ContributorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F5A3F240AB41C00EE05E9 /* ContributorTableViewCell.swift */; };
@@ -80,7 +79,6 @@
 		834807BE24194AA700F6020E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		834807C024194BCE00F6020E /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
 		834807C22419595A00F6020E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		834ED124241FD5CA007133BE /* ActivityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityItem.swift; sourceTree = "<group>"; };
 		834F5A3B240A722B00EE05E9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		834F5A3D240A740400EE05E9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		834F5A3F240AB41C00EE05E9 /* ContributorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorTableViewCell.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 				8351635024156A580083C444 /* Notification.swift */,
 				834807BE24194AA700F6020E /* Message.swift */,
 				8351870E241B9F7E00CB40B9 /* Inbox.swift */,
-				834ED124241FD5CA007133BE /* ActivityItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 				8351634D241561F60083C444 /* NotificationTableViewCell.swift in Sources */,
 				834F5A46240AC7DD00EE05E9 /* Comment.swift in Sources */,
 				834807C32419595A00F6020E /* Extension.swift in Sources */,
-				834ED125241FD5CA007133BE /* ActivityItem.swift in Sources */,
 				83508B4624075591000DFD8C /* HomeViewController.swift in Sources */,
 				834F5A42240AB43200EE05E9 /* CommentTableViewCell.swift in Sources */,
 				83508B44240751DA000DFD8C /* StartViewController.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SideMenu
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,8 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SideMenuManager.default.leftMenuNavigationController = menuNavigationController
         SideMenuManager.default.addPanGestureToPresent(toView: navigationController.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: navigationController.view)
+        
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         return true
+    }
+    
+    func application(_ application: UIApplication,open url:URL,sourceApplication: String?,annotation: Any) -> Bool {
+        return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     // MARK: UISceneSession Lifecycle
