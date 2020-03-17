@@ -1635,7 +1635,7 @@
                         <viewLayoutGuide key="safeArea" id="rFz-s7-K5D"/>
                     </view>
                     <navigationItem key="navigationItem" id="97P-xe-ffw">
-                        <barButtonItem key="leftBarButtonItem" title="＞" id="aLd-Ge-i0l">
+                        <barButtonItem key="leftBarButtonItem" title="＜" id="aLd-Ge-i0l">
                             <connections>
                                 <action selector="dismissAction:" destination="VIu-IN-pfP" id="ph3-jH-hOz"/>
                             </connections>
@@ -3551,7 +3551,7 @@
                         <viewLayoutGuide key="safeArea" id="fDn-Ah-HdX"/>
                     </view>
                     <navigationItem key="navigationItem" id="qR6-Yo-pTv">
-                        <barButtonItem key="leftBarButtonItem" title="＞" id="Mgm-F8-oaj">
+                        <barButtonItem key="leftBarButtonItem" title="＜" id="Mgm-F8-oaj">
                             <connections>
                                 <action selector="dismissAction:" destination="kOA-dv-tgT" id="5Hc-rD-HW6"/>
                             </connections>
@@ -3669,7 +3669,7 @@
                         <viewLayoutGuide key="safeArea" id="mAr-P8-75s"/>
                     </view>
                     <navigationItem key="navigationItem" id="8oG-br-V8K">
-                        <barButtonItem key="leftBarButtonItem" title="＞" id="K8c-ch-jgf">
+                        <barButtonItem key="leftBarButtonItem" title="＜" id="K8c-ch-jgf">
                             <connections>
                                 <action selector="dismissAction:" destination="nHJ-cf-7pE" id="Y6I-CP-Zwj"/>
                             </connections>
@@ -3787,7 +3787,7 @@
                         <viewLayoutGuide key="safeArea" id="x3o-f6-9jq"/>
                     </view>
                     <navigationItem key="navigationItem" id="SKx-fw-ifE">
-                        <barButtonItem key="leftBarButtonItem" title="＞" id="9E0-yD-aaG">
+                        <barButtonItem key="leftBarButtonItem" title="＜" id="9E0-yD-aaG">
                             <connections>
                                 <action selector="dismissAction:" destination="8ET-XB-wM7" id="Uu4-HY-NdG"/>
                             </connections>
@@ -3828,8 +3828,7 @@
         <image name="xmark.circle" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jow-OS-dq8"/>
-        <segue reference="7ab-6R-z0A"/>
+        <segue reference="g2b-LH-LUT"/>
         <segue reference="A3X-gu-cTB"/>
         <segue reference="A5P-Rs-NM4"/>
         <segue reference="9tD-vc-f5k"/>
