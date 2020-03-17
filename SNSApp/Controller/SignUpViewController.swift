@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var accountTextField: UITextField!
     
     var image: UIImage?
+    let generator = UINotificationFeedbackGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,18 +70,22 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         self.view.endEditing(true)
         
         guard let username = self.usernameTextField.text, !username.isEmpty else {
+            generator.notificationOccurred(.error)
             ProgressHUD.showError("ユーザーネームを入力してください")
             return
         }
         guard let account = self.accountTextField.text, !account.isEmpty else {
+            generator.notificationOccurred(.error)
             ProgressHUD.showError("アカウント名を入力してください")
             return
         }
         guard let email = self.emailTextField.text, !email.isEmpty else {
+            generator.notificationOccurred(.error)
             ProgressHUD.showError("メールアドレスを入力してください")
             return
         }
         guard let imageSelected = self.image else {
+            generator.notificationOccurred(.error)
             ProgressHUD.showError("プロフィール画像を設定してください")
             return
         }
@@ -109,6 +114,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
                 metadata.contentType = "image/jpg"
                 storageProfileRef.putData(imageData, metadata: metadata) { (metadata, error) in
                     if error != nil {
+                        self.generator.notificationOccurred(.error)
                         ProgressHUD.showError(error?.localizedDescription)
                         return
                     }

@@ -20,6 +20,8 @@ class SignInViewController: UIViewController,UITextFieldDelegate, GIDSignInDeleg
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let generator = UINotificationFeedbackGenerator()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.presentingViewController = self
@@ -54,6 +56,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate, GIDSignInDeleg
         ProgressHUD.show()
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
             if error != nil {
+                self.generator.notificationOccurred(.error)
                 ProgressHUD.showError(error?.localizedDescription)
                 return
             }
@@ -70,6 +73,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate, GIDSignInDeleg
         let fbLoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
             if let error = error {
+                self.generator.notificationOccurred(.error)
                 ProgressHUD.showError(error.localizedDescription)
                 return
             }
@@ -80,6 +84,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate, GIDSignInDeleg
             let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
             Auth.auth().signIn(with: credential) { (result, error) in
                 if let error = error {
+                    self.generator.notificationOccurred(.error)
                     ProgressHUD.showError(error.localizedDescription)
                     return
                 }
@@ -121,6 +126,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate, GIDSignInDeleg
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
+                self.generator.notificationOccurred(.error)
                 ProgressHUD.showError(error.localizedDescription)
                 return
             }
