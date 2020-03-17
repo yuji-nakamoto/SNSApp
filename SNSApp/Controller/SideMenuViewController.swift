@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import ProgressHUD
+import GoogleSignIn
 
 class SideMenuViewController: UIViewController {
     
@@ -109,6 +110,16 @@ class SideMenuViewController: UIViewController {
             let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
                 do {
                     UserApi().isOnline(bool: false)
+                    if let providerData = Auth.auth().currentUser?.providerData {
+                        let userInfo = providerData[0]
+                        
+                        switch userInfo.providerID {
+                        case "google.com":
+                            GIDSignIn.sharedInstance()?.signOut()
+                        default:
+                            break
+                        }
+                    }
                     try Auth.auth().signOut()
                 } catch  {
                     ProgressHUD.showError(error.localizedDescription)

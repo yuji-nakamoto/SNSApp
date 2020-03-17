@@ -10,17 +10,20 @@ import UIKit
 import Firebase
 import ProgressHUD
 import FBSDKLoginKit
+import GoogleSignIn
 
-class SignInViewController: UIViewController,UITextFieldDelegate {
+class SignInViewController: UIViewController,UITextFieldDelegate, GIDSignInDelegate {
 
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var faceBookButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
        setupUI()
     }
     
@@ -105,7 +108,47 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func googleBtnDidTapped(_ sender: Any) {
-        
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error != nil {
+            return
+        }
+        guard let authentication = user.authentication else {
+            return
+        }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (result, error) in
+            if let error = error {
+                ProgressHUD.showError(error.localizedDescription)
+                return
+            }
+            if let authData = result {
+                let dict : [String: Any] = [
+                    "uid": authData.user.uid,
+                    "email": authData.user.email as Any,
+                    "username": authData.user.displayName as Any,
+                    "username_lowercase": authData.user.displayName?.lowercased() as Any,
+                    "profileImageUrl": authData.user.photoURL?.absoluteString as Any,
+                    "account": "@\(authData.user.displayName!)"
+                ]
+                UserApi().REF_USERS.child(authData.user.uid).updateChildValues(dict) { (error, ref) in
+                    if error == nil {
+                        UserApi().isOnline(bool: true)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+                        self.present(tabBarVC, animated: true, completion: nil)
+                    } else {
+                        ProgressHUD.showError(error!.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        ProgressHUD.showError(error.localizedDescription)
     }
     
 
