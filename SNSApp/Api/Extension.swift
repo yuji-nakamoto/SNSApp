@@ -71,3 +71,12 @@ extension String {
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
     }
 }
+
+extension Int {
+    func formatNumber() -> String {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: self))!
+    }
+}

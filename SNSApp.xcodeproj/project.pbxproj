@@ -65,6 +65,7 @@
 		8365797E24138C3B009BE554 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797D24138C3B009BE554 /* FollowApi.swift */; };
 		836579802413AC21009BE554 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797F2413AC21009BE554 /* FeedApi.swift */; };
 		83657982241419AE009BE554 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657981241419AE009BE554 /* OtherProfileViewController.swift */; };
+		83A1F2BC249907E100AB0BED /* CoronaStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1F2BB249907E100AB0BED /* CoronaStatsViewController.swift */; };
 		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		8365797D24138C3B009BE554 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		8365797F2413AC21009BE554 /* FeedApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
 		83657981241419AE009BE554 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
+		83A1F2BB249907E100AB0BED /* CoronaStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoronaStatsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 				8351871C241ECDF100CB40B9 /* FollowingViewController.swift */,
 				83518720241F760300CB40B9 /* OtherFollowerViewController.swift */,
 				83518722241F761800CB40B9 /* OtherFollowingViewController.swift */,
+				83A1F2BB249907E100AB0BED /* CoronaStatsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				8351871F241ECE1900CB40B9 /* FollowingTableViewCell.swift in Sources */,
 				8351870D241B878300CB40B9 /* InboxApi.swift in Sources */,
 				834807BF24194AA700F6020E /* Message.swift in Sources */,
+				83A1F2BC249907E100AB0BED /* CoronaStatsViewController.swift in Sources */,
 				8365797E24138C3B009BE554 /* FollowApi.swift in Sources */,
 				83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */,
 				836579742410FE34009BE554 /* EditTableViewController.swift in Sources */,
