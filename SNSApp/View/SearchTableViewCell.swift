@@ -54,15 +54,15 @@ class SearchTableViewCell: UITableViewCell {
     
     @objc func followAction() {
         if user?.isFollowing == false {
-            FollowApi().followAction(withUser: user!.id!)
+            FollowApi().followAction(withUser: user!.id)
             configureUnFollowButton()
             user?.isFollowing = true
             
             let timestamp = Int(Date().timeIntervalSince1970)
             let newFollowerId = FollowApi().REF_FOLLOWERS.childByAutoId().key
             
-            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id!).childByAutoId().key
-            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id!).child(newNotiId!)
+            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id).childByAutoId().key
+            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id).child(newNotiId!)
             newNotiReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": newFollowerId!,"type": "follower", "timestamp": timestamp])
         }
     }
@@ -70,8 +70,8 @@ class SearchTableViewCell: UITableViewCell {
     @objc func unFollowAction() {
         if user?.isFollowing == true {
             let alert: UIAlertController = UIAlertController(title: "フォロー解除しますか？", message: "", preferredStyle: .actionSheet)
-            let unFollow: UIAlertAction = UIAlertAction(title: "\(user!.username!)のフォローを解除", style: UIAlertAction.Style.default) { (alert) in
-                FollowApi().unFollowAction(withUser: self.user!.id!)
+            let unFollow: UIAlertAction = UIAlertAction(title: "\(user!.username)のフォローを解除", style: UIAlertAction.Style.default) { (alert) in
+                FollowApi().unFollowAction(withUser: self.user!.id)
                 self.configureFollowButton()
                 self.user?.isFollowing = false
             }

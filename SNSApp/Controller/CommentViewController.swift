@@ -16,7 +16,7 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
     var comments = [Comment]()
     var users = [User]()
     var post = Post()
-    var user = User()
+    var user: User!
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!

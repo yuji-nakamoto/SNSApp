@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
             self.users.removeAll()
             self.tableView.reloadData()
             UserApi().queryUsers(withText: searchText) { (user) in
-                self.isFollowing(userId: user.id!) { (value) in
+                self.isFollowing(userId: user.id) { (value) in
                     user.isFollowing = value
                     self.users.append(user)
                     self.tableView.reloadData()
@@ -68,7 +68,7 @@ class SearchViewController: UIViewController {
             self.users.removeAll()
             self.tableView.reloadData()
             UserApi().queryAccounts(withText: searchText) { (user) in
-                self.isFollowing(userId: user.id!) { (value) in
+                self.isFollowing(userId: user.id) { (value) in
                     user.isFollowing = value
                     self.users.append(user)
                     self.tableView.reloadData()

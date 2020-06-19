@@ -48,8 +48,8 @@ class ProfileViewController: UIViewController {
     
     func fetchUser() {
         UserApi().observeCurrentUser { (user) in
-            MyPostApi().fetchCountMyPosts(userId: user.id!) { (count) in
-                self.navigationItem.title = "\(user.username!)のツイート \(count)"
+            MyPostApi().fetchCountMyPosts(userId: user.id) { (count) in
+                self.navigationItem.title = "\(user.username)のツイート \(count)"
                 self.user = user
                 self.tableView.reloadData()
             }

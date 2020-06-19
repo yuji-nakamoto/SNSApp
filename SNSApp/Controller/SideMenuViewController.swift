@@ -52,14 +52,14 @@ class SideMenuViewController: UIViewController {
         UserApi().REF_CURRENT_USER?.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                self.usernameLabel.text = user.username
-                self.accountLabel.text = user.account
-                if let photoUrlString = user.profileImageUrl {
+                self.usernameLabel.text = user?.username
+                self.accountLabel.text = user?.account
+                if let photoUrlString = user?.profileImageUrl {
                     self.profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
-                    FollowApi().fetchCountFollowers(userId: user.id!) { (count) in
+                    FollowApi().fetchCountFollowers(userId: user!.id) { (count) in
                         self.followerCountLabel.text = "\(count)"
                     }
-                    FollowApi().fetchCountFollowing(userId: user.id!) { (count) in
+                    FollowApi().fetchCountFollowing(userId: user!.id) { (count) in
                         self.followingCountLabel.text = "\(count)"
                     }
                 }
@@ -106,7 +106,7 @@ class SideMenuViewController: UIViewController {
     
     @objc func logoutLabelTap() {
         UserApi().observeCurrentUser { (user) in
-            let alert: UIAlertController = UIAlertController(title: "\(user.username!)", message: "ログアウトしてもよろしいですか？", preferredStyle: .actionSheet)
+            let alert: UIAlertController = UIAlertController(title: "\(user.username)", message: "ログアウトしてもよろしいですか？", preferredStyle: .actionSheet)
             let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
                 do {
                     UserApi().isOnline(bool: false)

@@ -16,7 +16,7 @@ class MessageApi {
         REF_MESSAGE.child(from).child(to).observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let newMessage = Message.transformMessage(dict: dict)
-                completion(newMessage)
+                completion(newMessage!)
             }
         }
     }

@@ -49,11 +49,11 @@ class MessageTableViewCell: UITableViewCell {
     
     func updateView() {
         let text = message!.messageText
-        if !text!.isEmpty {
+        if !text.isEmpty {
             messageLabel.isHidden = false
             messageLabel.text = message!.messageText
             
-            let widthValue = text!.estimateFrameForText_1(text!).width + 40
+            let widthValue = text.estimateFrameForText_1(text).width + 40
             if widthValue < 100 {
                 widthConstraint.constant = 100
             } else {
@@ -63,7 +63,7 @@ class MessageTableViewCell: UITableViewCell {
         } else {
             dateLabel.textColor = .white
             photoImage.isHidden = false
-            if let photoUrlString = message!.imageUrl {
+            if let photoUrlString = message?.imageUrl {
                 photoImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
             }
             bubleView.layer.borderColor = UIColor.clear.cgColor
@@ -87,7 +87,7 @@ class MessageTableViewCell: UITableViewCell {
             bubleRightConstraint.constant = UIScreen.main.bounds.width - widthConstraint.constant - bubleLeftConstraint.constant
         }
         
-        let date = Date(timeIntervalSince1970: message!.date!)
+        let date = Date(timeIntervalSince1970: message!.date)
         let dateString = timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
         dateLabel.text = dateString
         self.formatHeaderTimeLabel(time: date) { (text) in

@@ -198,7 +198,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func shereAction(_ sender: Any) {
-        let activityItems: [Any] = ["\(user!.account!)さんの投稿をシェア", "\n\(post!.caption! as Any)", contentImage.image as Any]
+        let activityItems: [Any] = ["\(user!.account)さんの投稿をシェア", "\n\(post!.caption! as Any)", contentImage.image as Any]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         homeVC?.present(activityVC, animated: true)
         profileVC?.present(activityVC, animated: true)

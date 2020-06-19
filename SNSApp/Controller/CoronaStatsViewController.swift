@@ -45,7 +45,7 @@ class CoronaStatsViewController: UIViewController {
         container4.layer.cornerRadius = 10
         navigationItem.title = "新型コロナ感染者の統計"
         getCurrentTotal()
-        getAllCountries()
+//        getAllCountries()
     }
     
     
@@ -88,7 +88,7 @@ class CoronaStatsViewController: UIViewController {
     
     @IBAction func refleshButton(_ sender: Any) {
         getCurrentTotal()
-        getAllCountries()
+//        getAllCountries()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -43,9 +43,9 @@ class OtherProfileViewController: UIViewController {
     
     func fetchUser() {
         UserApi().observeUser(withId: userId) { (user) in
-            MyPostApi().fetchCountMyPosts(userId: user.id!) { (count) in
-                self.navigationItem.title = "\(user.username!)のツイート \(count)"
-                self.isFollowing(userId: user.id!) { (value) in
+            MyPostApi().fetchCountMyPosts(userId: user.id) { (count) in
+                self.navigationItem.title = "\(user.username)のツイート \(count)"
+                self.isFollowing(userId: user.id) { (value) in
                     user.isFollowing = value
                     self.user = user
                     self.tableView.reloadData()

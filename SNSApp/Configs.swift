@@ -21,7 +21,7 @@ func sendRequestNotification(fromUser: User, toUser: User, message: String, badg
                           "body": message,
                           "sound": "default",
                           "badge": badge,
-                          "customData": ["userId": fromUser.uid,
+                          "customData": ["uid": fromUser.uid,
                                          "username": fromUser.username,
                                          "email": fromUser.email,
                                          "profileImageUrl": fromUser.profileImageUrl]

@@ -16,7 +16,7 @@ class UserApi {
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                comletion(user)
+                comletion(user!)
             }
         }
     }
@@ -25,8 +25,8 @@ class UserApi {
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                if user.id! != Auth.auth().currentUser!.uid {
-                    completion(user)
+                if user?.id != Auth.auth().currentUser!.uid {
+                    completion(user!)
                 }
             }
         }
@@ -39,7 +39,7 @@ class UserApi {
         REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                comletion(user)
+                comletion(user!)
             }
         }
     }
@@ -48,8 +48,8 @@ class UserApi {
         REF_USERS.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                if user.id! != Auth.auth().currentUser!.uid {
-                    completion(user)
+                if user?.id != Auth.auth().currentUser!.uid {
+                    completion(user!)
                 }
             }
         }
@@ -59,7 +59,7 @@ class UserApi {
         REF_USERS.child(uid).observe(.value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                completion(user)
+                completion(user!)
             }
         }
     }
@@ -83,8 +83,8 @@ class UserApi {
                 let child = s as! DataSnapshot
                 if let dict = child.value as? [String: Any] {
                     let user = User.transformUser(dict: dict, key: child.key)
-                    if user.id! != Auth.auth().currentUser!.uid {
-                        completion(user)
+                    if user?.id != Auth.auth().currentUser!.uid {
+                        completion(user!)
                     }
                 }
             }
@@ -97,8 +97,8 @@ class UserApi {
                 let child = s as! DataSnapshot
                 if let dict = child.value as? [String: Any] {
                     let user = User.transformUser(dict: dict, key: child.key)
-                    if user.id! != Auth.auth().currentUser!.uid {
-                        completion(user)
+                    if user?.id != Auth.auth().currentUser!.uid {
+                        completion(user!)
                     }
                 }
             }

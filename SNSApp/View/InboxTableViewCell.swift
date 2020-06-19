@@ -32,9 +32,9 @@ class InboxTableViewCell: UITableViewCell {
     func setupUserInfo() {
         usernameLabel.text = inbox?.user.username
         accountLabel.text = inbox?.user.account
-        if let photoUrlString = inbox!.user.profileImageUrl {
-            profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
-        }
+        let photoUrlString = inbox!.user.profileImageUrl
+        profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
+        
         let date = Date(timeIntervalSince1970: inbox!.date)
         let dateString = timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
         dateLabel.text = dateString
@@ -101,9 +101,8 @@ class InboxTableViewCell: UITableViewCell {
     }
     
     @objc func cellTap() {
-        if let id = inbox!.user.id {
-            inboxVC?.performSegue(withIdentifier: "MessageVC", sender: id)
-        }
+        let id = inbox!.user.id
+        inboxVC?.performSegue(withIdentifier: "MessageVC", sender: id)
     }
     
 }

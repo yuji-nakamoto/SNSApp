@@ -33,9 +33,8 @@ class OtherFollowerViewController: UIViewController {
     
     func loadFollowers() {
         FollowApi().observeFollowers(withUser: userId) { (user) in
-            guard let userId = user.uid else {
-                return
-            }
+            let userId = user.uid
+            
             self.fetchUser(uid: userId) {
                 self.tableView.reloadData()
             }
@@ -44,7 +43,7 @@ class OtherFollowerViewController: UIViewController {
     
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         UserApi().observeFollowUser(withId: uid) { (user) in
-            self.isFollowing(userId: user.id!) { (value) in
+            self.isFollowing(userId: user.id) { (value) in
                 user.isFollowing = value
                 self.users.append(user)
                 completed()

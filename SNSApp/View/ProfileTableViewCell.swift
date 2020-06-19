@@ -70,10 +70,10 @@ class ProfileTableViewCell: UITableViewCell {
         if let photoUrlString = user?.headerImageUrl {
             headerImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
-        FollowApi().fetchCountFollowers(userId: user!.id!) { (count) in
+        FollowApi().fetchCountFollowers(userId: user!.id) { (count) in
             self.followerCountLabel.text = "\(count)"
         }
-        FollowApi().fetchCountFollowing(userId: user!.id!) { (count) in
+        FollowApi().fetchCountFollowing(userId: user!.id) { (count) in
             self.followingCountLabel.text = "\(count)"
         }
         if user?.id == Auth.auth().currentUser?.uid {
@@ -112,15 +112,15 @@ class ProfileTableViewCell: UITableViewCell {
     
     @objc func followAction() {
         if user?.isFollowing == false {
-            FollowApi().followAction(withUser: user!.id!)
+            FollowApi().followAction(withUser: user!.id)
             configureUnFollowButton()
             user?.isFollowing = true
             delegate?.updateFollowButton(forUser: user!)
             
             let timestamp = Int(Date().timeIntervalSince1970)
             let newFollowerId = FollowApi().REF_FOLLOWERS.childByAutoId().key
-            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id!).childByAutoId().key
-            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id!).child(newNotiId!)
+            let newNotiId = NotificationApi().REF_NOTIFICATION.child(user!.id).childByAutoId().key
+            let newNotiReference = NotificationApi().REF_NOTIFICATION.child(user!.id).child(newNotiId!)
             newNotiReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": newFollowerId!,"type": "follower", "timestamp": timestamp])
         }
     }
@@ -129,8 +129,8 @@ class ProfileTableViewCell: UITableViewCell {
         if user?.isFollowing == true {
             let alert: UIAlertController = UIAlertController(title: "フォロー解除しますか？", message: "", preferredStyle: .actionSheet)
             
-            let unFollow: UIAlertAction = UIAlertAction(title: "\(user!.username!)のフォローを解除", style: UIAlertAction.Style.default) { (alert) in
-                FollowApi().unFollowAction(withUser: self.user!.id!)
+            let unFollow: UIAlertAction = UIAlertAction(title: "\(user!.username)のフォローを解除", style: UIAlertAction.Style.default) { (alert) in
+                FollowApi().unFollowAction(withUser: self.user!.id)
                 self.configureFollowButton()
                 self.user?.isFollowing = false
                 self.delegate?.updateFollowButton(forUser: self.user!)

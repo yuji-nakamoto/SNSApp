@@ -46,7 +46,7 @@ class NotificationTableViewCell: UITableViewCell {
                 }
             }
         case "follower":
-            descriptionLabel.text = "\(user!.account!)さんがフォローしました"
+            descriptionLabel.text = "\(user!.account)さんがフォローしました"
         default:
             break
         }

@@ -69,7 +69,7 @@ class MessageViewController: UIViewController {
     }
     
     func sortMessage() {
-        messages = messages.sorted(by: { $0.date! < $1.date! })
+        messages = messages.sorted(by: { $0.date < $1.date })
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.scrollToBottom()
@@ -130,9 +130,8 @@ class MessageViewController: UIViewController {
         UserApi().observeUser(withId: partnerId) { (user) in
             self.usernameLabel.text = user.username
             self.accountLabel.text = user.account
-            if let photoUrlString = user.profileImageUrl {
-                self.partnerImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
-            }
+            let photoUrlString = user.profileImageUrl
+            self.partnerImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
         }
     }
     
@@ -258,14 +257,14 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
         var height: CGFloat = 0
         let message = messages[indexPath.row]
         let text = message.messageText
-        if !text!.isEmpty {
-            height = text!.estimateFrameForText_1(text!).height + 60
+        if !text.isEmpty {
+            height = text.estimateFrameForText_1(text).height + 60
         }
         
         let heightMessage = message.height
         let widthMessage = message.width
         if heightMessage != 0, widthMessage != 0 {
-            height = CGFloat(heightMessage! / widthMessage! * 250)
+            height = CGFloat(heightMessage / widthMessage * 250)
         }
         return height
     }
