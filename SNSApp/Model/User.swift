@@ -19,7 +19,7 @@ class User {
     var headerImageUrl: String
     var isFollowing: Bool
     
-    init(uid: String, account: String, email: String, profileImageUrl: String, username: String, id: String, birthday: String, selfIntro: String, headerImageUrl: String, isForllowing: Bool) {
+    init(uid: String, account: String, email: String, profileImageUrl: String, username: String, id: String, birthday: String, selfIntro: String, headerImageUrl: String, isFollowing: Bool) {
         self.id = id
         self.uid = uid
         self.account = account
@@ -29,7 +29,7 @@ class User {
         self.birthday = birthday
         self.selfIntro = selfIntro
         self.headerImageUrl = headerImageUrl
-        self.isFollowing = isForllowing
+        self.isFollowing = isFollowing
     }
     
     static func transformUser(dict: [String: Any], key: String) -> User? {
@@ -44,9 +44,9 @@ class User {
         let selfIntro = dict["selfIntro"] as? String == nil ? "" : dict["selfIntro"]! as! String
         let birthday = dict["birthday"] as? String == nil ? "" : dict["birthday"]! as! String
         let headerImageUrl = dict["headerImageUrl"] as? String == nil ? "" : dict["headerImageUrl"]! as! String
-        let isFollowing = dict["isFollowing"] as? Bool == nil ? false : dict["isFollowing"]! as! Bool
+        let isFollowing = dict["isFollowing"] as? Bool == nil ? true : dict["isFollowing"]! as! Bool
         
-        let user = User(uid: uid, account: account, email: email, profileImageUrl: profileImageUrl, username: username, id: key, birthday: birthday, selfIntro: selfIntro, headerImageUrl: headerImageUrl, isForllowing: isFollowing)
+        let user = User(uid: uid, account: account, email: email, profileImageUrl: profileImageUrl, username: username, id: key, birthday: birthday, selfIntro: selfIntro, headerImageUrl: headerImageUrl, isFollowing: isFollowing)
         return user
     }
 }
