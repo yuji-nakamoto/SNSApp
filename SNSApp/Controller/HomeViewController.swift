@@ -59,6 +59,13 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !Auth.auth().currentUser!.uid.isEmpty {
+            Messaging.messaging().subscribe(toTopic: Auth.auth().currentUser!.uid)
+        }
+    }
+    
     @objc func update(){
         player.play()
         tableView.reloadData()

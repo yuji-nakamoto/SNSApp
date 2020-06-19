@@ -11,12 +11,39 @@ import Firebase
 import SideMenu
 import FBSDKCoreKit
 import GoogleSignIn
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    let gcmMessageIDKey = "gcm.message_id"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        if #available(iOS 10.0, *) {
+            let current = UNUserNotificationCenter.current()
+            let options: UNAuthorizationOptions = [.sound, .badge, .alert]
+            
+            current.requestAuthorization(options: options) { (granted, error) in
+                if error != nil {
+                    
+                } else {
+                    Messaging.messaging().delegate = self
+                    current.delegate = self
+                    
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
+                }
+            }
+        } else {
+            let types: UIUserNotificationType = [.sound, .badge, .alert]
+            let setting = UIUserNotificationSettings(types: types, categories: nil)
+            
+            application.registerUserNotificationSettings(setting)
+            application.registerForRemoteNotifications()
+        }
         
         let viewController = HomeViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -59,6 +86,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        connectToFirebase()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        Messaging.messaging().shouldEstablishDirectChannel = true
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        connectToFirebase()
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func connectToFirebase() {
+        Messaging.messaging().shouldEstablishDirectChannel = false
+    }
     
 }
 
+extension AppDelegate : UNUserNotificationCenterDelegate, MessagingDelegate {
+    @available(iOS 10, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+        
+        completionHandler([.sound, .badge, .alert])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        print(userInfo)
+        
+        completionHandler()
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+    }
+}

@@ -23,7 +23,7 @@ class MessageViewController: UIViewController {
     var messages = [Message]()
     var partnerId: String!
     var messageId: String!
-    var user: User!
+    var partnerUser: User!
     var image: UIImage!
     var currentUserId = Auth.auth().currentUser!.uid
     var isTyping = false
@@ -85,7 +85,7 @@ class MessageViewController: UIViewController {
     
     func fetchUsers(uid: String, completed: @escaping () -> Void) {
         UserApi().observeUser(withId: uid) { (user) in
-            self.user = user
+            self.partnerUser = user
             completed()
         }
     }
@@ -180,7 +180,7 @@ class MessageViewController: UIViewController {
         if bool {
             if isTyping == true {
                 UserApi().observeUser(withId: partnerId) { (user) in
-                    self.accountLabel.text = "\(user.account!)さんが入力中です..."
+                    self.accountLabel.text = "\(user.account)さんが入力中です..."
                 }
             }
         } else {
@@ -221,6 +221,20 @@ class MessageViewController: UIViewController {
         value["read"] = false
         
         MessageApi().sendMessage(from: currentUserId, to: partnerId, value: value)
+        
+        if let imageUrl = dict["imageUrl"] as? String, !imageUrl.isEmpty {
+            handleNotification(fromUid: currentUserId, message: "画像が届いています")
+        } else if let text = dict["messageText"] as? String, !text.isEmpty {
+            handleNotification(fromUid: currentUserId, message: text)
+        } else if let videoUrl = dict["videoUrl"] as? String, !videoUrl.isEmpty {
+            handleNotification(fromUid: currentUserId, message: "動画が届いています")
+        }
+    }
+    
+    func handleNotification(fromUid: String, message: String) {
+        UserApi().getUserInfo(uid: fromUid) { (user) in
+            sendRequestNotification(fromUser: user, toUser: self.partnerUser, message: message, badge: 1)
+        }
     }
     
 }
@@ -234,7 +248,7 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageTableViewCell
         cell.timeLabel.isHidden = indexPath.row % 3 == 0 ? true : false
         let message = messages[indexPath.row]
-        cell.user = self.user
+        cell.user = self.partnerUser
         cell.message = message
         
         return cell

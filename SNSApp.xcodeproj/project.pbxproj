@@ -32,7 +32,6 @@
 		83508B2A24070744000DFD8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2824070744000DFD8C /* Main.storyboard */; };
 		83508B2C24070747000DFD8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2B24070747000DFD8C /* Assets.xcassets */; };
 		83508B2F24070747000DFD8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83508B2D24070747000DFD8C /* LaunchScreen.storyboard */; };
-		83508B392407105D000DFD8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83508B382407105D000DFD8C /* GoogleService-Info.plist */; };
 		83508B3B2407125C000DFD8C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B3A2407125C000DFD8C /* SignInViewController.swift */; };
 		83508B3D24072AEF000DFD8C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B3C24072AEF000DFD8C /* SignUpViewController.swift */; };
 		83508B3F240734A7000DFD8C /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83508B3E240734A7000DFD8C /* ForgotViewController.swift */; };
@@ -55,6 +54,8 @@
 		8351871F241ECE1900CB40B9 /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351871E241ECE1900CB40B9 /* FollowingTableViewCell.swift */; };
 		83518721241F760400CB40B9 /* OtherFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83518720241F760300CB40B9 /* OtherFollowerViewController.swift */; };
 		83518723241F761800CB40B9 /* OtherFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83518722241F761800CB40B9 /* OtherFollowingViewController.swift */; };
+		835C1A9D249CF96A007D3CEB /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835C1A9C249CF96A007D3CEB /* Configs.swift */; };
+		835C1A9F249CFAEA007D3CEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 835C1A9E249CFAEA007D3CEB /* GoogleService-Info.plist */; };
 		8365796A240FC629009BE554 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657969240FC629009BE554 /* ProfileViewController.swift */; };
 		8365796C240FC83E009BE554 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */; };
 		836579702410F1E1009BE554 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365796F2410F1E1009BE554 /* MyPostApi.swift */; };
@@ -100,7 +101,6 @@
 		83508B2B24070747000DFD8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83508B2E24070747000DFD8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83508B3024070747000DFD8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83508B382407105D000DFD8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83508B3A2407125C000DFD8C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		83508B3C24072AEF000DFD8C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		83508B3E240734A7000DFD8C /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +123,9 @@
 		8351871E241ECE1900CB40B9 /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
 		83518720241F760300CB40B9 /* OtherFollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFollowerViewController.swift; sourceTree = "<group>"; };
 		83518722241F761800CB40B9 /* OtherFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFollowingViewController.swift; sourceTree = "<group>"; };
+		835C1A9C249CF96A007D3CEB /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
+		835C1A9E249CFAEA007D3CEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		835C1AA0249CFBE1007D3CEB /* SNSApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SNSApp.entitlements; sourceTree = "<group>"; };
 		83657969240FC629009BE554 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8365796B240FC83E009BE554 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8365796F2410F1E1009BE554 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
@@ -189,20 +192,22 @@
 		83508B2124070744000DFD8C /* SNSApp */ = {
 			isa = PBXGroup;
 			children = (
+				835C1AA0249CFBE1007D3CEB /* SNSApp.entitlements */,
 				834F5A49240BB9F900EE05E9 /* Api */,
 				83508B4224073D8E000DFD8C /* Model */,
 				83508B4124073D82000DFD8C /* View */,
 				83508B4024073D6E000DFD8C /* Controller */,
 				83508B2824070744000DFD8C /* Main.storyboard */,
 				83508B2224070744000DFD8C /* AppDelegate.swift */,
+				835C1A9C249CF96A007D3CEB /* Configs.swift */,
 				83508B2424070744000DFD8C /* SceneDelegate.swift */,
+				835C1A9E249CFAEA007D3CEB /* GoogleService-Info.plist */,
 				83508B2D24070747000DFD8C /* LaunchScreen.storyboard */,
 				83508B2B24070747000DFD8C /* Assets.xcassets */,
 				83518712241E39A600CB40B9 /* refresh.mp3 */,
 				83518714241E39C200CB40B9 /* post.mp3 */,
 				834F5A56240CFD3900EE05E9 /* heart.json */,
 				83508B3024070747000DFD8C /* Info.plist */,
-				83508B382407105D000DFD8C /* GoogleService-Info.plist */,
 			);
 			path = SNSApp;
 			sourceTree = "<group>";
@@ -348,7 +353,7 @@
 				83508B2A24070744000DFD8C /* Main.storyboard in Resources */,
 				834F5A57240CFD3900EE05E9 /* heart.json in Resources */,
 				83518715241E39C200CB40B9 /* post.mp3 in Resources */,
-				83508B392407105D000DFD8C /* GoogleService-Info.plist in Resources */,
+				835C1A9F249CFAEA007D3CEB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +439,7 @@
 				834807B92418193500F6020E /* InboxTableViewCell.swift in Sources */,
 				8351635124156A580083C444 /* Notification.swift in Sources */,
 				834F5A3C240A722B00EE05E9 /* HomeTableViewCell.swift in Sources */,
+				835C1A9D249CF96A007D3CEB /* Configs.swift in Sources */,
 				83508B4C2407F0BD000DFD8C /* User.swift in Sources */,
 				83508B3B2407125C000DFD8C /* SignInViewController.swift in Sources */,
 				834807C124194BCE00F6020E /* MessageApi.swift in Sources */,
@@ -597,14 +603,16 @@
 			baseConfigurationReference = 1BCD19D70B32A1C242046791 /* Pods-SNSApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SNSApp/SNSApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VPCTDUASKQ;
+				DEVELOPMENT_TEAM = 2FZHPQ299M;
 				INFOPLIST_FILE = SNSApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ynCompany.SNSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "yncompany.SNS-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -616,14 +624,16 @@
 			baseConfigurationReference = 064109958F6BE778EB232065 /* Pods-SNSApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SNSApp/SNSApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VPCTDUASKQ;
+				DEVELOPMENT_TEAM = 2FZHPQ299M;
 				INFOPLIST_FILE = SNSApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ynCompany.SNSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "yncompany.SNS-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

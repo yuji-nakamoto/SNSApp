@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message&amp;Tweet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeO-ke-TPH">
-                                <rect key="frame" x="87.5" y="311" width="200" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNSApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeO-ke-TPH">
+                                <rect key="frame" x="135" y="311" width="105" height="45"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message&amp;Tweet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3g-kN-DUH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNSApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3g-kN-DUH">
                                 <rect key="frame" x="60" y="50" width="255" height="45"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                 <nil key="textColor"/>
@@ -2581,13 +2581,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ログインできない場合" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec1-e1-Q1v">
-                                <rect key="frame" x="71" y="50" width="233" height="28"/>
+                                <rect key="frame" x="71" y="30" width="233" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jTb-Zu-EXk">
-                                <rect key="frame" x="20" y="156" width="335" height="40"/>
+                                <rect key="frame" x="20" y="126" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="iva-c3-fLk"/>
                                 </constraints>
@@ -2595,7 +2595,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM6-V5-Paw">
-                                <rect key="frame" x="20" y="236" width="335" height="40"/>
+                                <rect key="frame" x="20" y="206" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.22952792050000001" green="0.58915597200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="180-Jx-4Em"/>
@@ -2608,7 +2608,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="説明" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPz-Ub-Rvp">
-                                <rect key="frame" x="40" y="108" width="295" height="18"/>
+                                <rect key="frame" x="40" y="78" width="295" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2663,11 +2663,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="BOY-TL-jTw" secondAttribute="trailing" constant="20" id="YKV-so-Ucr"/>
                             <constraint firstItem="DGe-7c-bGU" firstAttribute="centerX" secondItem="gaC-Q4-IE7" secondAttribute="centerX" id="cYY-nE-1WB"/>
                             <constraint firstItem="jTb-Zu-EXk" firstAttribute="top" secondItem="GPz-Ub-Rvp" secondAttribute="bottom" constant="30" id="cz8-n4-SFr"/>
-                            <constraint firstItem="GPz-Ub-Rvp" firstAttribute="top" secondItem="ec1-e1-Q1v" secondAttribute="bottom" constant="30" id="ePb-He-NTp"/>
+                            <constraint firstItem="GPz-Ub-Rvp" firstAttribute="top" secondItem="ec1-e1-Q1v" secondAttribute="bottom" constant="20" id="ePb-He-NTp"/>
                             <constraint firstItem="DGe-7c-bGU" firstAttribute="top" secondItem="1pa-Dd-hlR" secondAttribute="bottom" constant="30" id="gSq-La-QZu"/>
                             <constraint firstItem="wM6-V5-Paw" firstAttribute="top" secondItem="jTb-Zu-EXk" secondAttribute="bottom" constant="40" id="hOZ-72-gd7"/>
                             <constraint firstItem="jTb-Zu-EXk" firstAttribute="leading" secondItem="307-dT-Zyo" secondAttribute="leading" constant="20" id="m3H-TX-sBb"/>
-                            <constraint firstItem="ec1-e1-Q1v" firstAttribute="top" secondItem="307-dT-Zyo" secondAttribute="top" constant="50" id="oda-SJ-HX2"/>
+                            <constraint firstItem="ec1-e1-Q1v" firstAttribute="top" secondItem="307-dT-Zyo" secondAttribute="top" constant="30" id="oda-SJ-HX2"/>
                             <constraint firstItem="ec1-e1-Q1v" firstAttribute="centerX" secondItem="gaC-Q4-IE7" secondAttribute="centerX" id="rwO-p0-oy7"/>
                             <constraint firstItem="GPz-Ub-Rvp" firstAttribute="leading" secondItem="307-dT-Zyo" secondAttribute="leading" constant="40" id="sXS-3i-Pom"/>
                             <constraint firstItem="wM6-V5-Paw" firstAttribute="leading" secondItem="307-dT-Zyo" secondAttribute="leading" constant="20" id="y9a-OU-HfQ"/>

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>814196677440-a3qgo08nl9fesqoui2j6h2u5iqnp96ar.apps.googleusercontent.com</string>
+	<string>814196677440-fmpv5im2otj2bkf2u5fmsabngl763n22.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.814196677440-a3qgo08nl9fesqoui2j6h2u5iqnp96ar</string>
+	<string>com.googleusercontent.apps.814196677440-fmpv5im2otj2bkf2u5fmsabngl763n22</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC4ZthKI9_OAvmTl3k3Vvowg3dpqtcn0qI</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ynCompany.SNSApp</string>
+	<string>yncompany.SNS-App</string>
 	<key>PROJECT_ID</key>
 	<string>snsapp-bc1d9</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:814196677440:ios:c620687df40712fb10b8a5</string>
+	<string>1:814196677440:ios:7ee9f5f03d00de1c10b8a5</string>
 	<key>DATABASE_URL</key>
 	<string>https://snsapp-bc1d9.firebaseio.com</string>
 </dict>
