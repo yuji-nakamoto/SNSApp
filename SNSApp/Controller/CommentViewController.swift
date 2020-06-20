@@ -27,6 +27,7 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.barTintColor = .secondarySystemGroupedBackground
         tableView.delegate = self
         tableView.dataSource = self
         textField.delegate = self
@@ -88,12 +89,12 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
     
     func setupTextField() {
         textField.layer.cornerRadius = 13
-        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderColor = UIColor.systemGray.cgColor
         textField.layer.borderWidth = 1
         textField.borderStyle = .none
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width:10, height: textField.frame.size.height))
         textField.leftViewMode = UITextField.ViewMode.always
-        textField.backgroundColor = UIColor.white
+        textField.backgroundColor = UIColor.secondarySystemGroupedBackground
     }
     
     func setupKeyboard() {

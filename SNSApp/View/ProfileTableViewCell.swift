@@ -41,7 +41,7 @@ class ProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 40
-        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
         profileImage.layer.borderWidth = 4
         changeButton.layer.cornerRadius = 15
         changeButton.layer.borderColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1).cgColor

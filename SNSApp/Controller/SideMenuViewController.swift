@@ -30,6 +30,7 @@ class SideMenuViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        view.backgroundColor = .secondarySystemGroupedBackground
         
         updateView()
         setupGesture()
@@ -46,7 +47,7 @@ class SideMenuViewController: UIViewController {
     }
     
     func updateView() {
-        logoutIcon.tintColor = UIColor.red
+        logoutIcon.tintColor = UIColor.systemRed
         usernameLabel.text = " "
         profileImage.layer.cornerRadius = 30
         UserApi().REF_CURRENT_USER?.observeSingleEvent(of: .value, with: { (snapshot) in

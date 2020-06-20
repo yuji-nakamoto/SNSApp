@@ -50,7 +50,7 @@ class InboxTableViewCell: UITableViewCell {
         refOnline.observeSingleEvent(of: .value) { (snapshot) in
             if let snap = snapshot.value as? [String: Any] {
                 if let active = snap["online"] as? Bool {
-                    self.onlineView.backgroundColor = active == true ? .green : .red
+                    self.onlineView.backgroundColor = active == true ? .systemGreen : .systemRed
                 }
             }
         }
@@ -60,7 +60,7 @@ class InboxTableViewCell: UITableViewCell {
         inboxChangeOnlineHandle = refOnline.observe(.childChanged) { (snapshot) in
             if let snap = snapshot.value {
                 if snapshot.key == "online" {
-                    self.onlineView.backgroundColor = (snap as! Bool) == true ? .green : .red
+                    self.onlineView.backgroundColor = (snap as! Bool) == true ? .systemGreen : .systemRed
                 }
             }
         }
@@ -83,8 +83,8 @@ class InboxTableViewCell: UITableViewCell {
         profileImage.layer.cornerRadius = 25
         onlineView.layer.cornerRadius = 15/2
         onlineView.layer.borderWidth = 2
-        onlineView.layer.borderColor = UIColor.white.cgColor
-        onlineView.backgroundColor = UIColor.red
+        onlineView.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
+        onlineView.backgroundColor = UIColor.systemRed
     }
     
     override func prepareForReuse() {

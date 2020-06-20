@@ -20,6 +20,7 @@ class NotificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .secondarySystemGroupedBackground
         navigationController?.navigationBar.isHidden = true
         tableView.delegate = self
         tableView.dataSource = self

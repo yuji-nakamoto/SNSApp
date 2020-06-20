@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .secondarySystemGroupedBackground
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         tableView.refreshControl = refresh

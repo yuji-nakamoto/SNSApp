@@ -34,6 +34,7 @@ class OtherProfileViewController: UIViewController {
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
         self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.barTintColor = .secondarySystemGroupedBackground
     }
     
     @objc func update(){

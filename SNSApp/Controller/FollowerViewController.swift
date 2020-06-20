@@ -18,6 +18,7 @@ class FollowerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = .secondarySystemGroupedBackground
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none

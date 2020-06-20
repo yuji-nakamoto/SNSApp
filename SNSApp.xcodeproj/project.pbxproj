@@ -67,13 +67,13 @@
 		836579802413AC21009BE554 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8365797F2413AC21009BE554 /* FeedApi.swift */; };
 		83657982241419AE009BE554 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83657981241419AE009BE554 /* OtherProfileViewController.swift */; };
 		83A1F2BC249907E100AB0BED /* CoronaStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1F2BB249907E100AB0BED /* CoronaStatsViewController.swift */; };
-		ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */; };
+		F496D391E62F1D84C352C239 /* Pods_SNSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E85AAD811F913AC5822EF4 /* Pods_SNSApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		064109958F6BE778EB232065 /* Pods-SNSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SNSApp.release.xcconfig"; path = "Target Support Files/Pods-SNSApp/Pods-SNSApp.release.xcconfig"; sourceTree = "<group>"; };
 		1BCD19D70B32A1C242046791 /* Pods-SNSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SNSApp.debug.xcconfig"; path = "Target Support Files/Pods-SNSApp/Pods-SNSApp.debug.xcconfig"; sourceTree = "<group>"; };
-		32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SNSApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		54E85AAD811F913AC5822EF4 /* Pods_SNSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SNSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		834807B62418170D00F6020E /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		834807B82418193500F6020E /* InboxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTableViewCell.swift; sourceTree = "<group>"; };
 		834807BA2418224F00F6020E /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED546CF0C41084F9D3E5CDF9 /* libPods-SNSApp.a in Frameworks */,
+				F496D391E62F1D84C352C239 /* Pods_SNSApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +273,7 @@
 		A84B2825C0B4B66C1E9AB7EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32B393C8B29C6B2EDDD536D1 /* libPods-SNSApp.a */,
+				54E85AAD811F913AC5822EF4 /* Pods_SNSApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,7 +298,8 @@
 				83508B1B24070744000DFD8C /* Sources */,
 				83508B1C24070744000DFD8C /* Frameworks */,
 				83508B1D24070744000DFD8C /* Resources */,
-				979D72B758A871BAB78B4423 /* [CP] Copy Pods Resources */,
+				37AD074C928DEFF865B8E9FF /* [CP] Embed Pods Frameworks */,
+				88E3020837A75D598159B006 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,6 +361,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		37AD074C928DEFF865B8E9FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SNSApp/Pods-SNSApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		750D2314C23A5F872655D7D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,7 +400,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		979D72B758A871BAB78B4423 /* [CP] Copy Pods Resources */ = {
+		88E3020837A75D598159B006 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

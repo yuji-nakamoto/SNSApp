@@ -34,6 +34,7 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
         
         tableView.separatorStyle = .none
         navigationItem.title = "変更"
+        navigationController?.navigationBar.barTintColor = .secondarySystemGroupedBackground
         usernameTextField.delegate = self
         emailTextField.delegate = self
         birthdayTextField.delegate = self
@@ -96,7 +97,7 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
     
     func setupAvatar() {
         profileImage.layer.cornerRadius = 35
-        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
         profileImage.layer.borderWidth = 5
         alphaImage.layer.cornerRadius = 63/2
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker_1))

@@ -59,7 +59,7 @@ class MessageTableViewCell: UITableViewCell {
             } else {
                 widthConstraint.constant = widthValue
             }
-            dateLabel.textColor = .lightGray
+            dateLabel.textColor = .white
         } else {
             dateLabel.textColor = .white
             photoImage.isHidden = false
@@ -72,17 +72,17 @@ class MessageTableViewCell: UITableViewCell {
         }
         
         if Auth.auth().currentUser!.uid == message!.from {
-            bubleView.backgroundColor = UIColor.systemGroupedBackground
+            bubleView.backgroundColor = UIColor(red: 59/255, green: 150/255, blue: 255/255, alpha: 1)
             bubleView.layer.borderColor = UIColor.clear.cgColor
             bubleRightConstraint.constant = 8
             bubleLeftConstraint.constant = UIScreen.main.bounds.width - widthConstraint.constant - bubleRightConstraint.constant
         } else {
             profileImage.isHidden = false
-            bubleView.backgroundColor = UIColor.white
+            bubleView.backgroundColor = UIColor.systemGray2
             if let photoUrlString = user?.profileImageUrl {
                 profileImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
             }
-            bubleView.layer.borderColor = UIColor.lightGray.cgColor
+            bubleView.layer.borderColor = UIColor.clear.cgColor
             bubleLeftConstraint.constant = 55
             bubleRightConstraint.constant = UIScreen.main.bounds.width - widthConstraint.constant - bubleLeftConstraint.constant
         }

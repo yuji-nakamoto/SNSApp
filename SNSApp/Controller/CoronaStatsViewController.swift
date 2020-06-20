@@ -37,6 +37,7 @@ class CoronaStatsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = .secondarySystemGroupedBackground
         tableView.delegate = self
         tableView.dataSource = self
         container1.layer.cornerRadius = 10

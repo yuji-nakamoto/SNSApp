@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
         loadMyPosts()
         tableView.refreshControl = refresh
         refresh.addTarget(self, action: #selector(update), for: .valueChanged)
+        navigationController?.navigationBar.barTintColor = .secondarySystemGroupedBackground
     }
     
     override func viewWillAppear(_ animated: Bool) {
