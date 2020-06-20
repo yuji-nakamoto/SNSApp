@@ -24,7 +24,7 @@ class MessageViewController: UIViewController {
     var partnerId: String!
     var messageId: String!
     var partnerUser: User!
-    var image: UIImage!
+    var imagePartner: UIImage!
     var currentUserId = Auth.auth().currentUser!.uid
     var isTyping = false
     var timer = Timer()
@@ -39,8 +39,6 @@ class MessageViewController: UIViewController {
         setupTextField()
         setupKeyboard()
         handleTextField()
-        loadMessage()
-        observeActivity()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,11 +125,14 @@ class MessageViewController: UIViewController {
         usernameLabel.text = ""
         accountLabel.text = ""
         partnerImage.layer.cornerRadius = 18
+        
         UserApi().observeUser(withId: partnerId) { (user) in
             self.usernameLabel.text = user.username
             self.accountLabel.text = user.account
             let photoUrlString = user.profileImageUrl
             self.partnerImage.sd_setImage(with: URL(string: photoUrlString), completed: nil)
+            self.observeActivity()
+            self.loadMessage()
         }
     }
     
@@ -225,13 +226,11 @@ class MessageViewController: UIViewController {
             handleNotification(fromUid: currentUserId, message: "画像が届いています")
         } else if let text = dict["messageText"] as? String, !text.isEmpty {
             handleNotification(fromUid: currentUserId, message: text)
-        } else if let videoUrl = dict["videoUrl"] as? String, !videoUrl.isEmpty {
-            handleNotification(fromUid: currentUserId, message: "動画が届いています")
         }
     }
     
     func handleNotification(fromUid: String, message: String) {
-        UserApi().getUserInfo(uid: fromUid) { (user) in
+        UserApi().getUserInfoSingleEvent(uid: fromUid) { (user) in
             sendRequestNotification(fromUser: user, toUser: self.partnerUser, message: message, badge: 1)
         }
     }
@@ -273,9 +272,9 @@ extension MessageViewController: UITableViewDelegate,UITableViewDataSource {
 extension MessageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imageSelected = info[.originalImage] as? UIImage {
-            image = imageSelected
+            imagePartner = imageSelected
             sendButton.isEnabled = false
-            SendDataApi().savePhotoMessage(image: image, onSuccess: { (anyValue) in
+            SendDataApi().savePhotoMessage(image: imagePartner, onSuccess: { (anyValue) in
                 if let dict = anyValue as? [String: Any] {
                     self.sendToFirebase(dict: dict)
                 }

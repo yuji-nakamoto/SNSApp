@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import SideMenu
 import FBSDKCoreKit
 import GoogleSignIn
 import UserNotifications
@@ -45,20 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
         }
         
-        let viewController = HomeViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        
-        let menuViewController = SideMenuViewController()
-        let menuNavigationController = SideMenuNavigationController(rootViewController: menuViewController)
-        SideMenuManager.default.leftMenuNavigationController = menuNavigationController
-        SideMenuManager.default.addPanGestureToPresent(toView: navigationController.navigationBar)
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: navigationController.view)
-        
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
-
+        
         return true
     }
+
     
     func application(_ application: UIApplication,open url:URL,sourceApplication: String?,annotation: Any) -> Bool {
         var handled = false
@@ -152,7 +143,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate, MessagingDelegate {
         }
         
         print(userInfo)
-        
+
         completionHandler()
     }
     

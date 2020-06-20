@@ -15,6 +15,8 @@
         @IBOutlet weak var profileImage: UIImageView!
         @IBOutlet weak var tableView: UITableView!
         var inboxArray = [Inbox]()
+        var user: User!
+        var imagePartner: UIImage!
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -57,15 +59,6 @@
                 profileImage.sd_setImage(with: URL(string: photoUrl.absoluteString), completed: nil)
             }
         }
-
-        
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "MessageVC"{
-                let messageVC = segue.destination as! MessageViewController
-                let partnerId = sender as? String
-                messageVC.partnerId = partnerId!
-            }
-        }
         
         @IBAction func toSideMenuVC(_ sender: Any) {
             let menu = SideMenuManager.default.leftMenuNavigationController!
@@ -85,6 +78,17 @@
             cell.inbox = inbox
             cell.inboxVC = self
             return cell
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            if let cell = tableView.cellForRow(at: indexPath) as? InboxTableViewCell {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let messageVC = storyboard.instantiateViewController(withIdentifier: "MessageVC") as! MessageViewController
+                messageVC.imagePartner = cell.profileImage.image
+                messageVC.partnerId = cell.user.uid
+                messageVC.partnerUser = cell.user
+                self.navigationController?.pushViewController(messageVC, animated: true)
+            }
         }
         
     }

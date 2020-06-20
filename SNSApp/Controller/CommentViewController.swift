@@ -43,7 +43,6 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false

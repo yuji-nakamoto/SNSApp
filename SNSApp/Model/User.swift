@@ -33,12 +33,9 @@ class User {
     }
     
     static func transformUser(dict: [String: Any], key: String) -> User? {
-        guard let uid = dict["uid"] as? String,
-            let username = dict["username"] as? String,
-            let email = dict["email"] as? String else {
-                return nil
-        }
-
+        let uid = dict["uid"] as? String == nil ? "" : dict["uid"]! as! String
+        let username = dict["username"] as? String == nil ? "" : dict["username"]! as! String
+        let email = dict["email"] as? String == nil ? "" : dict["email"]! as! String
         let profileImageUrl = dict["profileImageUrl"] as? String == nil ? "" : dict["profileImageUrl"]! as! String
         let account = dict["account"] as? String == nil ? "" : dict["account"]! as! String
         let selfIntro = dict["selfIntro"] as? String == nil ? "" : dict["selfIntro"]! as! String

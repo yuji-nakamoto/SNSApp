@@ -18,6 +18,7 @@ class OtherProfileViewController: UIViewController {
     var users = [User]()
     var user: User!
     var userId = ""
+    var imagePartner: UIImage!
     var player = AVAudioPlayer()
     let refresh = UIRefreshControl()
     let soundFilePath = Bundle.main.path(forResource: "refresh", ofType: "mp3")
@@ -95,6 +96,8 @@ class OtherProfileViewController: UIViewController {
         if segue.identifier == "MessageVC"{
             let messageVC = segue.destination as! MessageViewController
             let partnerId = sender as? String
+            messageVC.partnerUser = user
+            messageVC.imagePartner = imagePartner
             messageVC.partnerId = partnerId!
         }
         if segue.identifier == "OtherFollowerVC"{

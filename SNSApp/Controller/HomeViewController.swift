@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import ProgressHUD
 import SDWebImage
-import SideMenu
 import AVFoundation
 
 class HomeViewController: UIViewController {
@@ -34,6 +33,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
         tableView.refreshControl = refresh
@@ -151,11 +151,6 @@ class HomeViewController: UIViewController {
         } else {
             topConstraint.constant = 0
         }
-    }
-    
-    @IBAction func toSideMenuVC(_ sender: Any) {
-        let menu = SideMenuManager.default.leftMenuNavigationController!
-        present(menu, animated: true, completion: nil)
     }
     
     @IBAction func toEditVC(_ sender: Any) {

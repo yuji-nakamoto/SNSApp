@@ -110,6 +110,7 @@ class SideMenuViewController: UIViewController {
             let logout: UIAlertAction = UIAlertAction(title: "ログアウト", style: UIAlertAction.Style.default) { (alert) in
                 do {
                     UserApi().isOnline(bool: false)
+                    Messaging.messaging().unsubscribe(fromTopic: Auth.auth().currentUser!.uid)
                     if let providerData = Auth.auth().currentUser?.providerData {
                         let userInfo = providerData[0]
                         

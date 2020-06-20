@@ -22,7 +22,7 @@ class InboxTableViewCell: UITableViewCell {
     var inboxChangeMessageHandle: DatabaseHandle!
     var inboxVC: InboxViewController?
     var message: Message?
-    var user: User?
+    var user: User!
     var inbox: Inbox? {
         didSet {
             setupUserInfo()
@@ -30,6 +30,7 @@ class InboxTableViewCell: UITableViewCell {
     }
     
     func setupUserInfo() {
+        self.user = inbox?.user
         usernameLabel.text = inbox?.user.username
         accountLabel.text = inbox?.user.account
         let photoUrlString = inbox!.user.profileImageUrl
@@ -84,8 +85,6 @@ class InboxTableViewCell: UITableViewCell {
         onlineView.layer.borderWidth = 2
         onlineView.layer.borderColor = UIColor.white.cgColor
         onlineView.backgroundColor = UIColor.red
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.cellTap))
-        addGestureRecognizer(tapGesture)
     }
     
     override func prepareForReuse() {
@@ -98,11 +97,6 @@ class InboxTableViewCell: UITableViewCell {
         if inboxChangeOnlineHandle != nil {
             refOnline.removeObserver(withHandle: inboxChangeOnlineHandle)
         }
-    }
-    
-    @objc func cellTap() {
-        let id = inbox!.user.id
-        inboxVC?.performSegue(withIdentifier: "MessageVC", sender: id)
     }
     
 }
