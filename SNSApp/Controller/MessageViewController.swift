@@ -118,15 +118,15 @@ class MessageViewController: UIViewController {
         messageTextField.borderStyle = .none
         messageTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width:10, height: messageTextField.frame.size.height))
         messageTextField.leftViewMode = UITextField.ViewMode.always
-        messageTextField.backgroundColor = UIColor.secondarySystemGroupedBackground
+        messageTextField.backgroundColor = UIColor(named: "Dark Color")
     }
     
     func setupNavigationBarUser() {
         usernameLabel.text = ""
         accountLabel.text = ""
         partnerImage.layer.cornerRadius = 18
-        view.backgroundColor = .secondarySystemGroupedBackground
-        
+        view.backgroundColor = UIColor(named: "Dark Color")
+
         UserApi().observeUser(withId: partnerId) { (user) in
             self.usernameLabel.text = user.username
             self.accountLabel.text = user.account

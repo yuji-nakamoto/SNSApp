@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .secondarySystemGroupedBackground
+        view.backgroundColor = UIColor(named: "Dark Color")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none

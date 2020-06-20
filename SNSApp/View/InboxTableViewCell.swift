@@ -17,6 +17,7 @@ class InboxTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var onlineViewLayer: UIView!
     
     var inboxChangeOnlineHandle: DatabaseHandle!
     var inboxChangeMessageHandle: DatabaseHandle!
@@ -50,7 +51,7 @@ class InboxTableViewCell: UITableViewCell {
         refOnline.observeSingleEvent(of: .value) { (snapshot) in
             if let snap = snapshot.value as? [String: Any] {
                 if let active = snap["online"] as? Bool {
-                    self.onlineView.backgroundColor = active == true ? .systemGreen : .systemRed
+                    self.onlineView.backgroundColor = active == true ? .green : .red
                 }
             }
         }
@@ -60,7 +61,7 @@ class InboxTableViewCell: UITableViewCell {
         inboxChangeOnlineHandle = refOnline.observe(.childChanged) { (snapshot) in
             if let snap = snapshot.value {
                 if snapshot.key == "online" {
-                    self.onlineView.backgroundColor = (snap as! Bool) == true ? .systemGreen : .systemRed
+                    self.onlineView.backgroundColor = (snap as! Bool) == true ? .green : .red
                 }
             }
         }
@@ -81,10 +82,9 @@ class InboxTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 25
-        onlineView.layer.cornerRadius = 15/2
-        onlineView.layer.borderWidth = 2
-        onlineView.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
-        onlineView.backgroundColor = UIColor.systemRed
+        onlineView.layer.cornerRadius = 11/2
+        onlineViewLayer.layer.cornerRadius = 15/2
+        onlineView.backgroundColor = UIColor.red
     }
     
     override func prepareForReuse() {

@@ -94,7 +94,7 @@ class CommentViewController: UIViewController,UITextFieldDelegate {
         textField.borderStyle = .none
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width:10, height: textField.frame.size.height))
         textField.leftViewMode = UITextField.ViewMode.always
-        textField.backgroundColor = UIColor.secondarySystemGroupedBackground
+        textField.backgroundColor = UIColor(named: "Dark Color")
     }
     
     func setupKeyboard() {

@@ -27,6 +27,7 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "Dark Color")
         setupView()
         setupTextView()
         setupKeyboard()

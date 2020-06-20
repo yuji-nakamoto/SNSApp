@@ -20,7 +20,7 @@ class NotificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .secondarySystemGroupedBackground
+        view.backgroundColor = UIColor(named: "Dark Color")
         navigationController?.navigationBar.isHidden = true
         tableView.delegate = self
         tableView.dataSource = self

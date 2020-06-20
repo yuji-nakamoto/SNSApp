@@ -12,6 +12,7 @@ import ProgressHUD
 
 class EditTableViewController: UITableViewController,UITextFieldDelegate {
     
+    @IBOutlet weak var profileImageLayer: UIView!
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var headerImageView: UIImageView!
@@ -96,10 +97,10 @@ class EditTableViewController: UITableViewController,UITextFieldDelegate {
     }
     
     func setupAvatar() {
-        profileImage.layer.cornerRadius = 35
-        profileImage.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
-        profileImage.layer.borderWidth = 5
+        profileImageLayer.layer.cornerRadius = 70/2
+        profileImage.layer.cornerRadius = 63/2
         alphaImage.layer.cornerRadius = 63/2
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker_1))
         changeAvatarImage.addGestureRecognizer(tapGesture)
         let tapGestureForHeader = UITapGestureRecognizer(target: self, action: #selector(presentPicker_2))

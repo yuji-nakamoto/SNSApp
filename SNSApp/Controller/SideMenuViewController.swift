@@ -47,7 +47,7 @@ class SideMenuViewController: UIViewController {
     }
     
     func updateView() {
-        logoutIcon.tintColor = UIColor.systemRed
+        logoutIcon.tintColor = UIColor.systemGray3
         usernameLabel.text = " "
         profileImage.layer.cornerRadius = 30
         UserApi().REF_CURRENT_USER?.observeSingleEvent(of: .value, with: { (snapshot) in

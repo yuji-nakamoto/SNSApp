@@ -22,6 +22,9 @@ class SideMenuTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        profileIcon.tintColor = UIColor.systemGray3
+        settingIcon.tintColor = UIColor.systemGray3
+        
         let tapGestureForProfileIcon = UITapGestureRecognizer(target: self, action: #selector(self.toProfileVC))
         profileIcon.addGestureRecognizer(tapGestureForProfileIcon)
         let tapGestureForProfileLbl = UITapGestureRecognizer(target: self, action: #selector(self.toProfileVC))
